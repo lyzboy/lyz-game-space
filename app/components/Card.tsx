@@ -11,7 +11,7 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ title, image, description, link }) => {
   return (
     <div
-      className="flex flex-col justify-center min-h-100 w-75 items-center
+      className="flex flex-col justify-center min-h-100  items-center
     text-center shadow-lg rounded-lg overflow-hidden bg-white"
     >
       <p className="p-5 bg-gray-100 w-[100%] mb-5 text-black font-extrabold">

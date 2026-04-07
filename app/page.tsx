@@ -3,14 +3,14 @@ import Card from "./components/Card";
 export default function Home() {
   return (
     <>
-      <main className="pl-75 pr-75">
+      <main className="lg:pl-50 lg:pr-50 md:pl-25 md:pr-25">
         <div>
           <h1>Lyz Studios</h1>
           <p>Welcome to lyz studios</p>
         </div>
         <div
-          className="grid grid-cols-2 p-10 justify-center content-center 
-      justify-items-center gap-10"
+          className="grid md:grid-cols-2 p-10 justify-center content-center 
+      justify-items-center items-stretch gap-10"
         >
           <Card
             title="Rivers Karate"
