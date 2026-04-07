@@ -1,10 +1,8 @@
-import NavBar from "./components/NavBar";
 import Card from "./components/Card";
 
 export default function Home() {
   return (
-    <div className="p-2">
-      <NavBar />
+    <>
       <main className="pl-75 pr-75">
         <div>
           <h1>Lyz Studios</h1>
@@ -40,6 +38,6 @@ export default function Home() {
           />
         </div>
       </main>
-    </div>
+    </>
   );
 }
