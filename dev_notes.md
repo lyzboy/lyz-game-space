@@ -4,5 +4,8 @@ the development. These notes are meant to capture ideas for later
 planning/implementation. This is a living document and might change during the 
 course of development.
 
-- Move navigation to the main layout.tsx page as per next.js best practices.
-  - Add a footer component to the layout.tsx as well.
+- Add a blog portion to the website.
+- add a portfolio section?
+- add a sign in portion? for saving learning progress
+- move the site navigation off the front page and to its own page.
+- start moving the notes from lyz notes into "lessons" in the form of blogs
