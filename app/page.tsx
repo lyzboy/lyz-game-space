@@ -1,4 +1,4 @@
-import Sites from "./components/Sites";
+import Sites from "./ui/components/Sites";
 
 export default function Home() {
   return (
