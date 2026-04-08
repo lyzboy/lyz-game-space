@@ -1,0 +1,94 @@
+<mxfile host="diagrams.lyzgame.space" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" version="28.0.9">
+  <diagram name="Page-1" id="jteY4nA3KtwHwM9Wmtsm">
+    <mxGraphModel dx="1426" dy="777" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-8" value="" style="shape=ext;double=1;rounded=1;whiteSpace=wrap;html=1;arcSize=3;" vertex="1" parent="1">
+          <mxGeometry x="200" y="341" width="560" height="429" as="geometry" />
+        </mxCell>
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-1" value="Current Focus: Dev Diary Creation" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=left;" vertex="1" parent="1">
+          <mxGeometry x="200" y="180" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-2" value="" style="shape=ext;double=1;rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="250" width="560" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-3" value="Latest Entry: 04/08/26" style="text;strokeColor=none;fillColor=none;html=1;fontSize=16;fontStyle=1;verticalAlign=middle;align=left;" vertex="1" parent="1">
+          <mxGeometry x="230" y="250" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-4" value="Working on creating uml diagrams for the dev diary process.&amp;nbsp;&lt;div&gt;Utilizing the self...&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;html=1;fontSize=19;fontStyle=0;verticalAlign=middle;align=left;" vertex="1" parent="1">
+          <mxGeometry x="230" y="280" width="350" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-5" value="" style="shape=ext;double=1;rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="210" y="386" width="540" height="114" as="geometry" />
+        </mxCell>
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-6" value="Focus: Dev Diary Creation" style="text;strokeColor=none;fillColor=none;html=1;fontSize=16;fontStyle=1;verticalAlign=middle;align=left;" vertex="1" parent="1">
+          <mxGeometry x="290" y="390" width="201" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-7" value="Working on creating uml diagrams for the dev diary&amp;nbsp;&lt;div&gt;process.&amp;nbsp;&lt;span style=&quot;background-color: transparent;&quot;&gt;Utilizing the self...&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;html=1;fontSize=19;fontStyle=0;verticalAlign=middle;align=left;" vertex="1" parent="1">
+          <mxGeometry x="290" y="443" width="450" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-15" value="Recent Aha! Moments:" style="text;strokeColor=none;fillColor=none;html=1;fontSize=16;fontStyle=1;verticalAlign=middle;align=left;" vertex="1" parent="1">
+          <mxGeometry x="210" y="346" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-16" value="Commit: #3213 Change button...." style="text;strokeColor=none;fillColor=none;html=1;fontSize=16;fontStyle=1;verticalAlign=middle;align=left;fontColor=light-dark(#16adf8, #ededed);" vertex="1" parent="1">
+          <mxGeometry x="289" y="414" width="201" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-17" value="!" style="text;strokeColor=none;fillColor=none;html=1;fontSize=51;fontStyle=1;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="210" y="390" width="80" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-18" value="" style="shape=ext;double=1;rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="210" y="510" width="540" height="114" as="geometry" />
+        </mxCell>
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-19" value="Focus: Dev Diary Creation" style="text;strokeColor=none;fillColor=none;html=1;fontSize=16;fontStyle=1;verticalAlign=middle;align=left;" vertex="1" parent="1">
+          <mxGeometry x="290" y="514" width="201" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-20" value="Working on creating uml diagrams for the dev diary&amp;nbsp;&lt;div&gt;process.&amp;nbsp;&lt;span style=&quot;background-color: transparent;&quot;&gt;Utilizing the self...&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;html=1;fontSize=19;fontStyle=0;verticalAlign=middle;align=left;" vertex="1" parent="1">
+          <mxGeometry x="290" y="567" width="450" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-21" value="Commit: #3213 Change button...." style="text;strokeColor=none;fillColor=none;html=1;fontSize=16;fontStyle=1;verticalAlign=middle;align=left;fontColor=light-dark(#16adf8, #ededed);" vertex="1" parent="1">
+          <mxGeometry x="289" y="538" width="201" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-22" value="!" style="text;strokeColor=none;fillColor=none;html=1;fontSize=51;fontStyle=1;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="210" y="514" width="80" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-23" value="" style="shape=ext;double=1;rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="210" y="635" width="540" height="114" as="geometry" />
+        </mxCell>
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-24" value="Focus: Dev Diary Creation" style="text;strokeColor=none;fillColor=none;html=1;fontSize=16;fontStyle=1;verticalAlign=middle;align=left;" vertex="1" parent="1">
+          <mxGeometry x="290" y="639" width="201" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-25" value="Working on creating uml diagrams for the dev diary&amp;nbsp;&lt;div&gt;process.&amp;nbsp;&lt;span style=&quot;background-color: transparent;&quot;&gt;Utilizing the self...&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;html=1;fontSize=19;fontStyle=0;verticalAlign=middle;align=left;" vertex="1" parent="1">
+          <mxGeometry x="290" y="692" width="450" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-26" value="Commit: #3213 Change button...." style="text;strokeColor=none;fillColor=none;html=1;fontSize=16;fontStyle=1;verticalAlign=middle;align=left;fontColor=light-dark(#16adf8, #ededed);" vertex="1" parent="1">
+          <mxGeometry x="289" y="663" width="201" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-27" value="!" style="text;strokeColor=none;fillColor=none;html=1;fontSize=51;fontStyle=1;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="210" y="639" width="80" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-28" value="Repo: lyz-game-space" style="text;strokeColor=none;fillColor=none;html=1;fontSize=21;fontStyle=1;verticalAlign=middle;align=left;fontColor=light-dark(#16adf8, #ededed);" vertex="1" parent="1">
+          <mxGeometry x="200" y="210" width="430" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-29" value="Node.js" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="610" y="190" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-30" value="MongoDB" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="680" y="190" width="70" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-31" value="Next.js" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="610" y="220" width="70" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-32" value="04/08/26" style="text;strokeColor=none;fillColor=none;html=1;fontSize=16;fontStyle=1;verticalAlign=middle;align=right;" vertex="1" parent="1">
+          <mxGeometry x="670" y="390" width="70" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-33" value="04/08/26" style="text;strokeColor=none;fillColor=none;html=1;fontSize=16;fontStyle=1;verticalAlign=middle;align=right;" vertex="1" parent="1">
+          <mxGeometry x="670" y="514" width="70" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="UcYmVI7GXJGjz2cakwgb-34" value="04/08/26" style="text;strokeColor=none;fillColor=none;html=1;fontSize=16;fontStyle=1;verticalAlign=middle;align=right;" vertex="1" parent="1">
+          <mxGeometry x="670" y="639" width="70" height="24" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
