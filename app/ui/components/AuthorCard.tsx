@@ -7,7 +7,7 @@ const AuthorCard = () => {
     sm:flex-row mt-10 border-2 border-blue-400 p-10 rounded-4xl shadow-xl"
     >
       <div
-        className="rounded-full w-48 h-48 flex-shrink-0 mr-10 mb-10 
+        className="rounded-full w-48 h-48 flex-shrink-0 mr-10 
       overflow-hidden"
       >
         <img
