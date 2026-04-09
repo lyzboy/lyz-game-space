@@ -1,14 +1,19 @@
 import Link from "next/link";
 
 const NavBar = () => {
+  const links = ["Sites", "Dev Diary", "Learning"];
   return (
     <nav className="p-4 grid grid-cols-2">
       <p className="text-lg font-bold">Lyz Studios</p>
 
       <ul className="uppercase flex gap-3 justify-end">
-        <li>Sites</li>
-        <li>Blog</li>
-        <li>Portfolio</li>
+        {links.map((link) => {
+          return (
+            <li>
+              <a href="#">{link}</a>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );
