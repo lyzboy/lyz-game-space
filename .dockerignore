@@ -1,0 +1,22 @@
+# Dependencies
+node_modules
+
+# Next.js build output
+.next
+
+# Git / Github
+.git
+.github
+.gitignore
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Local environment variables
+.env.local
+
+# Typescript / Dev Files
+next-env.d.ts
+
+README.md
