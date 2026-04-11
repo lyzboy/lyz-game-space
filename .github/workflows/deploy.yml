@@ -1,29 +1,38 @@
-name: Auto-Deploy lyzgame.space
-
+name: Build and Deploy to Home Server
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: SSH and Deploy
-        uses: appleboy/ssh-action@v1.0.3
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Connect to Cloudflare Tunnel
+        run: |
+          # Download and make cloudflared executable
+          wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -O ./cloudflared
+          chmod +x ./cloudflared
+          
+          # Run the TCP tunnel in the background to open local port 2222
+          # (No service tokens needed since there is no Access Policy!)
+          ./cloudflared access tcp --hostname ${{ secrets.SSH_HOST }} --url localhost:2222 &
+          
+          # Wait for the tunnel to establish
+          sleep 5
+
+      - name: Deploy to Server via SSH
+        uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.SSH_HOST }}
+          # Connect locally through the Cloudflare tunnel we just opened
+          host: localhost
+          port: 2222
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            # Navigate to the project directory
             cd ~/lyz-game-space
-            
-            # Pull the latest code from GitHub
             git pull origin main
-            
-            # Rebuild and restart the container in the background
             docker compose up -d --build
-            
-            # Clean up old, unused images to save disk space
             docker image prune -f
