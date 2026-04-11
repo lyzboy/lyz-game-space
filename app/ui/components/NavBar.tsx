@@ -9,7 +9,7 @@ const NavBar = () => {
       <ul className="uppercase flex gap-3 justify-end">
         {links.map((link) => {
           return (
-            <li>
+            <li key={link}>
               <a href="#">{link}</a>
             </li>
           );
