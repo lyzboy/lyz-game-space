@@ -7,7 +7,7 @@ const AuthorCard = () => {
     sm:flex-row mt-10 border-2 border-blue-400 p-10 rounded-4xl shadow-xl"
     >
       <div
-        className="rounded-full w-48 h-48 flex-shrink-0 mr-10 mb-10 
+        className="rounded-full w-48 h-48 flex-shrink-0 mr-10 
       overflow-hidden"
       >
         <img
@@ -19,13 +19,24 @@ const AuthorCard = () => {
       <div>
         <p className="text-blue-400 font-bold text-2xl mb-3">Josh Sanford</p>
         <p>
-          Welcome to lyz studios. My name is Josh and this site has been created
-          to as a hub for all of my projects. Feel free to look around and
-          explorer. Not only are some projects that I have created here, but
-          there are also some self hosted utilities available to use. If you are
-          looking to learn about some technology and see how I have created and
-          hosted some of these utilities, check out some of the blog posts and
-          the learn free learning platform.
+          Welcome to <strong>lyz studios</strong>. I’m Josh, a Full-Stack
+          Developer specializing in the PERN stack and Next.js. This dashboard
+          serves as a live showcase of my deployed projects and technical
+          accomplishments.
+        </p>
+        <br />
+        <p>
+          To demonstrate end-to-end infrastructure management, every application
+          found here is self-hosted on my local home server—optimized for
+          security and performance via Cloudflare Tunnels and Docker
+          containerization.
+        </p>
+        <br />
+        <p>
+          <strong>Looking for a specific service? </strong>
+          Explore the{" "}
+          <a className="text-blue-400 cursor-pointer">Sites Section</a> to
+          access my hosted applications.
         </p>
       </div>
     </div>
