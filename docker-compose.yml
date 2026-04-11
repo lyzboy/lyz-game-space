@@ -1,0 +1,12 @@
+services:
+  lyzgame-space:
+    build:
+      context: .
+      no_cache: true
+    image: lyz-game-space-prod
+    container_name: lyzgame-container
+    environment:
+      - HOSTNAME=0.0.0.0
+    ports:
+      - "3004:3000"
+    restart: always
