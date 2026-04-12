@@ -43,3 +43,20 @@ To long into the database using psql, use
 psql -d lyz_game_test
 ```
 
+### Roles
+Ensure you create a user to access the database with and give them ownership
+of the database
+```
+sudo -u postgresql psql
+```
+Once in the psql interface:
+```
+CREATE USER lyz_app WITH LOGIN PASSWORD 'secure-password';
+ALTER DATABASE lyz_game_test OWNER TO lyz_app;
+```
+
+### Change DB data in .env
+Change tHe `DATABASE_URL` to match you local setup:
+```
+DATABASE_URL="postgres://lyz_app:your-secret-password@localhost:5432/lyz_game_test?schema=public"
+```
