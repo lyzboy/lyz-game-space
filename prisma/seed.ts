@@ -72,7 +72,7 @@ async function main() {
           },
           {
             description: "Need another to ensure only 3 are shown",
-            commit: "commit/484951232",
+            commitUrl: "commit/484951232",
             isAha: true,
           },
         ],
