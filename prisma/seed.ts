@@ -14,7 +14,7 @@ async function main() {
     create: {
       id: 123,
       description: "This is a test focus",
-      repo: "github.com/lyzboy/test",
+      repositoryUrl: "github.com/lyzboy/test",
       technologies: {
         create: [
           {
@@ -29,12 +29,12 @@ async function main() {
         create: [
           {
             description: "I found out how to seed prisma.",
-            commit: "github.com/lyzboy/test/commit1",
+            commitUrl: "commit/645136151",
             isAha: true,
           },
           {
             description: "Woking on getting the tests right",
-            commit: "github.com/lyzboy/test/commit2",
+            commitUrl: "commit/8854552",
             isAha: false,
           },
         ],
@@ -47,14 +47,14 @@ async function main() {
     create: {
       id: 234,
       description: "More work on prisma",
-      repo: "github.com/lyzboy/test",
+      repositoryUrl: "github.com/lyzboy/test",
       technologies: {
         create: [
           {
-            name: "Node JS",
+            name: "Javascript",
           },
           {
-            name: "Prisma",
+            name: "HTML",
           },
         ],
       },
@@ -62,24 +62,24 @@ async function main() {
         create: [
           {
             description: "Need another aha test.",
-            commit: "github.com/lyzboy/test/commit3",
+            commitUrl: "commit/1313523",
             isAha: true,
           },
           {
             description: "Found out how to map with aha entries",
-            commit: "github.com/lyzboy/test/commit2",
+            commitUrl: "commit/1351552",
             isAha: true,
           },
           {
             description: "Need another to ensure only 3 are shown",
-            commit: "github.com/lyzboy/test/commit2",
+            commit: "commit/484951232",
             isAha: true,
           },
         ],
       },
     },
   });
-  console.log({ testFocus });
+  console.log({ testFocus, testFocus2 });
 }
 main()
   .then(async () => {
