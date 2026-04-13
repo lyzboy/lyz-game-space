@@ -56,7 +56,13 @@ ALTER DATABASE lyz_game_test OWNER TO lyz_app;
 ```
 
 ### Change DB data in .env
-Change tHe `DATABASE_URL` to match you local setup:
+Change the `DATABASE_URL` to match you local setup:
 ```
 DATABASE_URL="postgres://lyz_app:your-secret-password@localhost:5432/lyz_game_test?schema=public"
 ```
+### Adding CREATEDB role
+To allow prisma to generate a shadow db, used for migration, the new role must have the CREATEDB role. You can accomplish this by using:
+```
+ALTER ROLE lyz_app WITH CREATEDB
+```
+If the user has already been created.
