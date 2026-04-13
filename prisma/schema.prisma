@@ -11,3 +11,27 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model Focus {
+  id           Int          @id @default(autoincrement())
+  description  String
+  repo         String?
+  technologies Technology[]
+  entry        Entry[]
+}
+
+model Technology {
+  id      Int     @id @default(autoincrement())
+  name    String
+  focuses Focus[]
+}
+
+model Entry {
+  id          Int      @id @default(autoincrement())
+  date        DateTime @default(now())
+  description String
+  commit      String
+  isAha       Boolean
+  focus       Focus    @relation(fields: [focusId], references: [id])
+  focusId     Int
+}
