@@ -16,11 +16,8 @@ Once done, we need to change how the TIL feed connects to the client and use the
 global client.
 
 ## Model changes
-Need to refactor the models and there field names. Instead of date, use createdAt.
-There also needs ot be a published field of type boolean in order to have a "save"
-state for the entry in case it hasn't been created. This will be implemented later.
-we also need to change the repo to repoUrl and the commit to something like
-commitSha or commitUrl for clarity.
+This is been partially implemented and needs complete, models and seed.ts have
+been updated, but need to verify the TIL component is using the correct names.
 
 ## TIL feed focus badges
 Need to add the badges to the focus, needs to show on the feed, and in the view
