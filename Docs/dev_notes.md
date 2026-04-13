@@ -15,6 +15,13 @@ global object so there is only one instance of the client.
 Once done, we need to change how the TIL feed connects to the client and use the 
 global client.
 
+## Model changes
+Need to refactor the models and there field names. Instead of date, use createdAt.
+There also needs ot be a published field of type boolean in order to have a "save"
+state for the entry in case it hasn't been created. This will be implemented later.
+we also need to change the repo to repoUrl and the commit to something like
+commitSha or commitUrl for clarity.
+
 ## TIL feed focus badges
 Need to add the badges to the focus, needs to show on the feed, and in the view
 page needs to list them all
@@ -32,7 +39,14 @@ On this page, the entries will look similar to the TIL feed, but will include
 a drop down where the modal expands showing the full entry details.
 
 ## Focus Admin page
-A restricted page where I can create focus and entry items.
+A restricted page where I can create focus and entry items. It should have a 
+quick entry component to enter the entry into. It should also utilize the github
+api to grab the commits for the repo associated with the focus, this will create
+a list so I can quickly select a commit to associate with the current entry.
+
+## Entry published
+Implement the ability to save an entry for it to be published at a later time.
+It would be saved as a draft.
 
 # Other Notes
 
