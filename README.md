@@ -63,6 +63,21 @@ DATABASE_URL="postgres://lyz_app:your-secret-password@localhost:5432/lyz_game_te
 ### Adding CREATEDB role
 To allow prisma to generate a shadow db, used for migration, the new role must have the CREATEDB role. You can accomplish this by using:
 ```
-ALTER ROLE lyz_app WITH CREATEDB
+ALTER ROLE lyz_app WITH CREATEDB;
 ```
 If the user has already been created.
+
+## Seeding the DB
+To seed the database you will need to have created a schema file with prisma models. After that has been done, be sure to run
+```bash
+npx prisma migrate
+```
+and
+```bash
+npx prisma generate
+```
+Once there are no errors, you can create a `seed.ts` file within the `/prisma` folder. Following the [guide](https://www.prisma.io/docs/orm/prisma-migrate/workflows/seeding) from the official website, you can model the seed data, and then run:
+```bash
+npx prisma db seed
+```
+to seed the database
