@@ -1,4 +1,14 @@
-const AhaEntry = () => {
+interface AhaEntryProps {
+  focusName: string;
+  commit: string;
+  description: string;
+}
+
+const AhaEntry: React.FC<AhaEntryProps> = ({
+  focusName,
+  commit,
+  description,
+}) => {
   return (
     <div
       className="border-2 p-2 rounded-2xl mt-1 mb-1 bg-amber-100 
@@ -8,14 +18,11 @@ const AhaEntry = () => {
         <p className="text-4xl mt-auto mb-auto">!</p>
       </div>
       <div className="flex justify-center content-center flex-col">
-        <p>Focus: Dev Diary Creation</p>
+        <p>Focus: {focusName}</p>
         <a href="#" className="text-blue-400">
-          Commit: #1234 Change button...
+          Commit: {commit}
         </a>
-        <p>
-          Working on creating uml diagrams for the dev diary process. Utilizing
-          the self...
-        </p>
+        <p>{description}</p>
       </div>
     </div>
   );

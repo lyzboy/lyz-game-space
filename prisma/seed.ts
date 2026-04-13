@@ -41,6 +41,44 @@ async function main() {
       },
     },
   });
+  const testFocus2 = await prisma.focus.upsert({
+    where: { id: 234 },
+    update: {},
+    create: {
+      id: 234,
+      description: "More work on prisma",
+      repo: "github.com/lyzboy/test",
+      technologies: {
+        create: [
+          {
+            name: "Node JS",
+          },
+          {
+            name: "Prisma",
+          },
+        ],
+      },
+      entry: {
+        create: [
+          {
+            description: "Need another aha test.",
+            commit: "github.com/lyzboy/test/commit3",
+            isAha: true,
+          },
+          {
+            description: "Found out how to map with aha entries",
+            commit: "github.com/lyzboy/test/commit2",
+            isAha: true,
+          },
+          {
+            description: "Need another to ensure only 3 are shown",
+            commit: "github.com/lyzboy/test/commit2",
+            isAha: true,
+          },
+        ],
+      },
+    },
+  });
   console.log({ testFocus });
 }
 main()
