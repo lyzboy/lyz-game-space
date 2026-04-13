@@ -7,13 +7,13 @@ course of development.
 # TIL Feed feature
 ## Update prisma
 
-Following section 2.6 Set up prisma client on 
+~~Following section 2.6 Set up prisma client on 
 [the prisma guide](https://www.prisma.io/docs/guides/frameworks/nextjs) for 
 next js, we need to create a Prisma Client and attach it to the 
-global object so there is only one instance of the client.
+global object so there is only one instance of the client.~~
 
-Once done, we need to change how the TIL feed connects to the client and use the 
-global client.
+~~Once done, we need to change how the TIL feed connects to the client and use the 
+global client.~~
 
 ## Model changes
 This is been partially implemented and needs complete, models and seed.ts have

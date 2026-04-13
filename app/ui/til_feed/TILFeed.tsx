@@ -1,15 +1,6 @@
 import Entry from "../components/Entry";
 import AhaEntry from "../components/AhaEntry";
-
-import "dotenv/config";
-import { Pool } from "pg";
-import { PrismaPg } from "@prisma/adapter-pg";
-import { PrismaClient } from "../../generated/prisma/client";
-
-const connectionString = `${process.env.DATABASE_URL}`;
-const pool = new Pool({ connectionString });
-const adapter = new PrismaPg(pool);
-const prisma = new PrismaClient({ adapter });
+import prisma from "@/lib/prisma";
 
 const TILFeed = async () => {
   const allFocus = await prisma.focus.findFirst({
@@ -18,7 +9,7 @@ const TILFeed = async () => {
   const newestThreeAhas = await prisma.entry.findMany({
     take: 3,
     orderBy: {
-      date: "desc", // Or 'createdAt' if you have a timestamp field
+      createdAt: "desc", // Or 'createdAt' if you have a timestamp field
     },
     where: { isAha: true },
     include: { focus: true },
@@ -33,13 +24,13 @@ const TILFeed = async () => {
         {/* this will be for badges */}
         <div></div>
       </div>
-      <a href={allFocus?.repo || "#"} className="text-blue-400">
-        Repo: {allFocus?.repo}
+      <a href={allFocus?.repositoryUrl || "#"} className="text-blue-400">
+        Repo: {allFocus?.repositoryUrl}
       </a>
 
       <p className="font-bold mt-3 text-lg">Latest Entry:</p>
       <Entry
-        date={allFocus?.entry[1].date || new Date()}
+        date={allFocus?.entry[1].createdAt || new Date()}
         description={allFocus?.entry[1].description || "not found"}
       />
       <div>
@@ -49,7 +40,7 @@ const TILFeed = async () => {
             <AhaEntry
               key={entry.id}
               focusName={entry.focus.description}
-              commit={entry.commit}
+              commit={entry.commitUrl}
               description={entry.description}
             />
           );
