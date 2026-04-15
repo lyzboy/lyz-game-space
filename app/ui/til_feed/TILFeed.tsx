@@ -1,6 +1,6 @@
 import Entry from "../components/Entry";
 import AhaEntry from "../components/AhaEntry";
-import prisma from "@/lib/prisma";
+import prisma from "@/app/lib/prisma";
 
 const TILFeed = async () => {
   const allFocus = await prisma.focus.findFirst({
