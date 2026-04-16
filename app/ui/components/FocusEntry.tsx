@@ -11,7 +11,6 @@ const FocusEntry: React.FC<FocusEntryProps> = ({
 }) => {
   return (
     <div>
-      <h2 className="text-2xl font-bold">Today I Learned Feed</h2>
       <div>
         <p className="font-bold text-xl">Current Focus: {description}</p>
         {/* this will be for badges */}
