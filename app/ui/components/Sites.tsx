@@ -10,12 +10,12 @@ interface CardObject {
 
 const Sites = () => {
   let cardArray: CardObject[] = [
-    {
-      title: "My Portfolio",
-      image: "/images/placeholder_view.png",
-      description: "My portfolio website showcasing some of my latest work.",
-      link: "https://lyzboy.github.io",
-    },
+    // {
+    //   title: "My Portfolio",
+    //   image: "/images/placeholder_view.png",
+    //   description: "My portfolio website showcasing some of my latest work.",
+    //   link: "https://lyzboy.github.io",
+    // },
     {
       title: "Rivers Karate",
       image: "/images/rivers_karate.png",
