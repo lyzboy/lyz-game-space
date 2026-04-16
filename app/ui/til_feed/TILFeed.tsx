@@ -1,6 +1,7 @@
 import Entry from "../components/Entry";
 import AhaEntry from "../components/AhaEntry";
 import prisma from "@/app/lib/prisma";
+import FocusEntry from "../components/FocusEntry";
 
 const TILFeed = async () => {
   const allFocus = await prisma.focus.findFirst({
@@ -16,17 +17,10 @@ const TILFeed = async () => {
   });
   return (
     <div className="mt-10 mb-10 border-blue-400 border-2 rounded-2xl p-5">
-      <h2 className="text-2xl font-bold">Today I Learned Feed</h2>
-      <div>
-        <p className="font-bold text-xl">
-          Current Focus: {allFocus?.description}
-        </p>
-        {/* this will be for badges */}
-        <div></div>
-      </div>
-      <a href={allFocus?.repositoryUrl || "#"} className="text-blue-400">
-        Repo: {allFocus?.repositoryUrl}
-      </a>
+      <FocusEntry
+        description={allFocus?.description || "Description Not Found"}
+        repositoryUrl={allFocus?.repositoryUrl || "#"}
+      />
 
       <p className="font-bold mt-3 text-lg">Latest Entry:</p>
       <Entry
