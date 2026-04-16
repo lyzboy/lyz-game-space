@@ -17,6 +17,8 @@ const TILFeed = async () => {
   });
   return (
     <div className="mt-10 mb-10 border-blue-400 border-2 rounded-2xl p-5">
+      <h2 className="text-2xl font-bold">Today I Learned Feed</h2>
+
       <FocusEntry
         description={allFocus?.description || "Description Not Found"}
         repositoryUrl={allFocus?.repositoryUrl || "#"}
