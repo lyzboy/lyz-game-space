@@ -4,7 +4,9 @@ const NavBar = () => {
   const links = ["Sites", "Dev Diary", "Learning"];
   return (
     <nav className="p-4 grid grid-cols-2">
-      <p className="text-lg font-bold">Lyz Studios</p>
+      <a className="text-lg font-bold cursor-pointer" href="/">
+        Lyz Studios
+      </a>
 
       <ul className="uppercase flex gap-3 justify-end">
         {links.map((link) => {
