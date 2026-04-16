@@ -3,29 +3,27 @@
  * @returns An entry form component
  */
 
-export default function EntryForm() {
+export default function FocusForm() {
   return (
     <div>
-      <p>Entry Form</p>
+      <p>Focus Form</p>
       <form action="">
-        <label htmlFor="entryDescription">Entry Description:</label>
-        <textarea
-          id="story"
-          rows={5}
-          cols={33}
-          className="border-black border-2 rounded-md"
-          name="entryName"
-        />
-        <label htmlFor="commitUrl">Commit URL:</label>
+        <label htmlFor="focusName">Focus Name:</label>
         <input
           className="border-black border-2 rounded-md"
           type="text"
-          name="commitUrl"
+          name="focusName"
+        />
+        <label htmlFor="repoName">Repo Name:</label>
+        <input
+          className="border-black border-2 rounded-md"
+          type="text"
+          name="repoName"
         />
         <button
           type="submit"
           className="bg-blue-400 p-2 text-white
-          font-bold rounded-lg"
+        font-bold rounded-lg"
         >
           Submit
         </button>
