@@ -14,7 +14,7 @@ datasource db {
 
 model Focus {
   id            Int          @id @default(autoincrement())
-  description   String
+  description   String       @unique
   repositoryUrl String?
   technologies  Technology[]
   entry         Entry[]
