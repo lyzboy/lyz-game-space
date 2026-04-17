@@ -7,7 +7,7 @@ import FocusForm from "../ui/components/FocusForm";
  */
 export default function Admin() {
   return (
-    <div>
+    <div className="p-32">
       <FocusForm />
       <EntryForm />
     </div>
