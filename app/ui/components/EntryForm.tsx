@@ -1,35 +1,58 @@
+import prisma from "@/app/lib/prisma";
+
 /**
  * A component used by the admin of the site to create new entries.
  * @returns An entry form component
  */
 
-export default function EntryForm() {
+export default async function EntryForm() {
+  const focuses = await prisma.focus.findMany({
+    include: { entry: true, technologies: true },
+  });
+
   return (
-    <div>
-      <p>Entry Form</p>
-      <form action="">
-        <label htmlFor="entryDescription">Entry Description:</label>
-        <textarea
-          id="story"
-          rows={5}
-          cols={33}
-          className="border-black border-2 rounded-md"
-          name="entryName"
-        />
-        <label htmlFor="commitUrl">Commit URL:</label>
-        <input
-          className="border-black border-2 rounded-md"
-          type="text"
-          name="commitUrl"
-        />
-        <button
-          type="submit"
-          className="bg-blue-400 p-2 text-white
+    <div className="flex flex-col">
+      <p className="text-2xl font-bold">Entry Form</p>
+      {focuses.length > 0 ? (
+        <form action="" className="flex flex-col">
+          <label htmlFor="selectedFocus">Selected Focus:</label>
+          <select
+            name="selectedFocus"
+            className="border-black border-2 rounded-md"
+          >
+            {focuses.map((focus) => {
+              return (
+                <option value={focus.id} key={focus.id.toString()}>
+                  {focus.description}
+                </option>
+              );
+            })}
+          </select>
+          <label htmlFor="entryDescription">Entry Description:</label>
+          <textarea
+            id="story"
+            rows={5}
+            cols={33}
+            className="border-black border-2 rounded-md"
+            name="entryName"
+          />
+          <label htmlFor="commitUrl">Commit URL:</label>
+          <input
+            className="border-black border-2 rounded-md mb-4"
+            type="text"
+            name="commitUrl"
+          />
+          <button
+            type="submit"
+            className="bg-blue-400 p-2 text-white
           font-bold rounded-lg"
-        >
-          Submit
-        </button>
-      </form>
+          >
+            Submit
+          </button>
+        </form>
+      ) : (
+        <p>Please Create a Focus first</p>
+      )}
     </div>
   );
 }

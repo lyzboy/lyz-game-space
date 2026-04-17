@@ -1,3 +1,5 @@
+import prisma from "@/app/lib/prisma";
+
 /**
  * A component used by the admin of the site to create new entries.
  * @returns An entry form component
@@ -5,9 +7,9 @@
 
 export default function FocusForm() {
   return (
-    <div>
-      <p>Focus Form</p>
-      <form action="">
+    <div className="flex flex-col mb-16">
+      <p className="text-2xl font-bold">Focus Form</p>
+      <form action="" className="flex flex-col">
         <label htmlFor="focusName">Focus Name:</label>
         <input
           className="border-black border-2 rounded-md"
@@ -16,7 +18,7 @@ export default function FocusForm() {
         />
         <label htmlFor="repoName">Repo Name:</label>
         <input
-          className="border-black border-2 rounded-md"
+          className="border-black border-2 rounded-md mb-4"
           type="text"
           name="repoName"
         />

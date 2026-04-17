@@ -10,7 +10,7 @@ const TILFeed = async () => {
   const newestThreeAhas = await prisma.entry.findMany({
     take: 3,
     orderBy: {
-      createdAt: "desc", // Or 'createdAt' if you have a timestamp field
+      createdAt: "desc",
     },
     where: { isAha: true },
     include: { focus: true },
