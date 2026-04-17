@@ -1,4 +1,4 @@
-import prisma from "@/app/lib/prisma";
+import { createFocus } from "@/app/lib/actions";
 
 /**
  * A component used by the admin of the site to create new entries.
@@ -9,7 +9,7 @@ export default function FocusForm() {
   return (
     <div className="flex flex-col mb-16">
       <p className="text-2xl font-bold">Focus Form</p>
-      <form action="" className="flex flex-col">
+      <form action={createFocus} className="flex flex-col">
         <label htmlFor="focusName">Focus Name:</label>
         <input
           className="border-black border-2 rounded-md"

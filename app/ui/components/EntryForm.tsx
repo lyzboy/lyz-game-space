@@ -9,7 +9,7 @@ export default async function EntryForm() {
   const focuses = await prisma.focus.findMany({
     include: { entry: true, technologies: true },
   });
-
+  // TODO: add a hook to reference the drop down when focus list changes from newly added focus
   return (
     <div className="flex flex-col">
       <p className="text-2xl font-bold">Entry Form</p>
