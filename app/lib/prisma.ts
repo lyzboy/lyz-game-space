@@ -14,8 +14,3 @@ const prisma =
   });
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 export default prisma;
-
-// const connectionString = `${process.env.DATABASE_URL}`;
-// const pool = new Pool({ connectionString });
-// const adapter = new PrismaPg(pool);
-// const prisma = new PrismaClient({ adapter });
