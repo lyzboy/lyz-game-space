@@ -1,4 +1,4 @@
-import prisma from "@/app/lib/prisma";
+import { getFocuses } from "@/app/lib/actions";
 
 /**
  * A component used by the admin of the site to create new entries.
@@ -6,10 +6,8 @@ import prisma from "@/app/lib/prisma";
  */
 
 export default async function EntryForm() {
-  const focuses = await prisma.focus.findMany({
-    include: { entry: true, technologies: true },
-  });
-  // TODO: add a hook to reference the drop down when focus list changes from newly added focus
+  const focuses = await getFocuses();
+
   return (
     <div className="flex flex-col">
       <p className="text-2xl font-bold">Entry Form</p>

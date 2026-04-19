@@ -1,5 +1,6 @@
 "use server";
 import prisma from "@/app/lib/prisma";
+import { revalidatePath } from "next/cache";
 
 export async function createFocus(formData: FormData) {
   const focusName = formData.get("focusName");
@@ -22,6 +23,18 @@ export async function createFocus(formData: FormData) {
         repositoryUrl: repoName,
       },
     });
+    revalidatePath("/admin");
   }
   console.log(`${repoName}`);
+}
+
+export async function getFocuses() {
+  try {
+    const fetchedFocuses = await prisma.focus.findMany({
+      include: { entry: true },
+    });
+    return fetchedFocuses;
+  } catch (error) {
+    throw new Error("Failed to fetch focuses");
+  }
 }
