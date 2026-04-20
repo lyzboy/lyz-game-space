@@ -1,4 +1,4 @@
-import { getFocuses } from "@/app/lib/actions";
+import { createEntry, getFocuses } from "@/app/lib/actions";
 
 /**
  * A component used by the admin of the site to create new entries.
@@ -12,7 +12,7 @@ export default async function EntryForm() {
     <div className="flex flex-col">
       <p className="text-2xl font-bold">Entry Form</p>
       {focuses.length > 0 ? (
-        <form action="" className="flex flex-col">
+        <form action={createEntry} className="flex flex-col">
           <label htmlFor="selectedFocus">Selected Focus:</label>
           <select
             name="selectedFocus"
@@ -32,13 +32,19 @@ export default async function EntryForm() {
             rows={5}
             cols={33}
             className="border-black border-2 rounded-md"
-            name="entryName"
+            name="entryDescription"
           />
           <label htmlFor="commitUrl">Commit URL:</label>
           <input
             className="border-black border-2 rounded-md mb-4"
             type="text"
             name="commitUrl"
+          />
+          <label htmlFor="isAha">Is Aha?</label>
+          <input
+            className="border-black border-2 rounded-md mb-4"
+            type="checkbox"
+            name="isAha"
           />
           <button
             type="submit"
