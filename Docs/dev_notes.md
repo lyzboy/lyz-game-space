@@ -5,19 +5,6 @@ planning/implementation. This is a living document and might change during the
 course of development.
 
 # TIL Feed feature
-## Update prisma
-
-~~Following section 2.6 Set up prisma client on 
-[the prisma guide](https://www.prisma.io/docs/guides/frameworks/nextjs) for 
-next js, we need to create a Prisma Client and attach it to the 
-global object so there is only one instance of the client.~~
-
-~~Once done, we need to change how the TIL feed connects to the client and use the 
-global client.~~
-
-## Model changes
-This is been partially implemented and needs complete, models and seed.ts have
-been updated, but need to verify the TIL component is using the correct names.
 
 ## TIL feed focus badges
 Need to add the badges to the focus, needs to show on the feed, and in the view
@@ -50,6 +37,14 @@ server, and there will be only a password for for access to the admin dash. Once
 the admin enters the password, we will use bcrypt to salt and hash the password
 and compare it against the stored hashed password on the server side.
 
+### Edit entries and focuses
+Need to be able to edit entries or focuses if something was added incorrectly.
+
+## Add Markup viewer
+Entries should be able to use markup to write them. Need to parse the entry data
+so that markup is rendered and html. Might need to adjust global tailwind styles
+to ensure that formatting works correctly.
+
 ## Entry published
 Implement the ability to save an entry for it to be published at a later time.
 It would be saved as a draft.
@@ -57,5 +52,6 @@ It would be saved as a draft.
 # Other Notes
 
 - Add a blog portion to the website.
+- Add the ability to upload photos by admin for entry or lesson purposes.
 - add a sign in portion? for saving learning progress
 - start moving the notes from lyz notes into "lessons" in the form of blogs
