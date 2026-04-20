@@ -9,6 +9,9 @@ const FocusEntry: React.FC<FocusEntryProps> = ({
   description,
   repositoryUrl,
 }) => {
+  const formattedUrl = repositoryUrl.startsWith("http")
+    ? repositoryUrl
+    : `https://${repositoryUrl}`;
   return (
     <div>
       <div>
@@ -16,7 +19,7 @@ const FocusEntry: React.FC<FocusEntryProps> = ({
         {/* this will be for badges */}
         <div></div>
       </div>
-      <a href={repositoryUrl} className="text-blue-400">
+      <a href={formattedUrl} target="_blank" className="text-blue-400">
         Repo: {repositoryUrl}
       </a>
     </div>
