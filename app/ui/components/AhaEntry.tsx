@@ -1,3 +1,5 @@
+import { formatShortDescription } from "@/app/lib/utils";
+
 interface AhaEntryProps {
   focusName: string;
   commit: string;
@@ -22,7 +24,7 @@ const AhaEntry: React.FC<AhaEntryProps> = ({
         <a href="#" className="text-blue-400">
           Commit: {commit}
         </a>
-        <p>{description}</p>
+        <p>{formatShortDescription(description)}</p>
       </div>
     </div>
   );

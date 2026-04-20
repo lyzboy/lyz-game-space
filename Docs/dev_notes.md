@@ -10,10 +10,6 @@ course of development.
 Need to add the badges to the focus, needs to show on the feed, and in the view
 page needs to list them all
 
-## Limit Descriptions
-On the TIL Feed, the entries need to have their description limited to 80 chars
-with any extra being `...`
-
 ## Focus list page
 Need to make a page to list all focuses
 
