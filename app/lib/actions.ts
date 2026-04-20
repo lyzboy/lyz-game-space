@@ -28,6 +28,38 @@ export async function createFocus(formData: FormData) {
   console.log(`${repoName}`);
 }
 
+export async function createEntry(formData: FormData) {
+  try {
+    let entryDescription = formData.get("entryDescription");
+    const focusId = formData.get("selectedFocus");
+    let commitUrl = formData.get("commitUrl");
+    const isAhaFromData = formData.get("isAha");
+
+    if (focusId === null || entryDescription === null || commitUrl === null) {
+      throw new Error("Missing focusId or description");
+    }
+
+    let parsedAha = false;
+
+    if (isAhaFromData != null) parsedAha = true;
+
+    const parsedFocusId = Number.parseFloat(focusId.toString());
+    entryDescription = entryDescription.toString();
+    commitUrl = commitUrl.toString();
+
+    const newEntry = await prisma.entry.create({
+      data: {
+        description: entryDescription,
+        focusId: parsedFocusId,
+        commitUrl: commitUrl,
+        isAha: parsedAha,
+      },
+    });
+  } catch (error) {
+    console.error(`Couldn't create entry: ${error}`);
+  }
+}
+
 export async function getFocuses() {
   try {
     const fetchedFocuses = await prisma.focus.findMany({
