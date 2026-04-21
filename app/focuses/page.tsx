@@ -1,6 +1,8 @@
 import FocusEntry from "../ui/components/FocusEntry";
+import { getFocuses } from "../lib/actions";
 
-export default function Focuses() {
+export default async function Focuses() {
+  const focuses = await getFocuses();
   return (
     <div className="p-32">
       <div className="flex justify-center content-center flex-col mb-5">
@@ -15,8 +17,18 @@ export default function Focuses() {
           Feel free to browse the focuses to and see what i have been up to!
         </p>
       </div>
-      <div className="border-black border-2 p-3 rounded-lg">
-        <FocusEntry description="My focus" repositoryUrl="#" />
+      <div className="flex gap-2 flex-col">
+        {focuses.map((focus) => {
+          return (
+            <div key={focus.id} className="border-2 p-2 rounded-xl">
+              <FocusEntry
+                description={focus.description}
+                repositoryUrl={focus.repositoryUrl || "#"}
+                technologies={focus.technologies || []}
+              />
+            </div>
+          );
+        })}
       </div>
     </div>
   );
