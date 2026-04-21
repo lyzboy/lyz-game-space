@@ -31,6 +31,8 @@ const TILFeed = async () => {
       <FocusEntry
         description={newestEntry?.focus.description || "Description Not Found"}
         repositoryUrl={newestEntry?.focus.repositoryUrl || "#"}
+        technologies={newestEntry?.focus.technologies || []}
+        isOnTIL={true}
       />
 
       <p className="font-bold mt-3 text-lg">Latest Entry:</p>

@@ -63,7 +63,7 @@ export async function createEntry(formData: FormData) {
 export async function getFocuses() {
   try {
     const fetchedFocuses = await prisma.focus.findMany({
-      include: { entry: true },
+      include: { entry: true, technologies: true },
     });
     return fetchedFocuses;
   } catch (error) {
