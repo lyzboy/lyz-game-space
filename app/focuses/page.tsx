@@ -25,6 +25,7 @@ export default async function Focuses() {
                 description={focus.description}
                 repositoryUrl={focus.repositoryUrl || "#"}
                 technologies={focus.technologies || []}
+                isOnTIL={false}
               />
             </div>
           );
