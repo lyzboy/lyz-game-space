@@ -14,7 +14,7 @@ const FocusEntry: React.FC<FocusEntryProps> = ({
   isOnTIL = false,
 }) => {
   const badgeColors = [
-    "bg-blue-400",
+    "bg-blue-300",
     "bg-red-400",
     "bg-orange-400",
     "bg-green-400",
@@ -32,12 +32,14 @@ const FocusEntry: React.FC<FocusEntryProps> = ({
         </p>
 
         {/* this will be for badges */}
-        <div className="flex gap-4">
+        <div className="flex gap-4  my-2 text-sm font-bold">
           {technologies.map((technology) => {
             return (
               <p
                 key={technology.id}
-                className={`${badgeColors[Math.floor(Math.random() * badgeColors.length)]} px-2 py-1 rounded-xl`}
+                className={`
+                  ${badgeColors[Math.floor(Math.random() * badgeColors.length)]} 
+                  px-2 rounded-xl`}
               >
                 {technology.name}
               </p>

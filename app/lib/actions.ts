@@ -5,27 +5,38 @@ import { revalidatePath } from "next/cache";
 export async function createFocus(formData: FormData) {
   const focusName = formData.get("focusName");
   let repoName = formData.get("repoName");
+
+  const selectedTechIds = formData
+    .getAll("technologies")
+    .map((id) => Number(id));
+
   if (repoName != null) {
     repoName = repoName.toString().replace(/.*\//gm, "");
     repoName = "github.com/lyzboy/" + repoName;
   }
   if (typeof repoName != "string" || repoName === null) repoName = "";
   if (typeof focusName === "string") {
-    const newFocus = await prisma.focus.upsert({
+    const technologyConnections = selectedTechIds.map((id) => ({ id }));
+    await prisma.focus.upsert({
       where: {
         description: focusName,
       },
       update: {
         repositoryUrl: repoName,
+        technologies: {
+          set: technologyConnections,
+        },
       },
       create: {
         description: focusName,
         repositoryUrl: repoName,
+        technologies: {
+          connect: technologyConnections,
+        },
       },
     });
     revalidatePath("/admin");
   }
-  console.log(`${repoName}`);
 }
 
 export async function createEntry(formData: FormData) {
@@ -47,7 +58,7 @@ export async function createEntry(formData: FormData) {
     entryDescription = entryDescription.toString();
     commitUrl = commitUrl.toString();
 
-    const newEntry = await prisma.entry.create({
+    await prisma.entry.create({
       data: {
         description: entryDescription,
         focusId: parsedFocusId,
@@ -66,6 +77,31 @@ export async function getFocuses() {
       include: { entry: true, technologies: true },
     });
     return fetchedFocuses;
+  } catch (error) {
+    throw new Error("Failed to fetch focuses");
+  }
+}
+
+export async function createTechnology(formData: FormData) {
+  try {
+    const technologyName = formData.get("technologyName");
+    if (!technologyName || typeof technologyName !== "string")
+      throw new Error("Technology name is required and must be a text value.");
+    await prisma.technology.create({
+      data: {
+        name: technologyName,
+      },
+    });
+    revalidatePath("/admin");
+  } catch (error) {
+    throw new Error(`Failed to create technology: ${error}`);
+  }
+}
+
+export async function getTechnologies() {
+  try {
+    const fetchedTechnologies = await prisma.technology.findMany();
+    return fetchedTechnologies;
   } catch (error) {
     throw new Error("Failed to fetch focuses");
   }
