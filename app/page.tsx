@@ -1,6 +1,6 @@
 import Sites from "./ui/components/Sites";
 import AuthorCard from "./ui/components/AuthorCard";
-import TILFeed from "./ui/til_feed/TILFeed";
+import TILFeed from "./ui/components/TILFeed";
 
 export default function Home() {
   return (
