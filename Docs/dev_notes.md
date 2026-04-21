@@ -6,12 +6,8 @@ course of development.
 
 # TIL Feed feature
 
-## TIL feed focus badges
-Need to add the badges to the focus, needs to show on the feed, and in the view
-page needs to list them all
-
 ## Focus list page
-Need to make a page to list all focuses
+Need to add a way to get to each focuses 'focus view page'
 
 ## Focus view page
 Need a page to fully view the focus and see a list of it's entries.
