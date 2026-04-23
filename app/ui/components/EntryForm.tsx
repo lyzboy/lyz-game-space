@@ -1,4 +1,5 @@
-import { createEntry, getFocuses } from "@/app/lib/actions";
+import { createEntry } from "@/app/lib/actions";
+import { getFocuses } from "@/app/lib/focuses";
 
 /**
  * A component used by the admin of the site to create new entries.

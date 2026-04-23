@@ -1,4 +1,5 @@
-import { createFocus, getTechnologies } from "@/app/lib/actions";
+import { createFocus } from "@/app/lib/actions";
+import { getTechnologies } from "@/app/lib/technologies";
 
 /**
  * A component used by the admin of the site to create new entries.

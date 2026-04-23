@@ -1,5 +1,5 @@
 import FocusEntry from "../ui/components/FocusEntry";
-import { getFocuses } from "../lib/actions";
+import { getFocuses } from "../lib/focuses";
 
 export default async function Focuses() {
   const focuses = await getFocuses();

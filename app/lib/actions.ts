@@ -71,17 +71,6 @@ export async function createEntry(formData: FormData) {
   }
 }
 
-export async function getFocuses() {
-  try {
-    const fetchedFocuses = await prisma.focus.findMany({
-      include: { entry: true, technologies: true },
-    });
-    return fetchedFocuses;
-  } catch (error) {
-    throw new Error("Failed to fetch focuses");
-  }
-}
-
 export async function createTechnology(formData: FormData) {
   try {
     const technologyName = formData.get("technologyName");
@@ -95,14 +84,5 @@ export async function createTechnology(formData: FormData) {
     revalidatePath("/admin");
   } catch (error) {
     throw new Error(`Failed to create technology: ${error}`);
-  }
-}
-
-export async function getTechnologies() {
-  try {
-    const fetchedTechnologies = await prisma.technology.findMany();
-    return fetchedTechnologies;
-  } catch (error) {
-    throw new Error("Failed to fetch focuses");
   }
 }
