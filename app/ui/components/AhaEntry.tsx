@@ -4,12 +4,14 @@ interface AhaEntryProps {
   focusName: string;
   commit: string;
   description: string;
+  isShort: boolean;
 }
 
 const AhaEntry: React.FC<AhaEntryProps> = ({
   focusName,
   commit,
   description,
+  isShort,
 }) => {
   return (
     <div
@@ -24,7 +26,11 @@ const AhaEntry: React.FC<AhaEntryProps> = ({
         <a href="#" className="text-blue-400">
           Commit: {commit}
         </a>
-        <p>{formatShortDescription(description)}</p>
+        {isShort ? (
+          <p>{formatShortDescription(description)}</p>
+        ) : (
+          <p>{description}</p>
+        )}
       </div>
     </div>
   );

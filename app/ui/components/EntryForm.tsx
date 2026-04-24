@@ -1,5 +1,5 @@
 import { createEntry } from "@/app/lib/actions";
-import { getFocuses } from "@/app/lib/focuses";
+import { GetFocuses } from "@/app/lib/focuses";
 
 /**
  * A component used by the admin of the site to create new entries.
@@ -7,7 +7,7 @@ import { getFocuses } from "@/app/lib/focuses";
  */
 
 export default async function EntryForm() {
-  const focuses = await getFocuses();
+  const focuses = await GetFocuses();
 
   return (
     <div className="flex flex-col">

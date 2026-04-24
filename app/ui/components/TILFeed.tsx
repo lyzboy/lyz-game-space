@@ -39,6 +39,7 @@ const TILFeed = async () => {
       <Entry
         date={newestEntry?.createdAt || new Date()}
         description={newestEntry?.description || "not found"}
+        isShort={true}
       />
       <div>
         <p className="font-bold mt-3 text-lg">Recent Aha! Moments:</p>
@@ -49,6 +50,7 @@ const TILFeed = async () => {
               focusName={entry.focus.description}
               commit={entry.commitUrl}
               description={entry.description}
+              isShort={true}
             />
           );
         })}

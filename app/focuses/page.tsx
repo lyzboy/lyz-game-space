@@ -1,8 +1,9 @@
 import FocusEntry from "../ui/components/FocusEntry";
-import { getFocuses } from "../lib/focuses";
+import { GetFocuses } from "../lib/focuses";
+import { redirect } from "next/navigation";
 
 export default async function Focuses() {
-  const focuses = await getFocuses();
+  const focuses = await GetFocuses();
   return (
     <div className="p-32">
       <div className="flex justify-center content-center flex-col mb-5">
@@ -27,6 +28,7 @@ export default async function Focuses() {
                 technologies={focus.technologies || []}
                 isOnTIL={false}
               />
+              <a href={`focuses/${focus.id}`}>Visit Focus</a>
             </div>
           );
         })}
