@@ -1,6 +1,7 @@
 "use server";
 import prisma from "@/app/lib/prisma";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export async function createFocus(formData: FormData) {
   const focusName = formData.get("focusName");
@@ -40,35 +41,51 @@ export async function createFocus(formData: FormData) {
 }
 
 export async function createEntry(formData: FormData) {
+  console.log(`Trying to create entry...`);
   try {
-    let entryDescription = formData.get("entryDescription");
-    const focusId = formData.get("selectedFocus");
-    let commitUrl = formData.get("commitUrl");
-    const isAhaFromData = formData.get("isAha");
+    const rawEntryDescription = formData.get("entryDescription");
+    const rawFocusId = formData.get("selectedFocus");
+    const rawCommitUrl = formData.get("commitUrl");
+    const rawIsAha = formData.get("isAha");
 
-    if (focusId === null || entryDescription === null || commitUrl === null) {
-      throw new Error("Missing focusId or description");
+    if (
+      typeof rawEntryDescription !== "string" ||
+      typeof rawFocusId !== "string" ||
+      typeof rawCommitUrl !== "string"
+    ) {
+      throw new Error("Missing required form fields");
     }
 
-    let parsedAha = false;
+    const entryDescription = rawEntryDescription.trim();
+    let commitUrl = rawCommitUrl.trim();
+    const focusId = Number(rawFocusId);
+    const isAha = rawIsAha != null;
 
-    if (isAhaFromData != null) parsedAha = true;
+    if (!entryDescription) {
+      throw new Error("Entry description is required");
+    }
 
-    const parsedFocusId = Number.parseFloat(focusId.toString());
-    entryDescription = entryDescription.toString();
-    commitUrl = commitUrl.toString();
+    if (!commitUrl) {
+      commitUrl = "";
+    }
+
+    if (Number.isNaN(focusId)) {
+      throw new Error("Invalid focus id");
+    }
 
     await prisma.entry.create({
       data: {
         description: entryDescription,
-        focusId: parsedFocusId,
-        commitUrl: commitUrl,
-        isAha: parsedAha,
+        focusId,
+        commitUrl,
+        isAha,
       },
     });
   } catch (error) {
     console.error(`Couldn't create entry: ${error}`);
   }
+  revalidatePath("/");
+  redirect("/");
 }
 
 export async function createTechnology(formData: FormData) {

@@ -32,12 +32,13 @@ const FocusView = async (props: PageProps<"/focuses/[id]">) => {
               isShort={false}
             />
           ) : (
-            <Entry
-              key={entry.id}
-              date={entry.createdAt}
-              description={entry.description}
-              isShort={false}
-            />
+            <div key={entry.id} className="my-2">
+              <Entry
+                date={entry.createdAt}
+                description={entry.description}
+                isShort={false}
+              />
+            </div>
           );
         })}
       </div>

@@ -9,7 +9,7 @@ import { getTechnologies } from "@/app/lib/technologies";
 export default async function FocusForm() {
   const technologies = await getTechnologies();
   return (
-    <div className="flex flex-col mb-16">
+    <div className="flex flex-col mb-16 border-2 p-3 rounded-2xl shadow-xl">
       <p className="text-2xl font-bold">Focus Form</p>
       <form action={createFocus} className="flex flex-col">
         <label htmlFor="focusName">Focus Name:</label>
@@ -33,6 +33,7 @@ export default async function FocusForm() {
                   name="technologies"
                   id={technology.id.toString()}
                   value={technology.id}
+                  className="mr-2"
                 />
                 <label htmlFor={`tech-${technology.id}`}>
                   {technology.name}
@@ -44,7 +45,7 @@ export default async function FocusForm() {
         <button
           type="submit"
           className="bg-blue-400 p-2 text-white
-        font-bold rounded-lg"
+        font-bold rounded-lg w-50 self-end my-6"
         >
           Submit
         </button>

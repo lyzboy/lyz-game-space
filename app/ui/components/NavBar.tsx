@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const NavBar = () => {
-  const links = ["Sites", "Dev Diary", "Learning"];
+  const links = ["admin", "Sites", "Dev Diary", "Learning"];
   return (
     <nav className="p-4 grid grid-cols-2">
       <a className="text-lg font-bold cursor-pointer" href="/">
@@ -12,7 +12,7 @@ const NavBar = () => {
         {links.map((link) => {
           return (
             <li key={link}>
-              <a href="#">{link}</a>
+              <a href={link}>{link}</a>
             </li>
           );
         })}

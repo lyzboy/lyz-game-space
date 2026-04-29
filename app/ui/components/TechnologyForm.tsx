@@ -7,10 +7,12 @@ import { createTechnology } from "@/app/lib/actions";
 
 export default function TechnologyForm() {
   return (
-    <div className="flex flex-col mb-16">
+    <div className="flex flex-col mb-16 border-2 p-3 rounded-2xl shadow-xl">
       <p className="text-2xl font-bold">Technology Form</p>
       <form action={createTechnology} className="flex flex-col">
-        <label htmlFor="technologyName">Technology Name:</label>
+        <label htmlFor="technologyName" className="font-bold text-lg my-4">
+          Technology Name:
+        </label>
         <input
           className="border-black border-2 rounded-md"
           type="text"
@@ -19,7 +21,7 @@ export default function TechnologyForm() {
         <button
           type="submit"
           className="bg-blue-400 p-2 text-white
-        font-bold rounded-lg"
+        font-bold rounded-lg w-50 self-end my-6"
         >
           Submit
         </button>

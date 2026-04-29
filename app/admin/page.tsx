@@ -8,10 +8,14 @@ import TechnologyForm from "../ui/components/TechnologyForm";
  */
 export default function Admin() {
   return (
-    <div className="p-32">
-      <TechnologyForm />
-      <FocusForm />
-      <EntryForm />
+    <div className="p-24 grid  grid-cols-1  w-full gap-10 h-screen xl:grid-cols-4">
+      <div className="">
+        <TechnologyForm />
+        <FocusForm />
+      </div>
+      <div className="col-span-3">
+        <EntryForm />
+      </div>
     </div>
   );
 }
