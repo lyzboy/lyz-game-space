@@ -6,6 +6,7 @@ import { ForwardRefEditor } from "./ForwardRefEditor";
 
 type Focus = {
   id: number;
+  title: string;
   description: string;
 };
 
@@ -28,7 +29,7 @@ export default function EntryFormClient({ focuses }: { focuses: Focus[] }) {
           >
             {focuses.map((focus) => (
               <option value={focus.id} key={focus.id}>
-                {focus.description}
+                {focus.title}
               </option>
             ))}
           </select>

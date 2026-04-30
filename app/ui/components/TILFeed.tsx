@@ -24,11 +24,27 @@ const TILFeed = async () => {
     where: { isAha: true },
     include: { focus: true },
   });
+
+  if (!newestEntry) {
+    return (
+      <div className="mt-10 mb-10 border-blue-400 border-2 rounded-2xl p-5">
+        <h2 className="text-2xl font-bold">TIL Feed</h2>
+        <p>
+          This section is the Today I Learned (TIL) feed. It provides insights
+          into my progress as I develop projects. Currently, there are no
+          entries in my development diary. Feel free to explore the site and
+          check back for updates on my development journey.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="mt-10 mb-10 border-blue-400 border-2 rounded-2xl p-5">
-      <h2 className="text-2xl font-bold">Today I Learned Feed</h2>
+      <h2 className="text-2xl font-bold">TIL Feed</h2>
 
       <FocusEntry
+        title={newestEntry?.focus.title || "No title found"}
         description={newestEntry?.focus.description || "Description Not Found"}
         repositoryUrl={newestEntry?.focus.repositoryUrl || "#"}
         technologies={newestEntry?.focus.technologies || []}
@@ -47,7 +63,7 @@ const TILFeed = async () => {
           return (
             <AhaEntry
               key={entry.id}
-              focusName={entry.focus.description}
+              focusName={entry.focus.title}
               commit={entry.commitUrl}
               description={entry.description}
               isShort={true}

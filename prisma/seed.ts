@@ -8,78 +8,41 @@ const pool = new Pool({ connectionString });
 const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 async function main() {
-  const testFocus = await prisma.focus.upsert({
-    where: { id: 123 },
+  const testFocus2 = await prisma.focus.upsert({
+    where: { id: 234 },
     update: {},
     create: {
-      id: 123,
-      description: "This is a test focus",
-      repositoryUrl: "github.com/lyzboy/test",
+      id: 234,
+      title:
+        "Creating a dev diary to reveal my daily progress and achievements",
+      description: `The creation of a development dairy will allow me to showcase my daily progress in the projects I am working on. The goal of these dairy is to provide a log of how I decided to implement my project and to reveal moments of discovery through "aha moments". This will allow me to deeply describe my process that aren't always found within a repositories commit descriptions.`,
+      repositoryUrl: "github.com/lyzboy/lyz-game-space",
       technologies: {
         create: [
           {
-            name: "Node JS",
+            name: "Next.js",
           },
           {
             name: "Prisma",
+          },
+          {
+            name: "Tailwind CSS",
           },
         ],
       },
       entry: {
         create: [
           {
-            description: "I found out how to seed prisma.",
-            commitUrl: "commit/645136151",
-            isAha: true,
-          },
-          {
-            description: "Woking on getting the tests right",
-            commitUrl: "commit/8854552",
+            description:
+              "Begin using `react-markdown` library to be able to write entries in MD. This will allow me to better show meaning and context within my entries.",
+            commitUrl: "commit/32ecb37a3139094d7c6ef099d5826e5217a8f430",
             isAha: false,
           },
         ],
       },
     },
   });
-  const testFocus2 = await prisma.focus.upsert({
-    where: { id: 234 },
-    update: {},
-    create: {
-      id: 234,
-      description: "More work on prisma",
-      repositoryUrl: "github.com/lyzboy/test",
-      technologies: {
-        create: [
-          {
-            name: "Javascript",
-          },
-          {
-            name: "HTML",
-          },
-        ],
-      },
-      entry: {
-        create: [
-          {
-            description: "Need another aha test.",
-            commitUrl: "commit/1313523",
-            isAha: true,
-          },
-          {
-            description: "Found out how to map with aha entries",
-            commitUrl: "commit/1351552",
-            isAha: true,
-          },
-          {
-            description: "Need another to ensure only 3 are shown",
-            commitUrl: "commit/484951232",
-            isAha: true,
-          },
-        ],
-      },
-    },
-  });
-  console.log({ testFocus, testFocus2 });
+  console.log({ testFocus2 });
 }
 main()
   .then(async () => {

@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 
 export async function createFocus(formData: FormData) {
   const focusName = formData.get("focusName");
+  const focusDescription = formData.get("focusDescription");
   let repoName = formData.get("repoName");
 
   const selectedTechIds = formData
@@ -16,11 +17,11 @@ export async function createFocus(formData: FormData) {
     repoName = "github.com/lyzboy/" + repoName;
   }
   if (typeof repoName != "string" || repoName === null) repoName = "";
-  if (typeof focusName === "string") {
+  if (typeof focusName === "string" && typeof focusDescription === "string") {
     const technologyConnections = selectedTechIds.map((id) => ({ id }));
     await prisma.focus.upsert({
       where: {
-        description: focusName,
+        title: focusName,
       },
       update: {
         repositoryUrl: repoName,
@@ -29,7 +30,8 @@ export async function createFocus(formData: FormData) {
         },
       },
       create: {
-        description: focusName,
+        title: focusName,
+        description: focusDescription,
         repositoryUrl: repoName,
         technologies: {
           connect: technologyConnections,

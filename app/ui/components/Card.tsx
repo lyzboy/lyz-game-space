@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { buttonStyle } from "@/app/lib/prismaStyles";
 
 interface CardProps {
   title: string;
@@ -28,9 +29,10 @@ const Card: React.FC<CardProps> = ({ title, image, description, link }) => {
       <a
         href={link}
         target="_blank"
-        className="m-5 hover:bg-blue-400 p-3 
-        rounded-md hover:text-white font-bold bg-white 
-        text-blue-400 border-blue-400  border"
+        className={`${buttonStyle} m-5`}
+        // className="m-5 hover:bg-blue-400 p-3
+        // rounded-md hover:text-white font-bold bg-white
+        // text-blue-400 border-blue-400  border"
       >
         Visit Site
       </a>
