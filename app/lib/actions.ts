@@ -7,6 +7,7 @@ export async function createFocus(formData: FormData) {
   const focusName = formData.get("focusName");
   const focusDescription = formData.get("focusDescription");
   let repoName = formData.get("repoName");
+  console.log(`Creating focus...`);
 
   const selectedTechIds = formData
     .getAll("technologies")
@@ -16,8 +17,10 @@ export async function createFocus(formData: FormData) {
     repoName = repoName.toString().replace(/.*\//gm, "");
     repoName = "github.com/lyzboy/" + repoName;
   }
+  console.log(`repoName is not null`);
   if (typeof repoName != "string" || repoName === null) repoName = "";
   if (typeof focusName === "string" && typeof focusDescription === "string") {
+    console.log(`Validated...`);
     const technologyConnections = selectedTechIds.map((id) => ({ id }));
     await prisma.focus.upsert({
       where: {
@@ -38,6 +41,7 @@ export async function createFocus(formData: FormData) {
         },
       },
     });
+    console.log(`upsert complete.`);
     revalidatePath("/admin");
   }
 }
@@ -104,4 +108,20 @@ export async function createTechnology(formData: FormData) {
   } catch (error) {
     throw new Error(`Failed to create technology: ${error}`);
   }
+}
+
+export function FindTotalDaysFromEntries(entriesDates: string[]): Number {
+  if (entriesDates.length <= 1) {
+    return 1;
+  }
+  entriesDates.sort();
+  console.log(entriesDates);
+  let min: Date = new Date(entriesDates[0]);
+  let max: Date = new Date(entriesDates.at(-1)!);
+  console.log(`min: ${min}`);
+  console.log(`max: ${max}`);
+
+  let milliSeconds: number = max.getTime() - min.getTime();
+  let days = Math.ceil(milliSeconds / 1000 / 60 / 60 / 24);
+  return days;
 }
