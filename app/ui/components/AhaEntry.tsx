@@ -20,14 +20,16 @@ const AhaEntry: React.FC<AhaEntryProps> = ({
   const content = isShort ? formatShortDescription(description) : description;
   return (
     <div
-      className="border-2 p-2 rounded-2xl mt-1 mb-1 bg-amber-100 
-    border-amber-200 flex flex-row justify-start content-center"
+      className="border-2 p-4 rounded-2xl mt-1 mb-1 bg-amber-100 
+    border-amber-200 flex flex-row justify-start content-center grow"
     >
-      <div className="mr-4 p-3 flex justify-center content-center">
-        <p className="text-4xl mt-auto mb-auto">!</p>
-      </div>
       <div className="flex justify-center content-center flex-col">
-        <p className="font-bold text-md">Focus: {focusName}</p>
+        <div className="flex items-center">
+          <div className="mr-4 p-3 flex justify-center content-center">
+            <p className="text-4xl mt-auto mb-auto">!</p>
+          </div>
+          <p className="font-bold text-md">Focus: {focusName}</p>
+        </div>
         {commit ? (
           <a href="#" className="text-blue-400">
             Commit: {commit}

@@ -1,7 +1,9 @@
-import { badgeStyle } from "@/app/lib/prismaStyles";
+import { badgeStyle, buttonStyle } from "@/app/lib/prismaStyles";
+import { formatShortDescription } from "@/app/lib/utils";
 import React from "react";
 
 interface FocusEntryProps {
+  id: number;
   title: string;
   description: string;
   repositoryUrl: string;
@@ -10,6 +12,7 @@ interface FocusEntryProps {
 }
 
 const FocusEntry: React.FC<FocusEntryProps> = ({
+  id,
   title,
   description,
   repositoryUrl,
@@ -21,11 +24,12 @@ const FocusEntry: React.FC<FocusEntryProps> = ({
     : `https://${repositoryUrl}`;
   return (
     <div>
-      <div>
+      <div className="mb-6">
         <p className="font-bold text-xl text-gray-400">
           {isOnTIL && "Current Focus:"}
         </p>
         <p className="font-bold text-2xl mb-6">{title}</p>
+        <p>{formatShortDescription(description)}</p>
         <div className="flex gap-4  my-2 text-sm font-bold mb-6">
           {technologies.map((technology) => {
             return (
@@ -36,9 +40,14 @@ const FocusEntry: React.FC<FocusEntryProps> = ({
           })}
         </div>
       </div>
-      <a href={formattedUrl} target="_blank" className="text-blue-400">
-        Repo: {repositoryUrl}
-      </a>
+      <div className="flex gap-3">
+        <a className={buttonStyle} href={formattedUrl} target="_blank">
+          Visit Repo
+        </a>
+        <a className={buttonStyle} href={`/focuses/${id}`}>
+          Quick View
+        </a>
+      </div>
     </div>
   );
 };

@@ -18,6 +18,14 @@ export default async function FocusForm() {
           type="text"
           name="focusName"
         />
+        <label htmlFor="focusDescription">Description:</label>
+        <textarea
+          name="focusDescription"
+          rows={4}
+          className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full p-3.5 shadow-xs placeholder:text-body"
+          placeholder="Write your thoughts here..."
+        ></textarea>
+
         <label htmlFor="repoName">Repo Name:</label>
         <input
           className="border-black border-2 rounded-md mb-4"

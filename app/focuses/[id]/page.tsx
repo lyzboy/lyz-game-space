@@ -2,7 +2,6 @@
 
 import { redirect } from "next/navigation";
 import { GetFocusById } from "@/app/lib/focuses";
-import FocusEntry from "@/app/ui/components/FocusEntry";
 import Entry from "@/app/ui/components/Entry";
 import AhaEntry from "@/app/ui/components/AhaEntry";
 
@@ -11,17 +10,17 @@ const FocusView = async (props: PageProps<"/focuses/[id]">) => {
   const focus = await GetFocusById(Number(id));
   if (!focus) redirect("/focuses");
   return (
-    <div className="p-8">
-      <a href="/focuses" className="font-bold text-blue-400">
+    <div className="p-16">
+      <a href="/focuses" className="font-bold text-blue-400 mb-6 block">
         Return to Focuses
       </a>
-      <FocusEntry
-        description={focus.description}
-        repositoryUrl={focus.repositoryUrl || "N/A"}
-        technologies={focus.technologies}
-        isOnTIL={false}
-      />
+      <div className="mb-6">
+        <p className="font-bold text-xl">Title:</p>
+        <h1 className="font-bold text-2xl mb-4">{focus.title}</h1>
+        <p>{focus.description}</p>
+      </div>
       <div>
+        <h2 className="font-bold text-xl">Focuses:</h2>
         {focus.entry.map((entry) => {
           return entry.isAha ? (
             <AhaEntry

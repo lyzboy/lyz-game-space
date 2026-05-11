@@ -42,34 +42,43 @@ const TILFeed = async () => {
   return (
     <div className="mt-10 mb-10 border-blue-400 border-2 rounded-2xl p-5">
       <h2 className="text-2xl font-bold">TIL Feed</h2>
-
-      <FocusEntry
-        title={newestEntry?.focus.title || "No title found"}
-        description={newestEntry?.focus.description || "Description Not Found"}
-        repositoryUrl={newestEntry?.focus.repositoryUrl || "#"}
-        technologies={newestEntry?.focus.technologies || []}
-        isOnTIL={true}
-      />
-
-      <p className="font-bold mt-3 text-lg">Latest Entry:</p>
-      <Entry
-        date={newestEntry?.createdAt || new Date()}
-        description={newestEntry?.description || "not found"}
-        isShort={true}
-      />
+      <div className="flex gap-6 flex-col lg:flex-row">
+        <div className="border p-3 rounded-2xl w-full">
+          <FocusEntry
+            title={newestEntry?.focus.title || "No title found"}
+            description={
+              newestEntry?.focus.description || "Description Not Found"
+            }
+            repositoryUrl={newestEntry?.focus.repositoryUrl || "#"}
+            technologies={newestEntry?.focus.technologies || []}
+            isOnTIL={true}
+            id={newestEntry?.focus.id}
+          />
+        </div>
+        <div className="w-full">
+          <p className="font-bold mt-3 text-lg">Latest Entry:</p>
+          <Entry
+            date={newestEntry?.createdAt || new Date()}
+            description={newestEntry?.description || "not found"}
+            isShort={true}
+          />
+        </div>
+      </div>
       <div>
         <p className="font-bold mt-3 text-lg">Recent Aha! Moments:</p>
-        {newestThreeAhas.map((entry) => {
-          return (
-            <AhaEntry
-              key={entry.id}
-              focusName={entry.focus.title}
-              commit={entry.commitUrl}
-              description={entry.description}
-              isShort={true}
-            />
-          );
-        })}
+        <div className="flex w-full">
+          {newestThreeAhas.map((entry) => {
+            return (
+              <AhaEntry
+                key={entry.id}
+                focusName={entry.focus.title}
+                commit={entry.commitUrl}
+                description={entry.description}
+                isShort={true}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );
