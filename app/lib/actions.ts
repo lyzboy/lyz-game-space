@@ -110,7 +110,7 @@ export async function createTechnology(formData: FormData) {
   }
 }
 
-export function FindTotalDaysFromEntries(entriesDates: string[]): Number {
+export async function FindTotalDaysFromEntries(entriesDates: string[]) {
   if (entriesDates.length <= 1) {
     return 1;
   }
@@ -123,5 +123,6 @@ export function FindTotalDaysFromEntries(entriesDates: string[]): Number {
 
   let milliSeconds: number = max.getTime() - min.getTime();
   let days = Math.ceil(milliSeconds / 1000 / 60 / 60 / 24);
+  if (days < 1) days = 1;
   return days;
 }
