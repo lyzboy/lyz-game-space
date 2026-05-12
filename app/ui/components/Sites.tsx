@@ -53,6 +53,7 @@ const Sites = () => {
     <div
       className="grid md:grid-cols-2 p-10 justify-center content-center 
       justify-items-center items-stretch gap-10"
+      id="sites"
     >
       {cardArray.map((cardItem) => {
         return (
