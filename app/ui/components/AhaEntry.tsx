@@ -25,18 +25,14 @@ const AhaEntry: React.FC<AhaEntryProps> = ({
     >
       <div className="flex justify-center content-center flex-col">
         <div className="flex items-center">
-          <div className="mr-4 p-3 flex justify-center content-center">
-            <p className="text-4xl mt-auto mb-auto">!</p>
+          <div className="w-15 h-15 rounded-full border-blue-400 border-2 mr-3 flex justify-center items-center">
+            <span className="material-symbols-outlined text-blue-400">
+              lightbulb_2
+            </span>
           </div>
           <p className="font-bold text-md">Focus: {focusName}</p>
         </div>
-        {commit ? (
-          <a href="#" className="text-blue-400">
-            Commit: {commit}
-          </a>
-        ) : (
-          ""
-        )}
+
         <article className={proseStyle}>
           <Markdown
             remarkPlugins={[remarkGfm]}

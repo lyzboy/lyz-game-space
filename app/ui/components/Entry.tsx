@@ -4,7 +4,7 @@ import { formatShortDescription } from "@/app/lib/utils";
 import Markdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
-import { proseStyle } from "@/app/lib/prismaStyles";
+import { proseStyle, buttonStyle } from "@/app/lib/prismaStyles";
 
 interface EntryProps {
   date: Date;
@@ -15,14 +15,19 @@ interface EntryProps {
 const Entry: React.FC<EntryProps> = ({ date, description, isShort }) => {
   const content = isShort ? formatShortDescription(description) : description;
   return (
-    <div className="border-2 p-2 rounded-2xl">
-      <p className="font-bold">Entry Date: {date.toDateString()}</p>
+    <>
       <article className={proseStyle}>
         <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
           {content}
         </Markdown>
       </article>
-    </div>
+      <div className="flex justify-between items-center ">
+        <p className="font-bold">{date.toLocaleDateString()}</p>
+        <a className={`${buttonStyle}`} href="">
+          View Entry
+        </a>
+      </div>
+    </>
   );
 };
 

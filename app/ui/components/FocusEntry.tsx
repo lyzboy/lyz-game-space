@@ -40,7 +40,7 @@ const FocusEntry: React.FC<FocusEntryProps> = ({
           })}
         </div>
       </div>
-      <div className="flex gap-3">
+      <div className="flex gap-3 justify-between">
         <a className={buttonStyle} href={formattedUrl} target="_blank">
           Visit Repo
         </a>
