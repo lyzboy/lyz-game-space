@@ -2,9 +2,9 @@ export const proseStyle = `
         prose prose-slate mt-3 max-w-none
         text-md
         prose-p:my-2
-        prose-h1:text-3xl
-        prose-h2:text-2xl
-        prose-h3:text-xl
+        prose-h1:text-2xl
+        prose-h2:text-xl
+        prose-h3:text-lg
         prose-h4:text-base 
         prose-h4:bg-red-200 
         prose-h4:inline
