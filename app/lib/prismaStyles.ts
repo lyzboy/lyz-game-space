@@ -22,7 +22,6 @@ export const proseStyle = `
         prose-h6:rounded-md
         prose-headings:font-bold
         prose-headings:mb-2
-        prose-headings:mt-4
         prose-a:text-sky-600
         hover:prose-a:underline
         prose-code:before:content-none
