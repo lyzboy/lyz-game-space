@@ -1,4 +1,4 @@
-import { badgeStyle, buttonStyle } from "@/app/lib/prismaStyles";
+import { badgeStyle, buttonStyle } from "@/app/lib/styles";
 import { formatShortDescription } from "@/app/lib/utils";
 import React from "react";
 

@@ -1,5 +1,5 @@
 import { formatShortDescription } from "@/app/lib/utils";
-import { proseStyle } from "@/app/lib/prismaStyles";
+import { proseStyle } from "@/app/lib/styles";
 import Markdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";

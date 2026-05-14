@@ -4,7 +4,7 @@ import { formatShortDescription } from "@/app/lib/utils";
 import Markdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
-import { proseStyle, buttonStyle } from "@/app/lib/prismaStyles";
+import { proseStyle, buttonStyle } from "@/app/lib/styles";
 
 interface EntryProps {
   date: Date;

@@ -1,7 +1,7 @@
 import Sites from "./ui/components/Sites";
 import AuthorCard from "./ui/components/AuthorCard";
 import TILFeed from "./ui/components/TILFeed";
-import { buttonStyle } from "./lib/prismaStyles";
+import { buttonStyle } from "./lib/styles";
 
 export default function Home() {
   return (

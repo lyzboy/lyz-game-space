@@ -1,5 +1,5 @@
 import { Entry } from "@/app/generated/prisma";
-import { proseStyle, badgeStyle } from "@/app/lib/prismaStyles";
+import { proseStyle, badgeStyle, buttonStyle } from "@/app/lib/styles";
 import React from "react";
 import Markdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
@@ -13,6 +13,7 @@ interface FocusEntryProps {
   technologies: { name: string; id: number }[];
   isOnTIL: boolean;
   entries: Entry[];
+  id: number;
 }
 
 const FocusMainCard: React.FC<FocusEntryProps> = async ({
@@ -20,6 +21,7 @@ const FocusMainCard: React.FC<FocusEntryProps> = async ({
   description,
   repositoryUrl,
   technologies,
+  id,
   entries,
   isOnTIL = false,
 }) => {
@@ -37,11 +39,17 @@ const FocusMainCard: React.FC<FocusEntryProps> = async ({
           {description}
         </Markdown>
       </article>
-      <div className="flex mt-6">
+      <div className="flex mt-6 flex-col md:flex-row">
         <p className={badgeStyle}>
           {entries.length} entries across {daysSinceCreation.toString()} days
         </p>
         <p className={badgeStyle}>{ahaMoments.length} aha moment(s)</p>
+        <a
+          href={`focuses/${id}`}
+          className={`${buttonStyle} md:self-end text-center`}
+        >
+          Visit Focus
+        </a>
       </div>
     </div>
   );

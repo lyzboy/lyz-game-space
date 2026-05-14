@@ -1,9 +1,11 @@
+import { GetEntries } from "../lib/entries";
 import { GetFocuses } from "../lib/focuses";
-import { buttonStyle } from "../lib/prismaStyles";
+import { badgeStyle } from "../lib/styles";
 import FocusMainCard from "../ui/components/FocusMainCard";
 
 export default async function Focuses() {
   const focuses = await GetFocuses();
+  const entries = await GetEntries();
   return (
     <div className="p-32">
       <div className="flex justify-center content-center flex-col mb-10">
@@ -18,14 +20,18 @@ export default async function Focuses() {
           Feel free to browse the focuses to and see what i have been up to!
         </p>
       </div>
-      <div className="grid grid-cols-4">
-        <div>
-          <div>
-            <p>Number of focuses: 6</p>
-            <p>Number of entries: 234</p>
-          </div>
+      <div className="grid grid-cols-4 lg:gap-4">
+        <div className=" lg:col-span-1 col-span-full">
+          <p className={badgeStyle + "w-full"}>
+            Number of focuses:{" "}
+            <span className="text-blue-500 font-bold">{focuses.length}</span>
+          </p>
+          <p className={badgeStyle + "w-full"}>
+            Number of entries:
+            <span className="text-blue-500 font-bold">{focuses.length}</span>
+          </p>
         </div>
-        <div className="flex gap-2 flex-col col-span-3">
+        <div className="flex gap-2 flex-col lg:col-span-3 col-span-full">
           {focuses.map((focus) => {
             return (
               <div
@@ -40,13 +46,8 @@ export default async function Focuses() {
                   technologies={focus.technologies || []}
                   entries={focus.entry}
                   isOnTIL={false}
+                  id={focus.id}
                 />
-                <a
-                  href={`focuses/${focus.id}`}
-                  className={`${buttonStyle} self-end`}
-                >
-                  Visit Focus
-                </a>
               </div>
             );
           })}

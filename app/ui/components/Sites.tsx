@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "./Card";
+import SiteCard from "./SiteCard";
 
 interface CardObject {
   title: string;
@@ -25,7 +25,7 @@ const Sites = () => {
     {
       title: "Square Pool",
       image: "/images/square_pool.png",
-      description: "A football pools site for family and fiends",
+      description: "A football pools site for family and friends",
       link: "https://squarepool.lyzgame.space",
     },
     {
@@ -57,7 +57,7 @@ const Sites = () => {
     >
       {cardArray.map((cardItem) => {
         return (
-          <Card
+          <SiteCard
             key={cardItem.title}
             title={cardItem.title}
             image={cardItem.image}
