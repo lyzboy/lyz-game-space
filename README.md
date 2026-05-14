@@ -1,83 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lyz Game Space - Personal Portfolio & Diary Platform
 
-## Getting Started
+A personal portfolio and sandbox space built with modern web tooling, showcasing my work as a full‑stack PERN engineer, CAD designer, and lifelong learner.
 
-First, run the development server:
+## Overview
+This is a personal website used to showcase projects and my developer journey. The site is a living project and new features are added regularly. For example, a dev diary captures daily progress across projects, including 'aha' moments. Planned features include a guided learning section where I share experiences with different technologies to help others who are learning.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This site has been built with Next.js (App Router) with a PostgreSQL DB and Prisma as the ORM. I use component libraries such as shadcn/ui and MagicUI with Lucide icons to improve the style of the site. The live site is hosted on an Ubuntu server at my residence, using Cloudflare for external access.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the 
-result.
+My background includes a BSIT in Software Systems Engineering, web development bootcamp certifications, and multiple CAD and design certifications. I’m currently focused on roles involving full-stack TypeScript development, systems-oriented web applications, and opportunities that benefit from both software and CAD/design experience.
 
-You can start editing the page by modifying `app/page.tsx`. The page 
-auto-updates as you edit the file.
+### What this project demonstrates
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) 
-to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- End-to-end ownership: architecture, backend, frontend, deployment, and monitoring.
+- Ability to design and evolve a real-world codebase over time.
+- Practical use of modern tooling (Next.js App Router, Prisma, CI/CD, containerization)
 
-## Install Postgres
+## Tech Stack
 
-Install a local copy of postgres following the [`official site's`](https://www.postgresql.org/download/)
-instructions or follow [`the prisma guide`](https://www.prisma.io/docs/guides/frameworks/nextjs)
-to use a remote DB.
+- **Frontend:** Next.js (App Router), React, TypeScript, Tailwind CSS, shadcn/ui, MagicUI, Lucide icons.
+- **Backend:** Next.js Route Handlers / API routes, Prisma ORM
+- **Database:** PostgreSQL (local Postgres)
+- **Tooling:** ESLint, Prettier, Jest, RTL
+- **Deployment:** Docker, Github Actions (CI/CD), Cloudflare
 
-### Creating a user and database
-You may have to create a new user and database to use for development. The following
-command will utilize the user name from the signed in user
-```
-sudo -u postgres createuser -s $USER
-createdb lyz_game_test
-```
+Why this stack? This stack was chosen for performance, type safety, and developer experience. As a full‑stack developer, I wanted to showcase my ability to build a complete, performant ecosystem.
 
-### Log into psql
-To long into the database using psql, use
-```
-psql -d lyz_game_test
-```
+## AI Statement:
+The use of AI within this project has been limited to:
+- Editing text content for clarity and readability.
+- Planning and understanding new technologies.
+- Reviewing code and security vulnerabilities.
+- Supporting design documentation and suggesting features.
 
-### Roles
-Ensure you create a user to access the database with and give them ownership
-of the database
-```
-sudo -u postgresql psql
-```
-Once in the psql interface:
-```
-CREATE USER lyz_app WITH LOGIN PASSWORD 'secure-password';
-ALTER DATABASE lyz_game_test OWNER TO lyz_app;
-```
+These have been completed using Perplexity AI Spaces as a supporting tool, not as a replacement for design or implementation decisions
 
-### Change DB data in .env
-Change the `DATABASE_URL` to match you local setup:
-```
-DATABASE_URL="postgres://lyz_app:your-secret-password@localhost:5432/lyz_game_test?schema=public"
-```
-### Adding CREATEDB role
-To allow prisma to generate a shadow db, used for migration, the new role must have the CREATEDB role. You can accomplish this by using:
-```
-ALTER ROLE lyz_app WITH CREATEDB;
-```
-If the user has already been created.
+## Key Features
+- **Portfolio** - Projects with concise write-ups.
+- **Dev Diary** - short accomplishments and moments of discovery relating to a specific focus.
+- **Responsive Design** - Layout tuned for desktop, tablet, and mobile. 
 
-## Seeding the DB
-To seed the database you will need to have created a schema file with prisma models. After that has been done, be sure to run
-```bash
-npx prisma migrate
-```
-and
-```bash
-npx prisma generate
-```
-Once there are no errors, you can create a `seed.ts` file within the `/prisma` folder. Following the [guide](https://www.prisma.io/docs/orm/prisma-migrate/workflows/seeding) from the official website, you can model the seed data, and then run:
-```bash
-npx prisma db seed
-```
-to seed the database
+## Architecture / Design Notes
+
+- Uses Next.js App Router for file-based routing and server components where appropriate.
+- Prisma schema as a single source of truth for database models.
+- Clear separation between UI components, domain logic, and data access.
+- Focus on type safety end-to-end (TypeScript, Prisma types, strict mode).
+
+## Live Demo and Contact
+You can visit the live site at [lyzgame.space](https://www.lyzgame.space) or [lyzstudios.com](https://www.lyzstudios.com)
+
+To contact me:
+- [GitHub](https://github.com/lyzboy)
+- [LinkedIn](https://www.linkedin.com/in/joshuaraysanford)
+
+## Running Locally
+This project is primarily for personal use, but can be run locally with a standard Next.js + Prisma + PostgreSQL setup using the steps below.
+
+Make sure you have PostgreSQL running and a database URL configured in your .env file.
+
+### Clone Repo
+`git clone https://github.com/lyzboy/lyz-game-space.git`
+
+### Install Packages
+`pnpm install`
+
+### Generate DB from Prisma
+`npx prisma generate`
+
+### Seed DB
+`npx prisma db seed`
+
+### Run
+`pnpm run dev`
