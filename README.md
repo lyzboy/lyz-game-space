@@ -17,7 +17,7 @@ My background includes a BSIT in Software Systems Engineering, web development b
 
 ## Tech Stack
 
-- **Frontend:** Next.js (App Router), React, TypeScript, Tailwind CSS, shadcn/ui, MagicUI, Lucide icons.
+- **Frontend:** Next.js (App Router), React, TypeScript, Tailwind CSS, shadcn/ui, MagicUI, Lucide Icons, Framer Motion.
 - **Backend:** Next.js Route Handlers / API routes, Prisma ORM
 - **Database:** PostgreSQL (local Postgres)
 - **Tooling:** ESLint, Prettier, Jest, RTL
