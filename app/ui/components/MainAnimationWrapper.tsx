@@ -2,13 +2,15 @@
 
 import { useState, useEffect, ReactNode } from "react";
 import AuthorCard from "./AuthorCard";
+import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
+import { easeIn, motion } from "motion/react";
 
 interface Props {
   children: ReactNode;
 }
-const REVEAL_TIMER = 2000;
+const REVEAL_TIMER = 1500;
 const TRANSITION_TIMER = 500;
-const BLUR_TIMER = 1500;
+const BLUR_TIMER = 1000;
 export default function MainAnimationWrapper({ children }: Props) {
   const [phase, setPhase] = useState<
     "intro" | "transition" | "curtain" | "complete"
@@ -43,8 +45,45 @@ export default function MainAnimationWrapper({ children }: Props) {
   }, [phase]);
   return (
     <div>
-      <AuthorCard />
-      {children}
+      <motion.div
+        initial={{ y: 0, opacity: 1 }}
+        animate={
+          phase == "intro" ? { y: 0, opacity: 1 } : { y: -200, opacity: 0 }
+        }
+        transition={{ duration: TRANSITION_TIMER / 1000, ease: easeIn }}
+        className="fixed inset-0 flex items-center justify-center"
+      >
+        <DiaTextReveal
+          className="text-4xl font-bold tracking-tight"
+          text="Hi, I'm Josh"
+          duration={REVEAL_TIMER / 1000}
+          colors={["#b2bfe7", "#7290d3", "#0863bf"]}
+        />
+      </motion.div>
+      <motion.div
+        initial={{
+          maskImage:
+            "linear-gradient(to bottom, black 0%, black 0%, transparent 0%, transparent 100%)",
+        }}
+        animate={
+          phase === "curtain" || phase === "complete"
+            ? {
+                maskImage:
+                  "linear-gradient(to bottom, black 80%, black 100%, transparent 120%, transparent 120%)",
+              }
+            : {
+                maskImage:
+                  "linear-gradient(to bottom, black 0%, black 0%, transparent 0%, transparent 100%)",
+              }
+        }
+        transition={{
+          duration: BLUR_TIMER / 1000,
+          ease: "easeInOut",
+        }}
+      >
+        <AuthorCard />
+        {children}
+      </motion.div>
     </div>
   );
 }

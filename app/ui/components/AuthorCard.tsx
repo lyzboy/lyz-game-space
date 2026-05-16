@@ -22,11 +22,7 @@ const AuthorCard = () => {
         />
       </div>
       <div>
-        <DiaTextReveal
-          className="text-4xl font-bold tracking-tight"
-          text="Hi, I'm Josh,"
-          colors={["#A97CF8", "#F38CB8", "#FDCC92"]}
-        />
+        <p className="text-4xl font-bold tracking-tight">Hi, I'm Josh</p>
         <div className="mb-4">
           <p>
             Welcome to <strong>lyz studios</strong>. I’m a Full-Stack Developer
