@@ -1,14 +1,13 @@
+"use client";
+1;
 import Image from "next/image";
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
 
 import { SiGithub } from "@icons-pack/react-simple-icons";
-
-import { DiaTextReveal } from "@/components/ui/dia-text-reveal";
+import { motion } from "motion/react";
 
 const AuthorCard = () => {
   return (
-    <div className="flex flex-col w-full md:flex-row">
+    <div className="flex flex-col w-full md:flex-row mb-8">
       <div
         className="rounded-full w-48 h-48 mr-10 
       overflow-hidden mb-6 shrink-0"
@@ -44,34 +43,27 @@ const AuthorCard = () => {
           </p>
         </div>
         <div className="flex gap-2">
-          <a
+          <motion.a
             href="https://www.github.com/lyzboy"
             target="_blank"
             rel="noopener noreferrer"
-            className={cn(
-              buttonVariants({
-                size: "lg",
-              }),
-
-              "bg-black rounded-full",
-            )}
+            className="bg-black flex justify-center items-center rounded-full
+            w-10 h-10"
+            whileHover={{ scale: 1.2 }}
           >
             <SiGithub color="#FFFFFF" size={24} />
-          </a>
-          <a
+          </motion.a>
+
+          <motion.a
             href="https://www.linkedin.com/in/joshuaraysanford"
             target="_blank"
             rel="noopener noreferrer"
-            className={cn(
-              buttonVariants({
-                size: "lg",
-              }),
-
-              "bg-black rounded-full",
-            )}
+            className="bg-black flex justify-center items-center rounded-full
+            w-10 h-10"
+            whileHover={{ scale: 1.2 }}
           >
             <Image src="/InBug-White.png" alt="" width="25" height="25" />
-          </a>
+          </motion.a>
         </div>
       </div>
     </div>
