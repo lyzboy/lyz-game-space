@@ -48,7 +48,9 @@ export default function MainAnimationWrapper({ children }: Props) {
       <motion.div
         initial={{ y: 0, opacity: 1 }}
         animate={
-          phase == "intro" ? { y: 0, opacity: 1 } : { y: -200, opacity: 0 }
+          phase == "intro"
+            ? { y: 0, opacity: 1 }
+            : { y: -200, opacity: 0, visibility: "hidden" }
         }
         transition={{ duration: TRANSITION_TIMER / 1000, ease: easeIn }}
         className="fixed inset-0 flex items-center justify-center"
