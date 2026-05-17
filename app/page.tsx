@@ -1,5 +1,5 @@
 import Sites from "./ui/components/Sites";
-import TILFeed from "./ui/components/TILFeed";
+import TILFeed from "./ui/components/TIL/TILFeed";
 import MainAnimationWrapper from "./ui/components/MainAnimationWrapper";
 
 export default function Home() {

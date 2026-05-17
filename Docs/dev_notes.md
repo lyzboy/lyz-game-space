@@ -4,6 +4,7 @@ the development. These notes are meant to capture ideas for later
 planning/implementation. This is a living document and might change during the course of development.
 
 # **BUGS**
+- main animation wrapper should not run twice, if visitor goes to another page, the animation should not play. Need to implement a state that stays with visitor.
 
 
 # Testing implementation

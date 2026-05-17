@@ -2,8 +2,8 @@
 
 import { redirect } from "next/navigation";
 import { GetFocusById } from "@/app/lib/focuses";
-import Entry from "@/app/ui/components/Entry";
-import AhaEntry from "@/app/ui/components/AhaEntry";
+import Entry from "@/app/ui/components/TIL/TIL_Entry";
+import AhaEntry from "@/app/ui/components/TIL/TIL_AhaEntry";
 
 const FocusView = async (props: PageProps<"/focuses/[id]">) => {
   const { id } = await props.params;
