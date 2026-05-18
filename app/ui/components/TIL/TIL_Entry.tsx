@@ -39,7 +39,19 @@ const TIL_Entry: React.FC<EntryProps> = ({ date, description, id }) => {
           </Markdown>
         </article>
       </CardContent>
-      <CardFooter className="flex justify-between items-center w-full">
+      <CardFooter
+        className="
+          flex 
+          lg:justify-between
+          lg:flex-row 
+          lg:items-center 
+          items-end
+          justify-center 
+          flex-col 
+          w-full 
+          gap-2
+        "
+      >
         <p className="font-bold">{date.toLocaleDateString()}</p>
         <a
           href={`/focuses/${id}`}
