@@ -39,7 +39,9 @@ const TIL_Focus: React.FC<FocusEntryProps> = ({
         <CardTitle className="text-2xl">{title}</CardTitle>
       </CardHeader>
       <CardContent>
-        <CardDescription>{formatShortDescription(description)}</CardDescription>
+        <CardDescription className="mb-4">
+          {formatShortDescription(description)}
+        </CardDescription>
         {technologies.map((technology) => {
           return (
             <Badge key={technology.id} variant={"secondary"}>
