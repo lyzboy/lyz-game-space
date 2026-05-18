@@ -1,7 +1,7 @@
-import Entry from "./TIL_Entry";
+import TIL_Entry from "./TIL_Entry";
 import AhaEntry from "./TIL_AhaEntry";
 import prisma from "@/app/lib/prisma";
-import { Card, CardHeader } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import TIL_Focus from "./TIL_Focus";
 
 const TILFeed = async () => {
@@ -45,16 +45,26 @@ const TILFeed = async () => {
 
   return (
     <Card>
-      <CardHeader>TIL Feed</CardHeader>
-
-      <TIL_Focus
-        title={newestEntry?.focus.title || "No title found"}
-        description={newestEntry?.focus.description || "Description Not Found"}
-        repositoryUrl={newestEntry?.focus.repositoryUrl || "#"}
-        technologies={newestEntry?.focus.technologies || []}
-        isOnTIL={true}
-        id={newestEntry?.focus.id}
-      />
+      <CardHeader className="text-2xl font-bold">TIL Feed</CardHeader>
+      <CardContent>
+        <div className="flex flex-col md:flex-row gap-4">
+          <TIL_Focus
+            title={newestEntry?.focus.title || "No title found"}
+            description={
+              newestEntry?.focus.description || "Description Not Found"
+            }
+            repositoryUrl={newestEntry?.focus.repositoryUrl || "#"}
+            technologies={newestEntry?.focus.technologies || []}
+            isOnTIL={true}
+            id={newestEntry?.focus.id}
+          />
+          <TIL_Entry
+            date={newestEntry?.createdAt}
+            description={newestEntry?.description}
+            id={newestEntry?.id}
+          />
+        </div>
+      </CardContent>
     </Card>
   );
 };
