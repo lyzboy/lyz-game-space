@@ -44,7 +44,7 @@ const TILFeed = async () => {
   }
 
   return (
-    <Card>
+    <Card className="m-2">
       <CardHeader className="text-2xl font-bold">TIL Feed</CardHeader>
       <CardContent>
         <div className="flex flex-col md:flex-row gap-4">
