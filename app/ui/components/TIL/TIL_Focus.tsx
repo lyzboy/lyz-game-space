@@ -33,32 +33,6 @@ const TIL_Focus: React.FC<FocusEntryProps> = ({
     ? repositoryUrl
     : `https://${repositoryUrl}`;
   return (
-    // <div>
-    //   <div className="mb-6">
-    //     <p className="font-bold text-xl text-gray-400">
-    //       {isOnTIL && "Current Focus:"}
-    //     </p>
-    //     <p className="font-bold text-2xl mb-6">{title}</p>
-    //     <p>{formatShortDescription(description)}</p>
-    //     <div className="flex gap-4  my-2 text-sm font-bold mb-6">
-    //       {technologies.map((technology) => {
-    //         return (
-    //           <p key={technology.id} className={badgeStyle}>
-    //             {technology.name}
-    //           </p>
-    //         );
-    //       })}
-    //     </div>
-    //   </div>
-    //   <div className="flex gap-3 justify-between">
-    //     <a className={buttonStyle} href={formattedUrl} target="_blank">
-    //       Visit Repo
-    //     </a>
-    //     <a className={buttonStyle} href={`/focuses/${id}`}>
-    //       Quick View
-    //     </a>
-    //   </div>
-    // </div>
     <Card className="p-6">
       <CardHeader>
         <p className="text-muted-foreground font-bold">Current Focus:</p>
