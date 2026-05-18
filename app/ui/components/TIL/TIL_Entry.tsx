@@ -5,30 +5,57 @@ import Markdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
 import { proseStyle, buttonStyle } from "@/app/lib/styles";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { SquareArrowOutUpRight } from "lucide-react";
 
 interface EntryProps {
   date: Date;
   description: string;
-  isShort: boolean;
+  id: number;
 }
 
-const Entry: React.FC<EntryProps> = ({ date, description, isShort }) => {
-  const content = isShort ? formatShortDescription(description) : description;
+const TIL_Entry: React.FC<EntryProps> = ({ date, description, id }) => {
+  const content = formatShortDescription(description);
   return (
-    <>
-      <article className={proseStyle}>
-        <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
-          {content}
-        </Markdown>
-      </article>
-      <div className="flex justify-between items-center ">
+    <Card>
+      <CardHeader>
+        <p className="text-muted-foreground font-bold">Latest Entry:</p>
+      </CardHeader>
+      <CardContent>
+        <article className={proseStyle}>
+          <Markdown
+            remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeHighlight]}
+          >
+            {content}
+          </Markdown>
+        </article>
+      </CardContent>
+      <CardFooter className="flex justify-between items-center w-full">
         <p className="font-bold">{date.toLocaleDateString()}</p>
-        <a className={`${buttonStyle}`} href="">
+        <a
+          href={`/focuses/${id}`}
+          className={cn(
+            buttonVariants({
+              size: "lg",
+            }),
+            "self-end",
+          )}
+        >
+          <SquareArrowOutUpRight data-icon="inline-start" />
           View Entry
         </a>
-      </div>
-    </>
+      </CardFooter>
+    </Card>
   );
 };
 
-export default Entry;
+export default TIL_Entry;
