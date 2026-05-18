@@ -7,7 +7,7 @@ import { motion } from "motion/react";
 
 const AuthorCard = () => {
   return (
-    <div className="flex flex-col w-full md:flex-row mb-8">
+    <div className="flex flex-col w-full md:flex-row my-24">
       <div
         className="rounded-full w-48 h-48 mr-10 
       overflow-hidden mb-6 shrink-0"
