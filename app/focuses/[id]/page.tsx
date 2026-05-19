@@ -2,8 +2,8 @@
 
 import { redirect } from "next/navigation";
 import { GetFocusById } from "@/app/lib/focuses";
-import Entry from "@/app/ui/components/TIL/TIL_Entry";
-import AhaEntry from "@/app/ui/components/TIL/TIL_AhaEntry";
+import Focus_Entry from "@/app/ui/components/FocusView/Focus_Entry";
+import Focus_Aha from "@/app/ui/components/FocusView/Focus_Aha";
 
 const FocusView = async (props: PageProps<"/focuses/[id]">) => {
   const { id } = await props.params;
@@ -23,19 +23,19 @@ const FocusView = async (props: PageProps<"/focuses/[id]">) => {
         <h2 className="font-bold text-xl">Focuses:</h2>
         {focus.entry.map((entry) => {
           return entry.isAha ? (
-            <AhaEntry
+            <Focus_Aha
               key={entry.id}
               description={entry.description}
-              focusName=""
               commit={entry.commitUrl}
-              isShort={false}
+              id={entry.id}
+              focus={focus}
+              date={entry.createdAt}
             />
           ) : (
             <div key={entry.id} className="my-2">
-              <Entry
+              <Focus_Entry
                 date={entry.createdAt}
                 description={entry.description}
-                isShort={false}
               />
             </div>
           );

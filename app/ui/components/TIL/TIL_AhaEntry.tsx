@@ -23,7 +23,7 @@ interface AhaEntryProps {
   date: Date;
 }
 
-const AhaEntry: React.FC<AhaEntryProps> = ({
+const TIL_AhaEntry: React.FC<AhaEntryProps> = ({
   id,
   focus,
   commit,
@@ -98,4 +98,4 @@ const AhaEntry: React.FC<AhaEntryProps> = ({
   );
 };
 
-export default AhaEntry;
+export default TIL_AhaEntry;
