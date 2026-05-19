@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/card";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { SquareArrowOutUpRight } from "lucide-react";
+import { BookOpenText } from "lucide-react";
 
 interface EntryProps {
   date: Date;
@@ -62,7 +62,7 @@ const TIL_Entry: React.FC<EntryProps> = ({ date, description, id }) => {
             "self-end",
           )}
         >
-          <SquareArrowOutUpRight data-icon="inline-start" />
+          <BookOpenText data-icon="inline-start" />
           View Entry
         </a>
       </CardFooter>

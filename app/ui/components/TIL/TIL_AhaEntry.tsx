@@ -3,36 +3,43 @@ import { proseStyle } from "@/app/lib/styles";
 import Markdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
+
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
+import { BookMarked, ExternalLink, Lightbulb } from "lucide-react";
+import { Focus } from "@/app/generated/prisma";
 
 interface AhaEntryProps {
-  focusName: string;
+  id: number;
+  focus: Focus;
   commit: string;
   description: string;
-  isShort: boolean;
+  date: Date;
 }
 
 const AhaEntry: React.FC<AhaEntryProps> = ({
-  focusName,
+  id,
+  focus,
   commit,
   description,
-  isShort,
+  date,
 }) => {
-  const content = isShort ? formatShortDescription(description) : description;
+  const content = formatShortDescription(description);
   return (
-    <div
-      className="border-2 p-4 rounded-2xl mt-1 mb-1 bg-amber-100 
-    border-amber-200 flex flex-row justify-start content-center grow"
-    >
-      <div className="flex justify-center content-center flex-col">
-        <div className="flex items-center">
-          <div className="w-15 h-15 rounded-full border-blue-400 border-2 mr-3 flex justify-center items-center">
-            <span className="material-symbols-outlined text-blue-400">
-              lightbulb_2
-            </span>
-          </div>
-          <p className="font-bold text-md">Focus: {focusName}</p>
+    <Card className="border-chart-1 border-4 gap-1">
+      <CardHeader>
+        <div className="flex gap-2">
+          <Lightbulb />
+          <p className="text-muted-foreground font-bold">Focus {focus.title}</p>
         </div>
-
+      </CardHeader>
+      <CardContent>
         <article className={proseStyle}>
           <Markdown
             remarkPlugins={[remarkGfm]}
@@ -41,8 +48,53 @@ const AhaEntry: React.FC<AhaEntryProps> = ({
             {content}
           </Markdown>
         </article>
-      </div>
-    </div>
+      </CardContent>
+      <CardFooter
+        className="
+          flex 
+          lg:justify-between
+          lg:flex-row 
+          lg:items-center 
+          items-end
+          justify-center 
+          flex-col 
+          w-full 
+          gap-2
+        "
+      >
+        <p className="font-bold">{date.toLocaleDateString()}</p>
+
+        {commit === "" || commit === "private" ? (
+          <a
+            href={`/focuses/${focus.id}`}
+            className={cn(
+              buttonVariants({
+                size: "lg",
+              }),
+              "self-end",
+            )}
+          >
+            <BookMarked data-icon="inline-start" />
+            View Focus
+          </a>
+        ) : (
+          <a
+            href={`https://${focus.repositoryUrl}/commit/${commit}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(
+              buttonVariants({
+                size: "lg",
+              }),
+              "self-end",
+            )}
+          >
+            <ExternalLink data-icon="inline-start" />
+            View Commit
+          </a>
+        )}
+      </CardFooter>
+    </Card>
   );
 };
 

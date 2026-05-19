@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { buttonVariants } from "@/components/ui/button";
-import { SquareArrowOutUpRight } from "lucide-react";
+import { BookMarked } from "lucide-react";
 
 interface FocusEntryProps {
   id: number;
@@ -57,7 +57,7 @@ const TIL_Focus: React.FC<FocusEntryProps> = ({
             size: "lg",
           })}
         >
-          <SquareArrowOutUpRight data-icon="inline-start" />
+          <BookMarked data-icon="inline-start" />
           Quick View
         </a>
       </CardFooter>

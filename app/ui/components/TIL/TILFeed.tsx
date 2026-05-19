@@ -1,7 +1,7 @@
 import TIL_Entry from "./TIL_Entry";
-import AhaEntry from "./TIL_AhaEntry";
+import TIL_AhaEntry from "./TIL_AhaEntry";
 import prisma from "@/app/lib/prisma";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import TIL_Focus from "./TIL_Focus";
 
 const TILFeed = async () => {
@@ -63,6 +63,21 @@ const TILFeed = async () => {
             description={newestEntry?.description}
             id={newestEntry?.id}
           />
+        </div>
+        <CardTitle className="mt-4 font-bold">Recent Aha Moments:</CardTitle>
+        <div className="flex flex-col gap-4 mt-4">
+          {newestThreeAhas.map((entry) => {
+            return (
+              <TIL_AhaEntry
+                id={entry.id}
+                key={entry.id}
+                focus={entry.focus}
+                description={entry.description}
+                commit={entry.commitUrl}
+                date={entry.createdAt}
+              />
+            );
+          })}
         </div>
       </CardContent>
     </Card>
