@@ -8,9 +8,9 @@ import { easeIn, motion } from "motion/react";
 interface Props {
   children: ReactNode;
 }
-const REVEAL_TIMER = 1500;
-const TRANSITION_TIMER = 500;
-const BLUR_TIMER = 1000;
+const REVEAL_TIMER = 750;
+const TRANSITION_TIMER = 250;
+const BLUR_TIMER = 500;
 export default function MainAnimationWrapper({ children }: Props) {
   const [phase, setPhase] = useState<
     "intro" | "transition" | "curtain" | "complete"
