@@ -19,25 +19,21 @@ export default function MainAnimationWrapper({ children }: Props) {
   useEffect(() => {
     switch (phase) {
       case "intro":
-        console.log(`in intro phase...`);
         const firstTimer = setTimeout(
           () => setPhase("transition"),
           REVEAL_TIMER,
         );
         return () => clearTimeout(firstTimer);
       case "transition":
-        console.log(`in transition phase...`);
         const secondTimer = setTimeout(
           () => setPhase("curtain"),
           TRANSITION_TIMER,
         );
         return () => clearTimeout(secondTimer);
       case "curtain":
-        console.log(`in curtain phase...`);
         const thirdTimer = setTimeout(() => setPhase("complete"), BLUR_TIMER);
         return () => clearTimeout(thirdTimer);
       case "complete":
-        console.log("animation completed!");
         return;
       default:
         return;

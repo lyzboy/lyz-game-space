@@ -42,7 +42,6 @@ async function main() {
       },
     },
   });
-  console.log({ testFocus2 });
 }
 main()
   .then(async () => {
