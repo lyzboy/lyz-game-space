@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import { signIn, signOut } from "@/auth";
+import { auth } from "@/auth";
 
-const NavBar = () => {
+const NavBar = async () => {
+  const session = await auth();
   const links = [
     { name: "admin", link: "admin" },
     { name: "Sites", link: "#sites" },
@@ -33,6 +36,35 @@ const NavBar = () => {
             </li>
           );
         })}
+        {session ? (
+          <>
+            <form
+              action={async () => {
+                "use server";
+                await signIn("github");
+              }}
+            >
+              <button type="submit">GITHUB</button>
+            </form>
+            <form
+              action={async () => {
+                "use server";
+                await signIn("google");
+              }}
+            >
+              <button type="submit">GOOGLE</button>
+            </form>
+          </>
+        ) : (
+          <form
+            action={async () => {
+              "use server";
+              await signOut();
+            }}
+          >
+            <button type="submit">Sign out</button>
+          </form>
+        )}
       </ul>
     </nav>
   );
