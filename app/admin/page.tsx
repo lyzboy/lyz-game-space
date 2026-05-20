@@ -1,12 +1,17 @@
 import EntryForm from "../ui/components/EntryForm";
 import FocusForm from "../ui/components/FocusForm";
 import TechnologyForm from "../ui/components/TechnologyForm";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
-/**
- * The administration page for the website. This is a protected route.
- * @returns The admin page
- */
-export default function Admin() {
+export default async function Admin() {
+  const session = await auth();
+  if (session?.user?.role !== "ADMIN") {
+    console.log(`User not ADMIN`);
+    console.log(`session: ${session}`);
+    console.log(`user: ${session?.user}`);
+    redirect("/");
+  }
   return (
     <div className="p-24 grid  grid-cols-1  w-full gap-10 h-screen xl:grid-cols-4">
       <div className="">

@@ -20,10 +20,15 @@ declare module "next-auth" {
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
+  session: { strategy: "jwt" }, // ADD THIS
   providers: [Google, GitHub],
   callbacks: {
-    session({ session, user }) {
-      session.user.role = user.role;
+    async jwt({ token, user }) {
+      if (user) token.role = user.role;
+      return token;
+    },
+    session({ session, token }) {
+      session.user.role = token.role as Role;
       return session;
     },
   },
