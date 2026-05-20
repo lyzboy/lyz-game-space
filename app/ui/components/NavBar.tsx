@@ -37,6 +37,15 @@ const NavBar = async () => {
           );
         })}
         {session ? (
+          <form
+            action={async () => {
+              "use server";
+              await signOut();
+            }}
+          >
+            <button type="submit">Sign out</button>
+          </form>
+        ) : (
           <>
             <form
               action={async () => {
@@ -55,15 +64,6 @@ const NavBar = async () => {
               <button type="submit">GOOGLE</button>
             </form>
           </>
-        ) : (
-          <form
-            action={async () => {
-              "use server";
-              await signOut();
-            }}
-          >
-            <button type="submit">Sign out</button>
-          </form>
         )}
       </ul>
     </nav>
