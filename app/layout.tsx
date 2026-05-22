@@ -4,10 +4,14 @@ import "material-symbols/outlined.css";
 import "./globals.css";
 import NavBar from "./ui/components/NavBar";
 import { cn } from "@/lib/utils";
+import { SessionProvider } from "next-auth/react";
 
-const dmSansHeading = DM_Sans({subsets:['latin'],variable:'--font-heading'});
+const dmSansHeading = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-heading",
+});
 
-const notoSans = Noto_Sans({subsets:['latin'],variable:'--font-sans'});
+const notoSans = Noto_Sans({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,11 +36,21 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", notoSans.variable, dmSansHeading.variable)}
+      className={cn(
+        "h-full",
+        "antialiased",
+        geistSans.variable,
+        geistMono.variable,
+        "font-sans",
+        notoSans.variable,
+        dmSansHeading.variable,
+      )}
     >
       <body className="min-h-full flex flex-col">
-        <NavBar />
-        {children}
+        <SessionProvider>
+          <NavBar />
+          {children}
+        </SessionProvider>
       </body>
     </html>
   );
