@@ -6,6 +6,8 @@ import GitHub from "next-auth/providers/github";
 
 import { Role } from "./app/generated/prisma";
 
+// TS module augmentation to add role parameter to
+// session and user types
 declare module "next-auth" {
   interface Session {
     user: {
