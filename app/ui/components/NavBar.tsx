@@ -6,11 +6,13 @@ import { auth } from "@/auth";
 const NavBar = async () => {
   const session = await auth();
   const links = [
-    { name: "admin", link: "admin" },
     { name: "Sites", link: "#sites" },
     { name: "Dev Diary", link: "/focuses" },
     //{name:"Learning", link:"Learning"}
   ];
+  if (session?.user?.role == "ADMIN") {
+    links.push({ name: "admin", link: "admin" });
+  }
   return (
     <nav className="p-4 grid grid-cols-2">
       <a className="text-lg font-bold cursor-pointer" href="/">
@@ -43,10 +45,14 @@ const NavBar = async () => {
               await signOut();
             }}
           >
-            <button type="submit">Sign out</button>
+            <button type="submit" className="font-bold">
+              Sign out
+            </button>
           </form>
         ) : (
           <>
+            <li className="font-bold">Sign In:</li>
+
             <form
               action={async () => {
                 "use server";
