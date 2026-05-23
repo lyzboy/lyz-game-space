@@ -20,7 +20,7 @@ const FocusView = async (props: PageProps<"/focuses/[id]">) => {
         <p>{focus.description}</p>
       </div>
       <div>
-        <h2 className="font-bold text-xl">Focuses:</h2>
+        <h2 className="font-bold text-xl">Entries:</h2>
         {focus.entry.map((entry) => {
           return entry.isAha ? (
             <Focus_Aha
