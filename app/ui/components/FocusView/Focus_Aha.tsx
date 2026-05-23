@@ -1,4 +1,3 @@
-import { formatShortDescription } from "@/app/lib/utils";
 import { proseStyle } from "@/app/lib/styles";
 import Markdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
@@ -10,10 +9,10 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
-import { BookMarked, ExternalLink, Lightbulb } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Lightbulb } from "lucide-react";
 import { Focus } from "@/app/generated/prisma";
+import { auth } from "@/auth";
 
 interface AhaEntryProps {
   id: number;
@@ -23,13 +22,14 @@ interface AhaEntryProps {
   date: Date;
 }
 
-const Focus_Aha: React.FC<AhaEntryProps> = ({
+const Focus_Aha: React.FC<AhaEntryProps> = async ({
   id,
   focus,
   commit,
   description,
   date,
 }) => {
+  const session = await auth();
   const content = description;
   return (
     <Card className="border-chart-1 border-4 gap-1">
@@ -38,6 +38,12 @@ const Focus_Aha: React.FC<AhaEntryProps> = ({
           <Lightbulb />
           <p className="font-bold">{date.toLocaleDateString()}</p>
         </div>
+        {session?.user?.role === "ADMIN" && (
+          <>
+            <Button>Edit</Button>
+            <Button>Delete</Button>
+          </>
+        )}
       </CardHeader>
       <CardContent>
         <article className={proseStyle}>
@@ -49,6 +55,9 @@ const Focus_Aha: React.FC<AhaEntryProps> = ({
           </Markdown>
         </article>
       </CardContent>
+      <CardFooter>
+        <p>Commit:{focus.repositoryUrl + commit}</p>
+      </CardFooter>
     </Card>
   );
 };
