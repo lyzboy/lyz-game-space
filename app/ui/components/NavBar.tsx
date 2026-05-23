@@ -5,6 +5,8 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { signIn, signOut } from "next-auth/react";
 
+import { SiGoogle, SiGithub } from "@icons-pack/react-simple-icons";
+
 import {
   Card,
   CardContent,
@@ -59,24 +61,26 @@ const NavBar = () => {
               </li>
             );
           })}
-          {session ? (
-            <button
-              type="submit"
-              className="font-bold"
-              onClick={() => signOut()}
-            >
-              Sign out
-            </button>
-          ) : (
-            <button
-              className="font-bold"
-              onClick={() => {
-                setSignInPopup(true);
-              }}
-            >
-              Sign In
-            </button>
-          )}
+          <li>
+            {session ? (
+              <button
+                type="submit"
+                className="font-bold"
+                onClick={() => signOut()}
+              >
+                LOG OUT
+              </button>
+            ) : (
+              <button
+                className="font-bold"
+                onClick={() => {
+                  setSignInPopup(true);
+                }}
+              >
+                LOG IN
+              </button>
+            )}
+          </li>
         </ul>
       </nav>
       {signInPopup && (
@@ -91,25 +95,28 @@ const NavBar = () => {
             <CardContent className="flex justify-center items-center flex-col">
               <button
                 type="submit"
-                className="bg-primary text-white font-bold p-2 rounded-lg"
+                className="bg-primary text-white font-bold p-2 rounded-lg w-full mb-4 flex justify-center gap-3 items-center"
                 onClick={() => signIn("github", { redirectTo: "/" })}
               >
+                <SiGithub color="#FFFFFF" size={24} />
                 GITHUB
               </button>
 
               <button
                 type="submit"
-                className="bg-primary text-white font-bold p-2 rounded-lg"
+                className="bg-primary text-white font-bold p-2 rounded-lg w-full flex justify-center items-center gap-3"
                 onClick={() => signIn("google", { redirectTo: "/" })}
               >
+                <SiGoogle color="#FFFFFF" size={24} />
                 GOOGLE
               </button>
             </CardContent>
-            <CardFooter>
+            <CardFooter className="flex w-full justify-end">
               <Button
                 onClick={() => {
                   setSignInPopup(false);
                 }}
+                className=""
               >
                 Cancel Sign In
               </Button>
