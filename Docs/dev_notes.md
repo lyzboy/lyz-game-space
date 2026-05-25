@@ -4,7 +4,7 @@ the development. These notes are meant to capture ideas for later
 planning/implementation. This is a living document and might change during the course of development.
 
 # **BUGS**
-- main animation wrapper should not run twice, if visitor goes to another page, the animation should not play. Need to implement a state that stays with visitor.
+
 
 
 # Testing implementation
@@ -24,33 +24,23 @@ official [the nextjs guides](https://nextjs.org/docs/pages/guides/testing)
 
 # TIL Feed feature
 
-## Focus Admin page (Complete)
-Need to implement Auth.
-
 ### Edit entries and focuses
 Need to be able to edit entries or focuses if something was added incorrectly.
-
+This will be completed using an "in-place" editor. The admin will visit the page
+and, if logged in, an edit and delete button will be shown.
+- ✅ Delete pressed - a popup wil be shown confirm deletion, if confirmed, a toast
+will appear shown that item has been deleted.
+- Edit pressed - The card that shows the item will turn into an editable "form"
+where the admin can make changes and either save the changes or cancel the
+changes.
 
 ## Entry published
 Implement the ability to save an entry for it to be published at a later time.
 It would be saved as a draft.
-
-# Style Changes
-
-- Fix socials, they need to be round
-- Fix TIL feed style to use shadcn/ui
-  - There will need to be separate cards for each. The will be becuase the formatted style of the TIL components should be condensed and should not show as much as the full entries.
-    - TIL_CurrentFocus
-    - CurrentFocus
-    - TIL_LatestEntry
-    - LatestEntry
-    - TIL_AhaEntry
-    - AhaEntry
 
 
 # Other Notes
 
 - Add a blog portion to the website.
 - Add the ability to upload photos by admin for entry or lesson purposes.
-- add a sign in portion? for saving learning progress
 - start moving the notes from lyz notes into "lessons" in the form of blogs

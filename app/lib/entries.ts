@@ -1,5 +1,6 @@
-`server-only`;
+"use server";
 import prisma from "@/app/lib/prisma";
+import { revalidatePath } from "next/cache";
 
 export async function GetEntries() {
   try {
@@ -29,6 +30,19 @@ export async function GetEntryByID(id: number) {
     });
     return fetchedEntry;
   } catch (error) {
-    throw new Error(`Fails to get entry with id (${id})`);
+    throw new Error(`Failed to get entry with id (${id})`);
+  }
+}
+
+export async function DeleteEntryById(id: number) {
+  try {
+    await prisma.entry.delete({
+      where: {
+        id,
+      },
+    });
+    // TODO: revalidate path to dynamic focus
+  } catch (error) {
+    throw new Error(`Failed to delete entry with id (${id})`);
   }
 }
