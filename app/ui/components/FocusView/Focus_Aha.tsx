@@ -14,6 +14,18 @@ import { Lightbulb } from "lucide-react";
 import { Focus } from "@/app/generated/prisma";
 import { auth } from "@/auth";
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+
 interface AhaEntryProps {
   id: number;
   focus: Focus;
@@ -31,6 +43,8 @@ const Focus_Aha: React.FC<AhaEntryProps> = async ({
 }) => {
   const session = await auth();
   const content = description;
+
+  function handleDeleteClick() {}
   return (
     <Card className="border-chart-1 border-4 gap-1">
       <CardHeader>
@@ -38,12 +52,31 @@ const Focus_Aha: React.FC<AhaEntryProps> = async ({
           <Lightbulb />
           <p className="font-bold">{date.toLocaleDateString()}</p>
         </div>
-        {session?.user?.role === "ADMIN" && (
-          <>
-            <Button>Edit</Button>
-            <Button>Delete</Button>
-          </>
-        )}
+        {/* {session?.user?.role === "ADMIN" && ( */}
+        <>
+          <Button>Edit</Button>
+          <AlertDialog>
+            <AlertDialogTrigger
+              render={<Button variant="destructive">Delete</Button>}
+            />
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This action cannot be undone. This will permanently delete the
+                  item.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction variant="destructive">
+                  Delete
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </>
+        {/* )} */}
       </CardHeader>
       <CardContent>
         <article className={proseStyle}>
