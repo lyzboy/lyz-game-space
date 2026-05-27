@@ -34,14 +34,14 @@ export async function GetEntryByID(id: number) {
   }
 }
 
-export async function DeleteEntryById(id: number) {
+export async function DeleteEntryById(id: number, focusId: number) {
   try {
     await prisma.entry.delete({
       where: {
         id,
       },
     });
-    // TODO: revalidate path to dynamic focus
+    revalidatePath(`/focuses/${focusId}`);
   } catch (error) {
     throw new Error(`Failed to delete entry with id (${id})`);
   }

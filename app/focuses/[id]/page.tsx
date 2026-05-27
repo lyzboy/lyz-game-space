@@ -34,6 +34,8 @@ const FocusView = async (props: PageProps<"/focuses/[id]">) => {
           ) : (
             <div key={entry.id} className="my-2">
               <Focus_Entry
+                id={entry.id}
+                focusId={focus.id}
                 date={entry.createdAt}
                 description={entry.description}
               />

@@ -4,8 +4,10 @@ the development. These notes are meant to capture ideas for later
 planning/implementation. This is a living document and might change during the course of development.
 
 # **BUGS**
-
-
+If visiting sites, and the endpoint is on /#sites, the window will not move to 
+the sites section. This will need to will need to be handled manually by
+checking the path if it is already at /#sites, prevent default, and then smooth 
+scroll to the sites section.
 
 # Testing implementation
 ## Testing stack

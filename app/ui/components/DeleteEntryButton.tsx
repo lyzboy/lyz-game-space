@@ -18,10 +18,14 @@ import { Button } from "@/components/ui/button";
 
 interface DeleteEntryButtonProps {
   id: number;
+  focusId: number;
 }
 
-const DeleteEntryButton: React.FC<DeleteEntryButtonProps> = ({ id }) => {
-  const deleteEntryById = DeleteEntryById.bind(null, id);
+const DeleteEntryButton: React.FC<DeleteEntryButtonProps> = ({
+  id,
+  focusId,
+}) => {
+  const deleteEntryById = DeleteEntryById.bind(null, id, focusId);
   return (
     <AlertDialog>
       <AlertDialogTrigger

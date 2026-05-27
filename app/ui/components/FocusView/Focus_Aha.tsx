@@ -15,8 +15,6 @@ import { Focus } from "@/app/generated/prisma";
 import { auth } from "@/auth";
 import DeleteEntryButton from "../DeleteEntryButton";
 
-import { DeleteEntryById } from "@/app/lib/entries";
-
 interface AhaEntryProps {
   id: number;
   focus: Focus;
@@ -45,7 +43,7 @@ const Focus_Aha: React.FC<AhaEntryProps> = async ({
         {/* {session?.user?.role === "ADMIN" && ( */}
         <>
           <Button>Edit</Button>
-          <DeleteEntryButton id={id} />
+          <DeleteEntryButton id={id} focusId={focus.id} />
         </>
         {/* )} */}
       </CardHeader>

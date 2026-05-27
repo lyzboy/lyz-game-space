@@ -7,6 +7,7 @@ import { redirect } from "next/navigation";
 export default async function Admin() {
   const session = await auth();
   if (session?.user?.role !== "ADMIN") {
+    console.log(`not an admin`);
     redirect("/");
   }
   return (

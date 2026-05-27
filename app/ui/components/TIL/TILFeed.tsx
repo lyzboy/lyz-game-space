@@ -61,7 +61,7 @@ const TILFeed = async () => {
           <TIL_Entry
             date={newestEntry?.createdAt}
             description={newestEntry?.description}
-            id={newestEntry?.id}
+            focusId={newestEntry?.focus.id}
           />
         </div>
         <CardTitle className="mt-4 font-bold">Recent Aha Moments:</CardTitle>

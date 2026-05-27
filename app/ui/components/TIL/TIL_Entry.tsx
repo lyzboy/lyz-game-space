@@ -19,10 +19,10 @@ import { BookOpenText } from "lucide-react";
 interface EntryProps {
   date: Date;
   description: string;
-  id: number;
+  focusId: number;
 }
 
-const TIL_Entry: React.FC<EntryProps> = ({ date, description, id }) => {
+const TIL_Entry: React.FC<EntryProps> = ({ date, description, focusId }) => {
   const content = formatShortDescription(description);
   return (
     <Card>
@@ -54,7 +54,7 @@ const TIL_Entry: React.FC<EntryProps> = ({ date, description, id }) => {
       >
         <p className="font-bold">{date.toLocaleDateString()}</p>
         <a
-          href={`/focuses/${id}`}
+          href={`/focuses/${focusId}`}
           className={cn(
             buttonVariants({
               size: "lg",

@@ -7,6 +7,8 @@ import { signIn, signOut } from "next-auth/react";
 
 import { SiGoogle, SiGithub } from "@icons-pack/react-simple-icons";
 
+import Link from "next/link";
+
 import {
   Card,
   CardContent,
@@ -28,12 +30,12 @@ const NavBar = () => {
   }, [session]);
   const [signInPopup, setSignInPopup] = useState(false);
   const links = [
-    { name: "Sites", link: "#sites" },
+    { name: "Sites", link: "/#sites" },
     { name: "Dev Diary", link: "/focuses" },
     //{name:"Learning", link:"Learning"}
   ];
   if (session?.user?.role == "ADMIN") {
-    links.push({ name: "admin", link: "admin" });
+    links.push({ name: "admin", link: "/admin" });
   }
   return (
     <>
@@ -57,7 +59,7 @@ const NavBar = () => {
           {links.map((link) => {
             return (
               <li key={link.name}>
-                <a href={link.link}>{link.name}</a>
+                <Link href={link.link}>{link.name}</Link>
               </li>
             );
           })}
