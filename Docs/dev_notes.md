@@ -4,10 +4,23 @@ the development. These notes are meant to capture ideas for later
 planning/implementation. This is a living document and might change during the course of development.
 
 # **BUGS**
-If visiting sites, and the endpoint is on /#sites, the window will not move to 
+- If visiting sites, and the endpoint is on /#sites, the window will not move to 
 the sites section. This will need to will need to be handled manually by
 checking the path if it is already at /#sites, prevent default, and then smooth 
 scroll to the sites section.
+
+# Still Needed
+
+- Need to fix styling between want is written and what is rendered in terms of
+markdown
+
+- Need to implement in place editing of entries
+
+- need to double check auth entry points
+
+- need final review of style
+
+- add a "published" state so certain dev logs aren't uploaded until published.
 
 # Testing implementation
 ## Testing stack
