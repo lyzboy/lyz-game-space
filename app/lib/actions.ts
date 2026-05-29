@@ -1,6 +1,6 @@
 "use server";
 import prisma from "@/app/lib/prisma";
-import { revalidatePath } from "next/cache";
+import { refresh, revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export async function createFocus(formData: FormData) {
@@ -87,6 +87,51 @@ export async function createEntry(formData: FormData) {
   }
   revalidatePath("/");
   redirect("/");
+}
+
+export async function UpdateEntry(formData: FormData) {
+  try {
+    const rawEntryDescription = formData.get("entryDescription");
+    const rawId = formData.get("entryId");
+    const rawFocusId = formData.get("focusId");
+
+    if (
+      typeof rawEntryDescription !== "string" ||
+      typeof rawId !== "string" ||
+      typeof rawFocusId !== "string"
+    ) {
+      throw new Error("Missing required form fields");
+    }
+
+    const entryDescription = rawEntryDescription.trim();
+    const entryId = Number(rawId);
+    const focusId = Number(rawFocusId);
+
+    if (!entryDescription) {
+      throw new Error("Entry description is required");
+    }
+
+    if (Number.isNaN(entryId)) {
+      throw new Error("Invalid entry id");
+    }
+
+    if (Number.isNaN(focusId)) {
+      throw new Error("Invalid focus id");
+    }
+
+    await prisma.entry.update({
+      where: {
+        id: entryId,
+      },
+      data: {
+        description: rawEntryDescription,
+      },
+    });
+    //revalidatePath(`/focuses/${focusId}`);
+    refresh();
+  } catch (error) {
+    console.error(`Couldn't update entry: ${error}`);
+  }
 }
 
 export async function createTechnology(formData: FormData) {

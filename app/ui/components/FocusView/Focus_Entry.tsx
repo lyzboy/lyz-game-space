@@ -15,6 +15,8 @@ import { ForwardRefEditor } from "../ForwardRefEditor";
 
 import { useSession } from "next-auth/react";
 
+import { UpdateEntry } from "@/app/lib/actions";
+
 interface EntryProps {
   id: number;
   focusId: number;
@@ -63,9 +65,26 @@ const Focus_Entry: React.FC<EntryProps> = ({
   const cardContent = () => {
     if (session?.user?.role === "ADMIN" && editing) {
       return (
-        <div className="border-black border-2 rounded-md overflow-hidden grow-10">
-          <ForwardRefEditor markdown={markdown} onChange={setMarkdown} />
-        </div>
+        <form
+          action={(formData) => {
+            UpdateEntry(formData);
+            setEditing(false);
+          }}
+          className="flex flex-col gap-4"
+        >
+          <div className="border-black border-2 rounded-md overflow-hidden grow-10">
+            <ForwardRefEditor markdown={markdown} onChange={setMarkdown} />
+          </div>
+          <input
+            type="hidden"
+            name="entryDescription"
+            value={markdown}
+            readOnly
+          />
+          <input type="hidden" name="entryId" value={id} readOnly />
+          <input type="hidden" name="focusId" value={focusId} readOnly />
+          <Button type="submit">Save Changes</Button>
+        </form>
       );
     } else {
       return (
