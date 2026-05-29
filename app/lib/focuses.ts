@@ -12,7 +12,6 @@ export async function GetFocuses() {
     throw new Error("Failed to fetch focuses");
   }
 }
-
 /**
  * Retrieve a specific focus using the focus id. Returns null if no object found
  * @param {number} id - The id of the focus

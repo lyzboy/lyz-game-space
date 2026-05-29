@@ -36,7 +36,7 @@ const FocusView = async (props: PageProps<"/focuses/[id]">) => {
               <Focus_Entry
                 id={entry.id}
                 focusId={focus.id}
-                date={entry.createdAt}
+                date={entry.createdAt.toLocaleDateString()}
                 description={entry.description}
               />
             </div>
