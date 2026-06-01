@@ -11,10 +11,12 @@ scroll to the sites section.
 
 # Still Needed
 
+- Need to add ability to edit commit and repo for focus and entries
+
+- need to add ability to edit focus
+
 - Need to fix styling between want is written and what is rendered in terms of
 markdown
-
-- Need to implement in place editing of entries
 
 - need to double check auth entry points
 
