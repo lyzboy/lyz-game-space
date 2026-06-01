@@ -3,19 +3,13 @@
 // A TIL Feed entry
 
 import { useState } from "react";
-import Markdown from "react-markdown";
-import rehypeHighlight from "rehype-highlight";
-import remarkGfm from "remark-gfm";
-import { proseStyle } from "@/app/lib/styles";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import DeleteEntryButton from "../DeleteEntryButton";
-
-import { ForwardRefEditor } from "../ForwardRefEditor";
 
 import { useSession } from "next-auth/react";
 
-import { UpdateEntry } from "@/app/lib/actions";
+import Focus_MarkdownRenderer from "./Focus_MarkdownRenderer";
+import Focus_EntryForm from "./Focus_EntryForm";
+import Focus_EditControls from "./Focus_EditControls";
 
 interface EntryProps {
   id: number;
@@ -42,22 +36,14 @@ const Focus_Entry: React.FC<EntryProps> = ({
 
   const editableControls = () => {
     if (session?.user?.role === "ADMIN") {
-      if (editing) {
-        return (
-          <>
-            <Button variant="destructive" onClick={handleEditClick}>
-              Cancel Edit
-            </Button>
-          </>
-        );
-      } else {
-        return (
-          <>
-            <Button onClick={handleEditClick}>Edit</Button>
-            <DeleteEntryButton id={id} focusId={focusId} />
-          </>
-        );
-      }
+      return (
+        <Focus_EditControls
+          isEditing={editing}
+          entryId={id}
+          focusId={focusId}
+          handleEditClick={handleEditClick}
+        />
+      );
     }
     return;
   };
@@ -65,38 +51,16 @@ const Focus_Entry: React.FC<EntryProps> = ({
   const cardContent = () => {
     if (session?.user?.role === "ADMIN" && editing) {
       return (
-        <form
-          action={(formData) => {
-            UpdateEntry(formData);
-            setEditing(false);
-          }}
-          className="flex flex-col gap-4"
-        >
-          <div className="border-black border-2 rounded-md overflow-hidden grow-10">
-            <ForwardRefEditor markdown={markdown} onChange={setMarkdown} />
-          </div>
-          <input
-            type="hidden"
-            name="entryDescription"
-            value={markdown}
-            readOnly
-          />
-          <input type="hidden" name="entryId" value={id} readOnly />
-          <input type="hidden" name="focusId" value={focusId} readOnly />
-          <Button type="submit">Save Changes</Button>
-        </form>
+        <Focus_EntryForm
+          markdown={markdown}
+          entryId={id}
+          focusId={focusId}
+          setMarkdown={setMarkdown}
+          isEditing={setEditing}
+        />
       );
     } else {
-      return (
-        <article className={proseStyle}>
-          <Markdown
-            remarkPlugins={[remarkGfm]}
-            rehypePlugins={[rehypeHighlight]}
-          >
-            {content}
-          </Markdown>
-        </article>
-      );
+      return <Focus_MarkdownRenderer content={content} />;
     }
   };
 
