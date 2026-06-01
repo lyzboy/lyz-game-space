@@ -1,7 +1,5 @@
-import { proseStyle } from "@/app/lib/styles";
-import Markdown from "react-markdown";
-import rehypeHighlight from "rehype-highlight";
-import remarkGfm from "remark-gfm";
+"use client";
+
 import {
   Card,
   CardHeader,
@@ -9,54 +7,81 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 
-import { Button } from "@/components/ui/button";
 import { Lightbulb } from "lucide-react";
 import { Focus } from "@/app/generated/prisma";
-import { auth } from "@/auth";
-import DeleteEntryButton from "../DeleteEntryButton";
+
+import { useSession } from "next-auth/react";
+import { useState } from "react";
+
+import Focus_EntryForm from "./Focus_EntryForm";
+import Focus_EditControls from "./Focus_EditControls";
+import Focus_MarkdownRenderer from "./Focus_MarkdownRenderer";
 
 interface AhaEntryProps {
   id: number;
   focus: Focus;
   commit: string;
   description: string;
-  date: Date;
+  date: string;
 }
 
-const Focus_Aha: React.FC<AhaEntryProps> = async ({
+const Focus_Aha: React.FC<AhaEntryProps> = ({
   id,
   focus,
   commit,
   description,
   date,
 }) => {
-  const session = await auth();
+  const { data: session } = useSession();
   const content = description;
+
+  const [editing, setEditing] = useState(false);
+  const [markdown, setMarkdown] = useState(content);
+
+  const handleEditClick = () => {
+    setEditing(!editing);
+  };
+
+  const editableControls = () => {
+    if (session?.user?.role === "ADMIN") {
+      return (
+        <Focus_EditControls
+          isEditing={editing}
+          entryId={id}
+          focusId={focus.id}
+          handleEditClick={handleEditClick}
+        />
+      );
+    }
+    return;
+  };
+
+  const cardContent = () => {
+    if (session?.user?.role === "ADMIN" && editing) {
+      return (
+        <Focus_EntryForm
+          markdown={markdown}
+          entryId={id}
+          focusId={focus.id}
+          setMarkdown={setMarkdown}
+          isEditing={setEditing}
+        />
+      );
+    } else {
+      return <Focus_MarkdownRenderer content={content} />;
+    }
+  };
 
   return (
     <Card className="border-chart-1 border-4 gap-1">
       <CardHeader>
         <div className="flex gap-2">
           <Lightbulb />
-          <p className="font-bold">{date.toLocaleDateString()}</p>
+          <p className="font-bold">{date}</p>
         </div>
-        {/* {session?.user?.role === "ADMIN" && ( */}
-        <>
-          <Button>Edit</Button>
-          <DeleteEntryButton id={id} focusId={focus.id} />
-        </>
-        {/* )} */}
+        {editableControls()}
       </CardHeader>
-      <CardContent>
-        <article className={proseStyle}>
-          <Markdown
-            remarkPlugins={[remarkGfm]}
-            rehypePlugins={[rehypeHighlight]}
-          >
-            {content}
-          </Markdown>
-        </article>
-      </CardContent>
+      <CardContent>{cardContent()}</CardContent>
       <CardFooter>
         <p>Commit:{focus.repositoryUrl + commit}</p>
       </CardFooter>

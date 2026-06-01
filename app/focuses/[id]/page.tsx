@@ -29,7 +29,7 @@ const FocusView = async (props: PageProps<"/focuses/[id]">) => {
               commit={entry.commitUrl}
               id={entry.id}
               focus={focus}
-              date={entry.createdAt}
+              date={entry.createdAt.toLocaleDateString()}
             />
           ) : (
             <div key={entry.id} className="my-2">
