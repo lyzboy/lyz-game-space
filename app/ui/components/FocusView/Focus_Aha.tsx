@@ -7,7 +7,9 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 
-import { Lightbulb } from "lucide-react";
+import { Button, buttonVariants } from "@/components/ui/button";
+
+import { ExternalLink, Lightbulb, CircleSlash } from "lucide-react";
 import { Focus } from "@/app/generated/prisma";
 
 import { useSession } from "next-auth/react";
@@ -16,6 +18,7 @@ import { useState } from "react";
 import Focus_EntryForm from "./Focus_EntryForm";
 import Focus_EditControls from "./Focus_EditControls";
 import Focus_MarkdownRenderer from "./Focus_MarkdownRenderer";
+import { cn } from "@/lib/utils";
 
 interface AhaEntryProps {
   id: number;
@@ -83,7 +86,32 @@ const Focus_Aha: React.FC<AhaEntryProps> = ({
       </CardHeader>
       <CardContent>{cardContent()}</CardContent>
       <CardFooter>
-        <p>Commit:{focus.repositoryUrl + commit}</p>
+        <p>
+          {commit === "" ||
+          commit === "private" ||
+          commit === null ||
+          commit === " " ? (
+            <Button size="lg" variant={null}>
+              <CircleSlash data-icon="inline-start" />
+              Commit N/A
+            </Button>
+          ) : (
+            <a
+              href={`https://${focus.repositoryUrl}/${commit}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                buttonVariants({
+                  size: "lg",
+                }),
+                "self-end",
+              )}
+            >
+              <ExternalLink data-icon="inline-start" />
+              View Commit
+            </a>
+          )}
+        </p>
       </CardFooter>
     </Card>
   );
