@@ -38,6 +38,26 @@ async function main() {
             commitUrl: "commit/32ecb37a3139094d7c6ef099d5826e5217a8f430",
             isAha: false,
           },
+          {
+            description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur est fringilla hendrerit sit consectetur eu eu quis vitae laoreet sapien. In venenatis lacus ac malesuada nisi ex scelerisque nunc. Ornare pretium felis tellus odio libero vestibulum vestibulum nullam a nisl at et mauris phasellus.`,
+            commitUrl: "commit/32ecb37a3139094d7c6ef099d5826e5217a8f430",
+            isAha: false,
+          },
+          {
+            description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur est fringilla hendrerit sit consectetur eu eu quis vitae laoreet sapien. In venenatis lacus ac malesuada nisi ex scelerisque nunc. Ornare pretium felis tellus odio libero vestibulum vestibulum nullam a nisl at et mauris phasellus.`,
+            commitUrl: "commit/32ecb37a3139094d7c6ef099d5826e5217a8f430",
+            isAha: true,
+          },
+          {
+            description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur est fringilla hendrerit sit consectetur eu eu quis vitae laoreet sapien. In venenatis lacus ac malesuada nisi ex scelerisque nunc. Ornare pretium felis tellus odio libero vestibulum vestibulum nullam a nisl at et mauris phasellus.`,
+            commitUrl: "commit/32ecb37a3139094d7c6ef099d5826e5217a8f430",
+            isAha: true,
+          },
+          {
+            description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur est fringilla hendrerit sit consectetur eu eu quis vitae laoreet sapien. In venenatis lacus ac malesuada nisi ex scelerisque nunc. Ornare pretium felis tellus odio libero vestibulum vestibulum nullam a nisl at et mauris phasellus.`,
+            commitUrl: "commit/32ecb37a3139094d7c6ef099d5826e5217a8f430",
+            isAha: true,
+          },
         ],
       },
     },
