@@ -94,11 +94,13 @@ export async function UpdateEntry(formData: FormData) {
     const rawEntryDescription = formData.get("entryDescription");
     const rawId = formData.get("entryId");
     const rawFocusId = formData.get("focusId");
+    const rawCommit = formData.get("entryCommit");
 
     if (
       typeof rawEntryDescription !== "string" ||
       typeof rawId !== "string" ||
-      typeof rawFocusId !== "string"
+      typeof rawFocusId !== "string" ||
+      typeof rawCommit !== "string"
     ) {
       throw new Error("Missing required form fields");
     }
@@ -125,9 +127,9 @@ export async function UpdateEntry(formData: FormData) {
       },
       data: {
         description: rawEntryDescription,
+        commitUrl: rawCommit,
       },
     });
-    //revalidatePath(`/focuses/${focusId}`);
     refresh();
   } catch (error) {
     console.error(`Couldn't update entry: ${error}`);

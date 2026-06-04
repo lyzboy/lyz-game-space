@@ -3,19 +3,29 @@
 // A TIL Feed entry
 
 import { useState } from "react";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
 
 import { useSession } from "next-auth/react";
 
 import Focus_MarkdownRenderer from "./Focus_MarkdownRenderer";
 import Focus_EntryForm from "./Focus_EntryForm";
 import Focus_EditControls from "./Focus_EditControls";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { CircleSlash, ExternalLink } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface EntryProps {
   id: number;
   focusId: number;
+  focusRepo: string;
   date: string;
   description: string;
+  commit: string;
 }
 
 const Focus_Entry: React.FC<EntryProps> = ({
@@ -23,12 +33,16 @@ const Focus_Entry: React.FC<EntryProps> = ({
   description,
   id,
   focusId,
+  commit,
+  focusRepo,
 }) => {
   const { data: session } = useSession();
   const content = description;
 
   const [editing, setEditing] = useState(false);
   const [markdown, setMarkdown] = useState(content);
+
+  const [usedCommit, setUsedCommit] = useState(commit);
 
   const handleEditClick = () => {
     setEditing(!editing);
@@ -57,6 +71,8 @@ const Focus_Entry: React.FC<EntryProps> = ({
           focusId={focusId}
           setMarkdown={setMarkdown}
           isEditing={setEditing}
+          commit={usedCommit}
+          setCommit={setUsedCommit}
         />
       );
     } else {
@@ -71,6 +87,34 @@ const Focus_Entry: React.FC<EntryProps> = ({
         {editableControls()}
       </CardHeader>
       <CardContent>{cardContent()}</CardContent>
+      <CardFooter>
+        <p>
+          {commit === "" ||
+          commit === "private" ||
+          commit === null ||
+          commit === " " ? (
+            <Button size="lg" variant={null}>
+              <CircleSlash data-icon="inline-start" />
+              Commit N/A
+            </Button>
+          ) : (
+            <a
+              href={`https://${focusRepo}/${commit}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                buttonVariants({
+                  size: "lg",
+                }),
+                "self-end",
+              )}
+            >
+              <ExternalLink data-icon="inline-start" />
+              View Commit
+            </a>
+          )}
+        </p>
+      </CardFooter>
     </Card>
   );
 };

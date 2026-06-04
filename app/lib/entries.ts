@@ -6,6 +6,9 @@ export async function GetEntries() {
   try {
     const fetchedEntry = await prisma.entry.findMany({
       include: { focus: true },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
     return fetchedEntry;
   } catch (error) {

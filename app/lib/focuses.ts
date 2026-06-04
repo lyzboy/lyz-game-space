@@ -24,7 +24,11 @@ export async function GetFocusById(id: number) {
         id,
       },
       include: {
-        entry: true,
+        entry: {
+          orderBy: {
+            createdAt: "asc",
+          },
+        },
         technologies: true,
       },
     });

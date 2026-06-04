@@ -38,6 +38,8 @@ const FocusView = async (props: PageProps<"/focuses/[id]">) => {
                 focusId={focus.id}
                 date={entry.createdAt.toLocaleDateString()}
                 description={entry.description}
+                commit={entry.commitUrl}
+                focusRepo={focus.repositoryUrl!}
               />
             </div>
           );
