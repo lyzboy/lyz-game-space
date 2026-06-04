@@ -39,6 +39,9 @@ These have been completed using Perplexity AI Spaces as a supporting tool, not a
 - **Dev Diary** - short accomplishments and moments of discovery relating to a specific focus.
 - **Responsive Design** - Layout tuned for desktop, tablet, and mobile. 
 
+### Future Features
+- **Learning Guide** - Project/component based learning platform where users can follow and complete learning lessons for free.
+
 ## Architecture / Design Notes
 
 - Uses Next.js App Router for file-based routing and server components where appropriate.
@@ -64,11 +67,14 @@ Make sure you have PostgreSQL running and a database URL configured in your .env
 ### Install Packages
 `pnpm install`
 
+### Migrate DB from prisma
+`npx prisma migrate dev`
+
 ### Generate DB from Prisma
-`npx prisma generate`
+`npx prisma generate dev`
 
 ### Seed DB
 `npx prisma db seed`
 
 ### Run
-`pnpm run dev`
+`pnpm dev`
