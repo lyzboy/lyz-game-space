@@ -17,6 +17,22 @@ scroll to the sites section.
 
 - need pass all tests before release
 
+# Production Release
+
+- Use squash and merger on github to merge the branch
+
+- Handle prisma migration. Ensure to run `prisma migrate deploy` on production 
+server. Ensure that `prisma generate` and `prisma migrate deploy` before `next
+build` in the docker file.
+
+- Update docker compose and docker file so that it references the server db.
+Ensure that the system is using pnpm and not npm commands
+  - Create two separate docker-compose files `docker-compose.dev.yml` and 
+  `docker-compose.prod.yml`. The dev file should mirror the prod file with dev
+  overrides, local env vars, etc. The prod compose file can be used locally to
+  ensure that it closely meets "what the production server will do", but using 
+  a different DB. 
+
 # Testing implementation
 ## Testing stack
 **JEST/RTL** - This will be used for unit and component tests. This will include 
