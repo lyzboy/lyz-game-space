@@ -50,22 +50,27 @@ const Sites = () => {
   ];
 
   return (
-    <div
-      className="grid md:grid-cols-2 lg:p-10 justify-center content-center 
-      justify-items-center items-stretch gap-10"
-      id="sites"
-    >
-      {cardArray.map((cardItem) => {
-        return (
-          <SiteCard
-            key={cardItem.title}
-            title={cardItem.title}
-            image={cardItem.image}
-            description={cardItem.description}
-            link={cardItem.link}
-          />
-        );
-      })}
+    <div className="flex flex-col justify-center items-center pt-8">
+      <h3 className="font-bold bg-light-foreground w-full p-6 text-center shadow-xl mb-8">
+        Sites:
+      </h3>
+      <div
+        className="grid md:grid-cols-2 lg:p-10 justify-center content-center 
+      justify-items-center items-stretch gap-10 scroll-mt-40"
+        id="sites"
+      >
+        {cardArray.map((cardItem) => {
+          return (
+            <SiteCard
+              key={cardItem.title}
+              title={cardItem.title}
+              image={cardItem.image}
+              description={cardItem.description}
+              link={cardItem.link}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };

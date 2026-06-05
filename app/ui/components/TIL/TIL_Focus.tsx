@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils";
 import { formatShortDescription } from "@/app/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -27,7 +26,6 @@ const TIL_Focus: React.FC<FocusEntryProps> = ({
   description,
   repositoryUrl,
   technologies,
-  isOnTIL = false,
 }) => {
   const formattedUrl = repositoryUrl.startsWith("http")
     ? repositoryUrl

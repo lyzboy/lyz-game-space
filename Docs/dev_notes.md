@@ -11,9 +11,18 @@ scroll to the sites section.
 
 # Still Needed
 
+- Fix BUGS!
+
 - need to double check auth entry points
 
 - need final review of style
+  - Focuses page needs style update
+    - Badges for focuses need updated shadcn/ui
+    - Focus cards need updated to shadcn/ui
+  - Focus view page needs to have `Return to Focuses` link removed
+    - Fix gap between items on focus view page when in mobile view
+  - Signin dialog needs some fine tuning
+    - cancel sign button needs to be destructive variant.
 
 - need pass all tests before release
 

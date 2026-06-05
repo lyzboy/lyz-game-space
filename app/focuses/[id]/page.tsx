@@ -11,10 +11,7 @@ const FocusView = async (props: PageProps<"/focuses/[id]">) => {
   const focus = await GetFocusById(Number(id));
   if (!focus) redirect("/focuses");
   return (
-    <div className="p-16">
-      <a href="/focuses" className="font-bold text-blue-400 mb-6 block">
-        Return to Focuses
-      </a>
+    <div className="p-16 pt-24">
       <Focus_EditorForm focus={focus} />
       <div>
         <h2 className="font-bold text-xl">Entries:</h2>
