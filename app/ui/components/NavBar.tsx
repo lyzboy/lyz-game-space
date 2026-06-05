@@ -38,7 +38,7 @@ const NavBar = () => {
     links.push({ name: "admin", link: "/admin" });
   }
   return (
-    <>
+    <div className="fixed top-0 bg-white z-10 w-full">
       <nav className="p-4 grid grid-cols-2">
         <a className="text-lg font-bold cursor-pointer" href="/">
           <div className="flex gap-2 justify-start items-center">
@@ -126,7 +126,7 @@ const NavBar = () => {
           </Card>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
