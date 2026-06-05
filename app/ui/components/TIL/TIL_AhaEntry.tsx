@@ -36,7 +36,9 @@ const TIL_AhaEntry: React.FC<AhaEntryProps> = ({
       <CardHeader>
         <div className="flex gap-2">
           <Lightbulb />
-          <p className="text-muted-foreground font-bold">Focus {focus.title}</p>
+          <p className="text-muted-foreground font-bold">
+            Focus: {focus.title}
+          </p>
         </div>
       </CardHeader>
       <CardContent>
@@ -78,20 +80,34 @@ const TIL_AhaEntry: React.FC<AhaEntryProps> = ({
             View Focus
           </a>
         ) : (
-          <a
-            href={`https://${focus.repositoryUrl}/commit/${commit}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={cn(
-              buttonVariants({
-                size: "lg",
-              }),
-              "self-end",
-            )}
-          >
-            <ExternalLink data-icon="inline-start" />
-            View Commit
-          </a>
+          <div className="flex">
+            <a
+              href={`/focuses/${focus.id}`}
+              className={cn(
+                buttonVariants({
+                  size: "lg",
+                }),
+                "self-end",
+              )}
+            >
+              <BookMarked data-icon="inline-start" />
+              View Focus
+            </a>
+            <a
+              href={`https://${focus.repositoryUrl}/commit/${commit}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                buttonVariants({
+                  size: "lg",
+                }),
+                "self-end",
+              )}
+            >
+              <ExternalLink data-icon="inline-start" />
+              View Commit
+            </a>
+          </div>
         )}
       </CardFooter>
     </Card>
