@@ -11,12 +11,11 @@ scroll to the sites section.
 
 # Still Needed
 
-- Need to fix styling between what is written and what is rendered in terms of
-markdown
-
 - need to double check auth entry points
 
 - need final review of style
+
+- need pass all tests before release
 
 # Testing implementation
 ## Testing stack
