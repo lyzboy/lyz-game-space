@@ -41,8 +41,13 @@ const Focus_Aha: React.FC<AhaEntryProps> = ({
   const [editing, setEditing] = useState(false);
   const [markdown, setMarkdown] = useState(content);
 
+  const [usedCommit, setUsedCommit] = useState(commit);
+
   const handleEditClick = () => {
     setEditing(!editing);
+    if (!editing) {
+      setUsedCommit(commit);
+    }
   };
 
   const editableControls = () => {
@@ -68,6 +73,8 @@ const Focus_Aha: React.FC<AhaEntryProps> = ({
           focusId={focus.id}
           setMarkdown={setMarkdown}
           isEditing={setEditing}
+          commit={usedCommit}
+          setCommit={setUsedCommit}
         />
       );
     } else {

@@ -11,18 +11,36 @@ scroll to the sites section.
 
 # Still Needed
 
-- Need to add ability to edit commit and repo for focus and entries
-
-- need to add ability to edit focus
-
-- Need to fix styling between want is written and what is rendered in terms of
-markdown
+- Fix BUGS!
 
 - need to double check auth entry points
 
 - need final review of style
+  - Focuses page needs style update
+    - Badges for focuses need updated shadcn/ui
+    - Focus cards need updated to shadcn/ui
+  - Focus view page needs to have `Return to Focuses` link removed
+    - Fix gap between items on focus view page when in mobile view
+  - Signin dialog needs some fine tuning
+    - cancel sign button needs to be destructive variant.
 
-- add a "published" state so certain dev logs aren't uploaded until published.
+- need pass all tests before release
+
+# Production Release
+
+- Use squash and merger on github to merge the branch
+
+- Handle prisma migration. Ensure to run `prisma migrate deploy` on production 
+server. Ensure that `prisma generate` and `prisma migrate deploy` before `next
+build` in the docker file.
+
+- Update docker compose and docker file so that it references the server db.
+Ensure that the system is using pnpm and not npm commands
+  - Create two separate docker-compose files `docker-compose.dev.yml` and 
+  `docker-compose.prod.yml`. The dev file should mirror the prod file with dev
+  overrides, local env vars, etc. The prod compose file can be used locally to
+  ensure that it closely meets "what the production server will do", but using 
+  a different DB. 
 
 # Testing implementation
 ## Testing stack
@@ -38,22 +56,6 @@ rendering and data fetching will also be done using cypress.
 
 For more information on how these work directly with nextjs, check out the 
 official [the nextjs guides](https://nextjs.org/docs/pages/guides/testing)
-
-# TIL Feed feature
-
-### Edit entries and focuses
-Need to be able to edit entries or focuses if something was added incorrectly.
-This will be completed using an "in-place" editor. The admin will visit the page
-and, if logged in, an edit and delete button will be shown.
-- ✅ Delete pressed - a popup wil be shown confirm deletion, if confirmed, a toast
-will appear shown that item has been deleted.
-- Edit pressed - The card that shows the item will turn into an editable "form"
-where the admin can make changes and either save the changes or cancel the
-changes.
-
-## Entry published
-Implement the ability to save an entry for it to be published at a later time.
-It would be saved as a draft.
 
 
 # Other Notes

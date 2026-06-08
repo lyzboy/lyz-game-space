@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const NavBar = () => {
   const { data: session } = useSession();
@@ -37,8 +38,10 @@ const NavBar = () => {
   if (session?.user?.role == "ADMIN") {
     links.push({ name: "admin", link: "/admin" });
   }
+  const pathname = usePathname();
+
   return (
-    <>
+    <div className="fixed top-0 bg-white z-10 w-full">
       <nav className="p-4 grid grid-cols-2">
         <a className="text-lg font-bold cursor-pointer" href="/">
           <div className="flex gap-2 justify-start items-center">
@@ -59,7 +62,18 @@ const NavBar = () => {
           {links.map((link) => {
             return (
               <li key={link.name}>
-                <Link href={link.link}>{link.name}</Link>
+                <Link
+                  href={link.link}
+                  onNavigate={(e) => {
+                    if (window.location.hash.includes("#sites")) {
+                      document
+                        .getElementById("sites")
+                        ?.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
+                >
+                  {link.name}
+                </Link>
               </li>
             );
           })}
@@ -86,7 +100,7 @@ const NavBar = () => {
         </ul>
       </nav>
       {signInPopup && (
-        <div className="w-full h-full fixed flex justify-center items-center bg-transparent z-1 backdrop-blur-lg">
+        <div className="w-full h-full fixed flex justify-center items-center bg-transparent z-100 backdrop-blur-lg">
           <Card className="w-full mx-20 p-8 max-w-2xl">
             <CardHeader>
               <CardTitle>Sign In:</CardTitle>
@@ -118,7 +132,7 @@ const NavBar = () => {
                 onClick={() => {
                   setSignInPopup(false);
                 }}
-                className=""
+                variant={"destructive"}
               >
                 Cancel Sign In
               </Button>
@@ -126,7 +140,7 @@ const NavBar = () => {
           </Card>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

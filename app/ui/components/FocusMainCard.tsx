@@ -5,6 +5,8 @@ import Markdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
 import { FindTotalDaysFromEntries } from "@/app/lib/actions";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface FocusEntryProps {
   title: string;
@@ -19,11 +21,8 @@ interface FocusEntryProps {
 const FocusMainCard: React.FC<FocusEntryProps> = async ({
   title,
   description,
-  repositoryUrl,
-  technologies,
   id,
   entries,
-  isOnTIL = false,
 }) => {
   const ahaMoments = entries.filter((entry) => entry.isAha);
   const daysSinceCreation = await FindTotalDaysFromEntries(
@@ -41,12 +40,25 @@ const FocusMainCard: React.FC<FocusEntryProps> = async ({
       </article>
       <div className="flex mt-6 flex-col md:flex-row">
         <p className={badgeStyle}>
-          {entries.length} entries across {daysSinceCreation.toString()} days
+          <span className="text-primary font-bold">{entries.length}</span>{" "}
+          entries across{" "}
+          <span className="text-primary font-bold">
+            {daysSinceCreation.toString()}
+          </span>{" "}
+          days
         </p>
-        <p className={badgeStyle}>{ahaMoments.length} aha moment(s)</p>
+        <p className={badgeStyle}>
+          <span className="text-primary font-bold">{ahaMoments.length}</span>{" "}
+          aha moment(s)
+        </p>
         <a
           href={`focuses/${id}`}
-          className={`${buttonStyle} md:self-end text-center`}
+          className={cn(
+            buttonVariants({
+              size: "lg",
+            }),
+            "md:self-end text-center",
+          )}
         >
           Visit Focus
         </a>

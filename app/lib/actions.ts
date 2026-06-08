@@ -42,6 +42,50 @@ export async function createFocus(formData: FormData) {
   }
 }
 
+export async function UpdateFocus(formData: FormData) {
+  try {
+    const rawFocusTitle = formData.get("focusTitle");
+    const rawFocusDescription = formData.get("focusDescription");
+    const rawFocusId = formData.get("focusId");
+
+    if (
+      typeof rawFocusTitle !== "string" ||
+      typeof rawFocusDescription !== "string" ||
+      typeof rawFocusId !== "string"
+    ) {
+      throw new Error("Missing required form fields");
+    }
+
+    const focusTitle = rawFocusTitle.trim();
+    const focusDescription = rawFocusDescription.trim();
+    const focusId = Number(rawFocusId);
+
+    if (!focusDescription) {
+      throw new Error("Entry description is required");
+    }
+
+    if (!focusTitle) {
+      throw new Error("Entry title is required");
+    }
+    if (Number.isNaN(focusId)) {
+      throw new Error("Invalid focus id");
+    }
+
+    await prisma.focus.update({
+      where: {
+        id: focusId,
+      },
+      data: {
+        title: focusTitle,
+        description: focusDescription,
+      },
+    });
+    refresh();
+  } catch (error) {
+    console.error(`Couldn't update focus: ${error}`);
+  }
+}
+
 export async function createEntry(formData: FormData) {
   try {
     const rawEntryDescription = formData.get("entryDescription");
@@ -94,11 +138,13 @@ export async function UpdateEntry(formData: FormData) {
     const rawEntryDescription = formData.get("entryDescription");
     const rawId = formData.get("entryId");
     const rawFocusId = formData.get("focusId");
+    const rawCommit = formData.get("entryCommit");
 
     if (
       typeof rawEntryDescription !== "string" ||
       typeof rawId !== "string" ||
-      typeof rawFocusId !== "string"
+      typeof rawFocusId !== "string" ||
+      typeof rawCommit !== "string"
     ) {
       throw new Error("Missing required form fields");
     }
@@ -125,9 +171,9 @@ export async function UpdateEntry(formData: FormData) {
       },
       data: {
         description: rawEntryDescription,
+        commitUrl: rawCommit,
       },
     });
-    //revalidatePath(`/focuses/${focusId}`);
     refresh();
   } catch (error) {
     console.error(`Couldn't update entry: ${error}`);

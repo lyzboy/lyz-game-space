@@ -7,15 +7,15 @@ import { motion } from "motion/react";
 
 const AuthorCard = () => {
   return (
-    <div className="flex flex-col w-full md:flex-row my-24">
+    <div className="flex flex-col w-full md:flex-row my-24 ">
       <div
-        className="rounded-full w-48 h-48 mr-10 
-      overflow-hidden mb-6 shrink-0"
+        className="mr-10 
+      overflow-hidden mb-6 shrink-0 sm:w-full md:w-auto flex justify-center items-center md:block"
       >
         <Image
           src="/images/Josh_BG_Green.png"
           alt="an image of Josh"
-          className="object-cover w-full h-full"
+          className="object-cover w-48 h-48 rounded-full"
           width={300}
           height={300}
         />
