@@ -2,48 +2,64 @@
 import prisma from "@/app/lib/prisma";
 import { refresh, revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { auth } from "@/auth";
+
+const requireAdmin = async () => {
+  const session = await auth();
+  if (session?.user?.role !== "ADMIN") {
+    throw new Error("Unauthorized");
+  }
+
+  return session;
+};
 
 export async function createFocus(formData: FormData) {
-  const focusName = formData.get("focusName");
-  const focusDescription = formData.get("focusDescription");
-  let repoName = formData.get("repoName");
+  try {
+    await requireAdmin();
+    const focusName = formData.get("focusName");
+    const focusDescription = formData.get("focusDescription");
+    let repoName = formData.get("repoName");
 
-  const selectedTechIds = formData
-    .getAll("technologies")
-    .map((id) => Number(id));
+    const selectedTechIds = formData
+      .getAll("technologies")
+      .map((id) => Number(id));
 
-  if (repoName != null) {
-    repoName = repoName.toString().replace(/.*\//gm, "");
-    repoName = "github.com/lyzboy/" + repoName;
-  }
-  if (typeof repoName != "string" || repoName === null) repoName = "";
-  if (typeof focusName === "string" && typeof focusDescription === "string") {
-    const technologyConnections = selectedTechIds.map((id) => ({ id }));
-    await prisma.focus.upsert({
-      where: {
-        title: focusName,
-      },
-      update: {
-        repositoryUrl: repoName,
-        technologies: {
-          set: technologyConnections,
+    if (repoName != null) {
+      repoName = repoName.toString().replace(/.*\//gm, "");
+      repoName = "github.com/lyzboy/" + repoName;
+    }
+    if (typeof repoName != "string" || repoName === null) repoName = "";
+    if (typeof focusName === "string" && typeof focusDescription === "string") {
+      const technologyConnections = selectedTechIds.map((id) => ({ id }));
+      await prisma.focus.upsert({
+        where: {
+          title: focusName,
         },
-      },
-      create: {
-        title: focusName,
-        description: focusDescription,
-        repositoryUrl: repoName,
-        technologies: {
-          connect: technologyConnections,
+        update: {
+          repositoryUrl: repoName,
+          technologies: {
+            set: technologyConnections,
+          },
         },
-      },
-    });
-    revalidatePath("/admin");
+        create: {
+          title: focusName,
+          description: focusDescription,
+          repositoryUrl: repoName,
+          technologies: {
+            connect: technologyConnections,
+          },
+        },
+      });
+      revalidatePath("/admin");
+    }
+  } catch (error) {
+    console.log(`Cannot create focus: ${error}`);
   }
 }
 
 export async function UpdateFocus(formData: FormData) {
   try {
+    await requireAdmin();
     const rawFocusTitle = formData.get("focusTitle");
     const rawFocusDescription = formData.get("focusDescription");
     const rawFocusId = formData.get("focusId");
@@ -88,6 +104,7 @@ export async function UpdateFocus(formData: FormData) {
 
 export async function createEntry(formData: FormData) {
   try {
+    await requireAdmin();
     const rawEntryDescription = formData.get("entryDescription");
     const rawFocusId = formData.get("selectedFocus");
     const rawCommitUrl = formData.get("commitUrl");
@@ -135,6 +152,7 @@ export async function createEntry(formData: FormData) {
 
 export async function UpdateEntry(formData: FormData) {
   try {
+    await requireAdmin();
     const rawEntryDescription = formData.get("entryDescription");
     const rawId = formData.get("entryId");
     const rawFocusId = formData.get("focusId");
@@ -182,6 +200,7 @@ export async function UpdateEntry(formData: FormData) {
 
 export async function createTechnology(formData: FormData) {
   try {
+    await requireAdmin();
     const technologyName = formData.get("technologyName");
     if (!technologyName || typeof technologyName !== "string")
       throw new Error("Technology name is required and must be a text value.");
@@ -197,15 +216,33 @@ export async function createTechnology(formData: FormData) {
 }
 
 export async function FindTotalDaysFromEntries(entriesDates: string[]) {
-  if (entriesDates.length <= 1) {
-    return 1;
-  }
-  entriesDates.sort();
-  let min: Date = new Date(entriesDates[0]);
-  let max: Date = new Date(entriesDates.at(-1)!);
+  try {
+    if (entriesDates.length <= 1) {
+      return 1;
+    }
+    entriesDates.sort();
+    let min: Date = new Date(entriesDates[0]);
+    let max: Date = new Date(entriesDates.at(-1)!);
 
-  let milliSeconds: number = max.getTime() - min.getTime();
-  let days = Math.ceil(milliSeconds / 1000 / 60 / 60 / 24);
-  if (days < 1) days = 1;
-  return days;
+    let milliSeconds: number = max.getTime() - min.getTime();
+    let days = Math.ceil(milliSeconds / 1000 / 60 / 60 / 24);
+    if (days < 1) days = 1;
+    return days;
+  } catch (error) {
+    console.log(`Error finding total days: ${error}`);
+  }
+}
+
+export async function DeleteEntryById(id: number, focusId: number) {
+  try {
+    await requireAdmin();
+    await prisma.entry.delete({
+      where: {
+        id,
+      },
+    });
+    revalidatePath(`/focuses/${focusId}`);
+  } catch (error) {
+    throw new Error(`Failed to delete entry with id (${id})`);
+  }
 }

@@ -25,7 +25,7 @@ interface EntryProps {
 const TIL_Entry: React.FC<EntryProps> = ({ date, description, focusId }) => {
   const content = formatShortDescription(description);
   return (
-    <Card>
+    <Card className="p-4">
       <CardHeader>
         <p className="text-muted-foreground font-bold">Latest Entry:</p>
       </CardHeader>
@@ -42,11 +42,8 @@ const TIL_Entry: React.FC<EntryProps> = ({ date, description, focusId }) => {
       <CardFooter
         className="
           flex 
-          lg:justify-between
-          lg:flex-row 
-          lg:items-center 
+          justify-center
           items-end
-          justify-center 
           flex-col 
           w-full 
           gap-2

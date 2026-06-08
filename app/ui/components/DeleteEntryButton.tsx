@@ -12,7 +12,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-import { DeleteEntryById } from "@/app/lib/entries";
+import { DeleteEntryById } from "@/app/lib/actions";
 
 import { Button } from "@/components/ui/button";
 
@@ -45,7 +45,6 @@ const DeleteEntryButton: React.FC<DeleteEntryButtonProps> = ({
               Delete
             </AlertDialogAction>
           </form>
-          {/* TODO: close dialog box after delete, might happen with revalidate path */}
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

@@ -47,7 +47,7 @@ const TILFeed = async () => {
     <Card className="m-2">
       <CardHeader className="text-2xl font-bold">TIL Feed</CardHeader>
       <CardContent>
-        <div className="flex flex-col md:flex-row gap-4">
+        <div className="flex flex-col lg:flex-row gap-4">
           <TIL_Focus
             title={newestEntry?.focus.title || "No title found"}
             description={

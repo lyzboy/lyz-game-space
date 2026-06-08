@@ -58,6 +58,7 @@ export default function EntryFormClient({ focuses }: { focuses: Focus[] }) {
                 type="text"
                 name="commitUrl"
               />
+              <p>Be sure to include: commit/...</p>
             </div>
             <div className="flex gap-5 items-center">
               <label htmlFor="isAha" className="text-lg font-bold">
