@@ -1,11 +1,10 @@
 packages:
   - .
-
-neverBuiltDependencies:
-  - "@prisma/engines"
-  - es5-ext
-  - esbuild
-  - msw
-  - prisma
-  - sharp
-  - unrs-resolver
+allowBuilds:
+  '@prisma/engines': true
+  es5-ext: true
+  esbuild: true
+  msw: true
+  prisma: true
+  sharp: true
+  unrs-resolver: true

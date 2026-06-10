@@ -11,7 +11,8 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 COPY package.json pnpm-lock.yaml ./
 
 # Install the copied dependencies into the image
-RUN pnpm install --frozen-lockfile
+# Sync build approvals and install dependencies
+RUN pnpm approve-builds --all && pnpm install --frozen-lockfile
 
 # copy the rest of the application source code into the image, the source is the build context root (first . : current pwd where build command is ran) to the destination (which is /app thanks to the WORKDIR layer)
 COPY . .
