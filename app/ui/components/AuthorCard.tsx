@@ -21,16 +21,16 @@ const AuthorCard = () => {
         />
       </div>
       <div>
-        <p className="text-4xl font-bold tracking-tight">Hi, I'm Josh</p>
+        <p className="text-4xl font-bold tracking-tight">{`Hi, I'm Josh`}</p>
         <div className="mb-4">
           <p>
-            Welcome to <strong>lyz studios</strong>. I’m a Full-Stack Developer
+            {`Welcome to <strong>lyz studios</strong>. I’m a Full-Stack Developer
             specializing in the PERN stack and Next.js. This dashboard serves as
             a live showcase of my deployed projects and technical
             accomplishments. To demonstrate end-to-end infrastructure
             management, every application found here is self-hosted on my local
             home server—optimized for security and performance via Cloudflare
-            Tunnels and Docker containerization.
+            Tunnels and Docker containerization.`}
           </p>
           <br />
           <p>

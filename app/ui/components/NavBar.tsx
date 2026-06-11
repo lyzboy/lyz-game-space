@@ -19,17 +19,16 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 
 const NavBar = () => {
   const { data: session } = useSession();
+  const [signInPopup, setSignInPopup] = useState(false);
 
   useEffect(() => {
     if (session) {
       setSignInPopup(false);
     }
   }, [session]);
-  const [signInPopup, setSignInPopup] = useState(false);
   const links = [
     { name: "Sites", link: "/#sites" },
     { name: "Dev Diary", link: "/focuses" },
@@ -38,12 +37,11 @@ const NavBar = () => {
   if (session?.user?.role == "ADMIN") {
     links.push({ name: "admin", link: "/admin" });
   }
-  const pathname = usePathname();
 
   return (
     <div className="fixed top-0 bg-white z-10 w-full">
       <nav className="p-4 grid grid-cols-2">
-        <a className="text-lg font-bold cursor-pointer" href="/">
+        <Link className="text-lg font-bold cursor-pointer" href="/">
           <div className="flex gap-2 justify-start items-center">
             <div className="flex h-10 w-10 justify-center items-center overflow-hidden">
               <Image
@@ -56,7 +54,7 @@ const NavBar = () => {
             </div>
             <p>Lyz Studios</p>
           </div>
-        </a>
+        </Link>
 
         <ul className="uppercase flex gap-3 justify-end">
           {links.map((link) => {

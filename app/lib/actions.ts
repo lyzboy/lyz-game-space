@@ -221,10 +221,10 @@ export async function FindTotalDaysFromEntries(entriesDates: string[]) {
       return 1;
     }
     entriesDates.sort();
-    let min: Date = new Date(entriesDates[0]);
-    let max: Date = new Date(entriesDates.at(-1)!);
+    const min: Date = new Date(entriesDates[0]);
+    const max: Date = new Date(entriesDates.at(-1)!);
 
-    let milliSeconds: number = max.getTime() - min.getTime();
+    const milliSeconds: number = max.getTime() - min.getTime();
     let days = Math.ceil(milliSeconds / 1000 / 60 / 60 / 24);
     if (days < 1) days = 1;
     return days;
@@ -244,6 +244,6 @@ export async function DeleteEntryById(id: number, focusId: number) {
     });
     revalidatePath(`/focuses/${focusId}`);
   } catch (error) {
-    throw new Error(`Failed to delete entry with id (${id})`);
+    throw new Error(`Failed to delete entry with id (${id}): ${error}`);
   }
 }

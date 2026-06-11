@@ -9,7 +9,7 @@ interface CardObject {
 }
 
 const Sites = () => {
-  let cardArray: CardObject[] = [
+  const cardArray: CardObject[] = [
     // {
     //   title: "My Portfolio",
     //   image: "/images/placeholder_view.png",
