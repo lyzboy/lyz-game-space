@@ -5,6 +5,10 @@ planning/implementation. This is a living document and might change during the c
 
 # **BUGS**
 
+# NEEDED ACTIONS
+**CRITICAL**
+run `pnpm lint` and clean up errors and warnings.
+
 
 # Docker Deploy Notes
 - Will need a container for the site and a container for the postgresql database. (both created within the docker file and docker compose to connect them.)

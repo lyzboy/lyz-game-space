@@ -1,6 +1,5 @@
 `server-only`;
 import prisma from "@/app/lib/prisma";
-import { Focus } from "../generated/prisma";
 
 export async function GetFocuses() {
   try {
@@ -9,6 +8,7 @@ export async function GetFocuses() {
     });
     return fetchedFocuses;
   } catch (error) {
+    console.error("GetFocuses error:", error);
     throw new Error("Failed to fetch focuses");
   }
 }

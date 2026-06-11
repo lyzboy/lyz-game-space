@@ -10,7 +10,7 @@ import {
 import { Button, buttonVariants } from "@/components/ui/button";
 
 import { ExternalLink, Lightbulb, CircleSlash } from "lucide-react";
-import { Focus } from "@/app/generated/prisma";
+import { Focus } from "@prisma/client";
 
 import { useSession } from "next-auth/react";
 import { useState } from "react";

@@ -1,6 +1,6 @@
 "use client";
 
-import { Focus } from "@/app/generated/prisma";
+import { Focus } from "@prisma/client";
 import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
 import { useState } from "react";

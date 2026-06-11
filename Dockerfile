@@ -20,7 +20,7 @@ COPY . .
 ENV CI=true
 
 # run the builder using the pnpm package manager we activated in the node corepack section above
-RUN pnpm build
+RUN pnpm prisma generate && pnpm build
 
 # Stage 2: Runner - a minimal image to run the built app
 FROM node:22-slim AS runner

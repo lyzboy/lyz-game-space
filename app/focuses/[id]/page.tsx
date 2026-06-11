@@ -5,6 +5,7 @@ import { GetFocusById } from "@/app/lib/focuses";
 import Focus_Entry from "@/app/ui/components/FocusView/Focus_Entry";
 import Focus_Aha from "@/app/ui/components/FocusView/Focus_Aha";
 import Focus_EditorForm from "@/app/ui/components/FocusView/Focus_EditorForm";
+import { Entry } from "@prisma/client";
 
 const FocusView = async (props: PageProps<"/focuses/[id]">) => {
   const { id } = await props.params;
@@ -15,7 +16,7 @@ const FocusView = async (props: PageProps<"/focuses/[id]">) => {
       <Focus_EditorForm focus={focus} />
       <div>
         <h2 className="font-bold text-xl">Entries:</h2>
-        {focus.entry.map((entry) => {
+        {focus.entry.map((entry: Entry) => {
           return entry.isAha ? (
             <Focus_Aha
               key={entry.id}

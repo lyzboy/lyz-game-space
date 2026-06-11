@@ -1,5 +1,5 @@
-import { Entry } from "@/app/generated/prisma";
-import { proseStyle, badgeStyle, buttonStyle } from "@/app/lib/styles";
+import { Entry } from "@prisma/client";
+import { proseStyle, badgeStyle } from "@/app/lib/styles";
 import React from "react";
 import Markdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";

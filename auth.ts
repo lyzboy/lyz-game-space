@@ -4,7 +4,7 @@ import prisma from "@/app/lib/prisma";
 import Google from "next-auth/providers/google";
 import GitHub from "next-auth/providers/github";
 
-import { Role } from "./app/generated/prisma";
+import { Role } from "@prisma/client";
 
 // TS module augmentation to add role parameter to
 // session and user types

@@ -230,6 +230,7 @@ export async function FindTotalDaysFromEntries(entriesDates: string[]) {
     return days;
   } catch (error) {
     console.log(`Error finding total days: ${error}`);
+    return 0;
   }
 }
 

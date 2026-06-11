@@ -13,7 +13,7 @@ import {
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { BookMarked, ExternalLink, Lightbulb } from "lucide-react";
-import { Focus } from "@/app/generated/prisma";
+import { Focus } from "@prisma/client";
 
 interface AhaEntryProps {
   id: number;
