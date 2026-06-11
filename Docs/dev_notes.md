@@ -7,28 +7,6 @@ planning/implementation. This is a living document and might change during the c
 
 # Needed actions before merging to `main`
 
-## 1. Lint and TypeScript cleanup (critical)
-
-- Run:
-
-  ```bash
-  pnpm lint
-  pnpm build
-  ```
-
-- Systematically clean up:
-  - All **TypeScript errors** (anything that stops the build).
-  - High‑value lint errors in:
-    - `app/**`
-    - `lib/**`
-    - `auth.ts`
-    - `prisma/seed.ts`
-- You do **not** need to reach zero warnings immediately, but:
-  - Fix obvious bugs (wrong types, unused imports/vars in core files).
-  - Consider relaxing or disabling overly strict rules in `eslint.config.mjs` once you see consistent patterns.
-
----
-
 # Docker / Compose architecture
 
 ## Current state
