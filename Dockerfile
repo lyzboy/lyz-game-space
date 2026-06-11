@@ -41,6 +41,9 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./package.json
 # the runtime deps
 COPY --from=builder /app/node_modules ./node_modules
+# the prisma required files for prisma to complete
+COPY --from=builder /app/prisma ./prisma
+COPY --from=builder /app/prisma.config.ts ./prisma.config.ts
 
 # set the environment to production so that next is optimized for production
 ENV NODE_ENV=production

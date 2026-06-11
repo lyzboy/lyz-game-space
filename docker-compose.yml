@@ -16,18 +16,20 @@ services:
     restart: always
     depends_on:
       - db
+    command: >
+      sh -c "npx prisma migrate deploy && node node_modules/next/dist/bin/next start -p 3000"
   db:
     container_name: lyzgame-db
     image: postgres:latest 
     environment:
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}\
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     ports:
       - "5432:5432"
     restart: always
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - db-data:/var/lib/postgresql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -d ${POSTGRES_DB} -U ${POSTGRES_USER}"]
       interval: 30s
