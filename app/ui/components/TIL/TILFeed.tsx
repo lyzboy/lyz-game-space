@@ -31,7 +31,7 @@ const TILFeed = async () => {
 
   if (!newestEntry) {
     return (
-      <div className="mt-10 mb-10 border-blue-400 border-2 rounded-2xl lg:p-5">
+      <div className="mt-10 mb-10 border-blue-400 border-2 rounded-2xl p-5">
         <h2 className="text-2xl font-bold">TIL Feed</h2>
         <p>
           This section is the Today I Learned (TIL) feed. It provides insights
