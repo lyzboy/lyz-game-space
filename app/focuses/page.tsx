@@ -3,6 +3,8 @@ import { GetFocuses } from "../lib/focuses";
 import { badgeStyle } from "../lib/styles";
 import FocusMainCard from "../ui/components/FocusMainCard";
 
+export const dynamic = "force-dynamic";
+
 export default async function Focuses() {
   const focuses = await GetFocuses();
   const entries = await GetEntries();

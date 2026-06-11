@@ -4,6 +4,9 @@ FROM node:22-slim AS builder
 # Set the location of the working directory for all subsequent layers
 WORKDIR /app
 
+ARG DATABASE_URL
+ENV DATABASE_URL=${DATABASE_URL}
+
 # Use node corepack  as standard practice for pnpm within docker.
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
@@ -46,4 +49,4 @@ ENV NODE_ENV=production
 EXPOSE 3000
 
 # start up the next js app using pnpm
-CMD ["pnpm", "start"]
+CMD ["node", "node_modules/next/dist/bin/next", "start", "-p", "3000"]
