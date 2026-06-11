@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "./Card";
+import SiteCard from "./SiteCard";
 
 interface CardObject {
   title: string;
@@ -9,13 +9,13 @@ interface CardObject {
 }
 
 const Sites = () => {
-  let cardArray: CardObject[] = [
-    {
-      title: "My Portfolio",
-      image: "/images/placeholder_view.png",
-      description: "My portfolio website showcasing some of my latest work.",
-      link: "https://lyzboy.github.io",
-    },
+  const cardArray: CardObject[] = [
+    // {
+    //   title: "My Portfolio",
+    //   image: "/images/placeholder_view.png",
+    //   description: "My portfolio website showcasing some of my latest work.",
+    //   link: "https://lyzboy.github.io",
+    // },
     {
       title: "Rivers Karate",
       image: "/images/rivers_karate.png",
@@ -25,7 +25,7 @@ const Sites = () => {
     {
       title: "Square Pool",
       image: "/images/square_pool.png",
-      description: "A football pools site for family and fiends",
+      description: "A football pools site for family and friends",
       link: "https://squarepool.lyzgame.space",
     },
     {
@@ -50,21 +50,27 @@ const Sites = () => {
   ];
 
   return (
-    <div
-      className="grid md:grid-cols-2 p-10 justify-center content-center 
-      justify-items-center items-stretch gap-10"
-    >
-      {cardArray.map((cardItem) => {
-        return (
-          <Card
-            key={cardItem.title}
-            title={cardItem.title}
-            image={cardItem.image}
-            description={cardItem.description}
-            link={cardItem.link}
-          />
-        );
-      })}
+    <div className="flex flex-col justify-center items-center pt-8">
+      <h3 className="font-bold bg-light-foreground w-full p-6 text-center shadow-xl mb-8">
+        Sites:
+      </h3>
+      <div
+        className="grid md:grid-cols-2 lg:p-10 justify-center content-center 
+      justify-items-center items-stretch gap-10 scroll-mt-40"
+        id="sites"
+      >
+        {cardArray.map((cardItem) => {
+          return (
+            <SiteCard
+              key={cardItem.title}
+              title={cardItem.title}
+              image={cardItem.image}
+              description={cardItem.description}
+              link={cardItem.link}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };
