@@ -94,7 +94,7 @@ const TIL_AhaEntry: React.FC<AhaEntryProps> = ({
               View Focus
             </a>
             <a
-              href={`https://${focus.repositoryUrl}/commit/${commit}`}
+              href={`https://${focus.repositoryUrl}/${commit}`}
               target="_blank"
               rel="noopener noreferrer"
               className={cn(
