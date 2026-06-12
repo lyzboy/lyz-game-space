@@ -3,7 +3,7 @@
 import { useSession } from "next-auth/react";
 
 import Image from "next/image";
-import { signIn, signOut } from "next-auth/react";
+import { signIn, signOut } from "@/auth";
 
 import { SiGoogle, SiGithub } from "@icons-pack/react-simple-icons";
 
