@@ -22,7 +22,9 @@ declare module "next-auth" {
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
-  session: { strategy: "jwt" }, // ADD THIS
+  session: { strategy: "jwt" },
+  basePath: "/api/auth",
+  trustHost: true,
   providers: [Google, GitHub],
   callbacks: {
     async jwt({ token, user }) {
