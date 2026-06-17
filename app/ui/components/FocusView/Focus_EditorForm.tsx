@@ -1,6 +1,6 @@
 "use client";
 
-import { Focus } from "@prisma/client";
+import { Focus, Prisma } from "@prisma/client";
 import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
@@ -8,11 +8,19 @@ import { Field, FieldLabel, FieldDescription } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { UpdateFocus } from "@/app/lib/actions";
+import { Badge } from "@/components/ui/badge";
+
+type FocusWithTechnologies = Prisma.FocusGetPayload<{
+  include: { technologies: true };
+}>;
 
 interface Focus_EditorFormProps {
-  focus: Focus;
+  focus: FocusWithTechnologies;
 }
 
+/**
+ * A form used to make edits to a focus
+ */
 const Focus_EditorForm: React.FC<Focus_EditorFormProps> = ({ focus }) => {
   const { data: session } = useSession();
 
@@ -20,6 +28,7 @@ const Focus_EditorForm: React.FC<Focus_EditorFormProps> = ({ focus }) => {
   const [focusDescription, setFocusDescription] = useState(focus.description);
 
   const [isEditing, setIsEditing] = useState(false);
+
   const handleEditClick = () => {
     setIsEditing(!isEditing);
     if (!isEditing) {
@@ -28,15 +37,25 @@ const Focus_EditorForm: React.FC<Focus_EditorFormProps> = ({ focus }) => {
     }
   };
 
+  const renderedFocusView = (
+    <div className="mb-6">
+      <h1 className="font-bold text-2xl mb-4">{focus.title}</h1>
+      <div className="flex mb-4">
+        {focus.technologies?.map((technology) => {
+          return (
+            <Badge key={technology.id} variant={"secondary"}>
+              {technology.name}
+            </Badge>
+          );
+        })}
+      </div>
+      <p>{focus.description}</p>
+    </div>
+  );
+
   const selectView = () => {
     if (session?.user?.role !== "ADMIN") {
-      return (
-        <div className="mb-6">
-          <p className="font-bold text-xl">Title:</p>
-          <h1 className="font-bold text-2xl mb-4">{focus.title}</h1>
-          <p>{focus.description}</p>
-        </div>
-      );
+      return renderedFocusView;
     } else {
       return (
         <div className="w-full mb-6">
@@ -83,11 +102,7 @@ const Focus_EditorForm: React.FC<Focus_EditorFormProps> = ({ focus }) => {
               <Button type="submit">Save Changes</Button>
             </form>
           ) : (
-            <div className="mb-6">
-              <p className="font-bold text-xl">Title:</p>
-              <h1 className="font-bold text-2xl mb-4">{focus.title}</h1>
-              <p>{focus.description}</p>
-            </div>
+            renderedFocusView
           )}
         </div>
       );
