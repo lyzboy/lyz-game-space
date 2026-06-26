@@ -63,6 +63,9 @@ export async function UpdateFocus(formData: FormData) {
     const rawFocusTitle = formData.get("focusTitle");
     const rawFocusDescription = formData.get("focusDescription");
     const rawFocusId = formData.get("focusId");
+    const selectedTechIds = formData
+      .getAll("technologies")
+      .map((id) => Number(id));
 
     if (
       typeof rawFocusTitle !== "string" ||
@@ -86,7 +89,7 @@ export async function UpdateFocus(formData: FormData) {
     if (Number.isNaN(focusId)) {
       throw new Error("Invalid focus id");
     }
-
+    const technologyConnections = selectedTechIds.map((id) => ({ id }));
     await prisma.focus.update({
       where: {
         id: focusId,
@@ -94,6 +97,9 @@ export async function UpdateFocus(formData: FormData) {
       data: {
         title: focusTitle,
         description: focusDescription,
+        technologies: {
+          set: technologyConnections,
+        },
       },
     });
     refresh();

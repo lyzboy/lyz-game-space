@@ -16,12 +16,16 @@ type FocusWithTechnologies = Prisma.FocusGetPayload<{
 
 interface Focus_EditorFormProps {
   focus: FocusWithTechnologies;
+  technologies: { name: string; id: number }[];
 }
 
 /**
  * A form used to make edits to a focus
  */
-const Focus_EditorForm: React.FC<Focus_EditorFormProps> = ({ focus }) => {
+const Focus_EditorForm: React.FC<Focus_EditorFormProps> = ({
+  focus,
+  technologies,
+}) => {
   const { data: session } = useSession();
 
   const [focusTitle, setFocusTitle] = useState(focus.title);
@@ -99,6 +103,27 @@ const Focus_EditorForm: React.FC<Focus_EditorFormProps> = ({ focus }) => {
                   Edit the existing focus description.
                 </FieldDescription>
               </Field>
+              <div className="grid grid-rows-2 grid-flow-col gap-2">
+                {technologies.map((technology) => {
+                  return (
+                    <div key={technology.id}>
+                      <input
+                        type="checkbox"
+                        name="technologies"
+                        id={technology.id.toString()}
+                        value={technology.id}
+                        className="mr-2"
+                        defaultChecked={focus.technologies.some(
+                          (element) => element.id === technology.id,
+                        )}
+                      />
+                      <label htmlFor={`tech-${technology.id}`}>
+                        {technology.name}
+                      </label>
+                    </div>
+                  );
+                })}
+              </div>
               <Button type="submit">Save Changes</Button>
             </form>
           ) : (
