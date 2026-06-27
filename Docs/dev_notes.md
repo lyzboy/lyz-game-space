@@ -12,6 +12,8 @@ planning/implementation. This is a living document and might change during the c
   - Cards will need to be used.
   - Ensure the responsive design is used. Currently, on mobile, the cards don't stack and the submit buttons overflow and are hidden.
 3. Adjust the headings styles for prose for rendered markdown on the site. Specifically h3-h6 
+4. Add a publish mode.
+5. Create a mobile nav bar that hamburgers
 
 # Testing implementation
 ## Testing stack

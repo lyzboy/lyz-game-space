@@ -33,7 +33,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         sameSite: "lax",
         path: "/",
         secure: true,
-        domain: ".lyzgame.space",
+        // TODO: go back for production
+        // domain: ".lyzgame.space",
+        domain: "localhost",
       },
     },
   },

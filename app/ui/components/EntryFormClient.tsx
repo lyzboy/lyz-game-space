@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { createEntry } from "@/app/lib/actions";
 import { ForwardRefEditor } from "./ForwardRefEditor";
+import { Card, CardHeader } from "@/components/ui/card";
 
 type Focus = {
   id: number;
@@ -14,9 +15,8 @@ export default function EntryFormClient({ focuses }: { focuses: Focus[] }) {
   const [markdown, setMarkdown] = useState("");
 
   return (
-    <div className="flex flex-col h-full">
-      <p className="text-2xl font-bold">Entry Form</p>
-
+    <Card className="p-6 w-full">
+      <CardHeader className="text-2xl font-bold">Entry Form</CardHeader>
       {focuses.length > 0 ? (
         <form action={createEntry} className="flex flex-col gap-2 h-full">
           <label htmlFor="selectedFocus" className="text-lg font-bold">
@@ -25,7 +25,7 @@ export default function EntryFormClient({ focuses }: { focuses: Focus[] }) {
           <select
             id="selectedFocus"
             name="selectedFocus"
-            className="border-black border-2 rounded-md text-2xl font-bold bg-blue-200"
+            className="border-black border-2 rounded-md text-lg font-bold bg-blue-200"
           >
             {focuses.map((focus) => (
               <option value={focus.id} key={focus.id}>
@@ -47,8 +47,8 @@ export default function EntryFormClient({ focuses }: { focuses: Focus[] }) {
             value={markdown}
             readOnly
           />
-          <div className="flex justify-between my-6">
-            <div className="flex gap-5">
+          <div className="flex justify-between my-6 flex-col md:flex-row">
+            <div className="flex gap-5 flex-col md:flex-row">
               <label htmlFor="commitUrl" className="m-auto text-lg font-bold">
                 Commit URL:
               </label>
@@ -85,6 +85,6 @@ export default function EntryFormClient({ focuses }: { focuses: Focus[] }) {
       ) : (
         <p>Please Create a Focus first</p>
       )}
-    </div>
+    </Card>
   );
 }
