@@ -61,6 +61,18 @@ export default function EntryFormClient({ focuses }: { focuses: Focus[] }) {
               <p>Be sure to include: commit/...</p>
             </div>
             <div className="flex gap-5 items-center">
+              <label htmlFor="publish" className="text-lg font-bold">
+                Publish?
+              </label>
+              <input
+                id="publish"
+                className="border-black border-2 rounded-md w-7 h-7"
+                type="checkbox"
+                name="publish"
+                value="true"
+              />
+            </div>
+            <div className="flex gap-5 items-center">
               <label htmlFor="isAha" className="text-lg font-bold">
                 Is Aha?
               </label>
