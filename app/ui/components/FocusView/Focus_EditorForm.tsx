@@ -59,80 +59,80 @@ const Focus_EditorForm: React.FC<Focus_EditorFormProps> = ({
 
   const selectView = () => {
     // TODO: comment back out for deployment
-    // if (session?.user?.role !== "ADMIN") {
-    //   return renderedFocusView;
-    // } else {
-    return (
-      <div className="w-full mb-6">
-        {selectControls()}
-        {isEditing ? (
-          <form
-            action={(formData) => {
-              UpdateFocus(formData);
-              setIsEditing(false);
-            }}
-            className="w-full flex flex-col gap-8"
-          >
-            <input type="hidden" name="focusId" value={focus.id} readOnly />
-            <Field>
-              <FieldLabel htmlFor="focusTitle">Title:</FieldLabel>
-              <Input
-                type="text"
-                name="focusTitle"
-                id="focusTitle"
-                value={focusTitle}
-                onChange={(e) => {
-                  setFocusTitle(e.target.value);
-                }}
-                className="block"
-              />
-              <FieldDescription>
-                Edit the existing focus title.
-              </FieldDescription>
-            </Field>
-            <Field>
-              <FieldLabel htmlFor="focusDescription">Description:</FieldLabel>
-              <Textarea
-                name="focusDescription"
-                id="focusDescription"
-                value={focusDescription}
-                onChange={(e) => {
-                  setFocusDescription(e.target.value);
-                }}
-              />
-              <FieldDescription>
-                Edit the existing focus description.
-              </FieldDescription>
-            </Field>
-            <div className="grid grid-rows-2 grid-flow-col gap-2">
-              {technologies.map((technology) => {
-                return (
-                  <div key={technology.id}>
-                    <input
-                      type="checkbox"
-                      name="technologies"
-                      id={technology.id.toString()}
-                      value={technology.id}
-                      className="mr-2"
-                      defaultChecked={focus.technologies.some(
-                        (element) => element.id === technology.id,
-                      )}
-                    />
-                    <label htmlFor={`tech-${technology.id}`}>
-                      {technology.name}
-                    </label>
-                  </div>
-                );
-              })}
-            </div>
-            <Button type="submit">Save Changes</Button>
-          </form>
-        ) : (
-          renderedFocusView
-        )}
-      </div>
-    );
-    // }
+    if (session?.user?.role !== "ADMIN") {
+      return renderedFocusView;
+    } else {
+      return (
+        <div className="w-full mb-6">
+          {selectControls()}
+          {isEditing ? (
+            <form
+              action={(formData) => {
+                UpdateFocus(formData);
+                setIsEditing(false);
+              }}
+              className="w-full flex flex-col gap-8"
+            >
+              <input type="hidden" name="focusId" value={focus.id} readOnly />
+              <Field>
+                <FieldLabel htmlFor="focusTitle">Title:</FieldLabel>
+                <Input
+                  type="text"
+                  name="focusTitle"
+                  id="focusTitle"
+                  value={focusTitle}
+                  onChange={(e) => {
+                    setFocusTitle(e.target.value);
+                  }}
+                  className="block"
+                />
+                <FieldDescription>
+                  Edit the existing focus title.
+                </FieldDescription>
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="focusDescription">Description:</FieldLabel>
+                <Textarea
+                  name="focusDescription"
+                  id="focusDescription"
+                  value={focusDescription}
+                  onChange={(e) => {
+                    setFocusDescription(e.target.value);
+                  }}
+                />
+                <FieldDescription>
+                  Edit the existing focus description.
+                </FieldDescription>
+              </Field>
+              <div className="grid grid-rows-2 grid-flow-col gap-2">
+                {technologies.map((technology) => {
+                  return (
+                    <div key={technology.id}>
+                      <input
+                        type="checkbox"
+                        name="technologies"
+                        id={technology.id.toString()}
+                        value={technology.id}
+                        className="mr-2"
+                        defaultChecked={focus.technologies.some(
+                          (element) => element.id === technology.id,
+                        )}
+                      />
+                      <label htmlFor={`tech-${technology.id}`}>
+                        {technology.name}
+                      </label>
+                    </div>
+                  );
+                })}
+              </div>
+              <Button type="submit">Save Changes</Button>
+            </form>
+          ) : (
+            renderedFocusView
+          )}
+        </div>
+      );
+    }
   };
 
   const selectControls = () => {
