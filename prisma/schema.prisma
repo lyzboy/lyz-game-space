@@ -39,7 +39,7 @@ model Entry {
   isAha       Boolean
   focus       Focus    @relation(fields: [focusId], references: [id])
   focusId     Int
-  isPublished Boolean  @default(false)
+  isPublished Boolean  @default(true)
 }
 
 model User {
