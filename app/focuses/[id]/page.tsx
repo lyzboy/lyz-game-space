@@ -6,14 +6,16 @@ import Focus_Entry from "@/app/ui/components/FocusView/Focus_Entry";
 import Focus_Aha from "@/app/ui/components/FocusView/Focus_Aha";
 import Focus_EditorForm from "@/app/ui/components/FocusView/Focus_EditorForm";
 import { Entry } from "@prisma/client";
+import { getTechnologies } from "@/app/lib/technologies";
 
 const FocusView = async (props: PageProps<"/focuses/[id]">) => {
   const { id } = await props.params;
   const focus = await GetFocusById(Number(id));
+  const technologies = await getTechnologies();
   if (!focus) redirect("/focuses");
   return (
     <div className="p-16 pt-24">
-      <Focus_EditorForm focus={focus} />
+      <Focus_EditorForm focus={focus} technologies={technologies} />
       <div>
         <h2 className="font-bold text-xl">Entries:</h2>
         {focus.entry.map((entry: Entry) => {

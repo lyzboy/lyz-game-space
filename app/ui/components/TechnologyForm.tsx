@@ -1,4 +1,5 @@
 import { createTechnology } from "@/app/lib/actions";
+import { Card, CardHeader } from "@/components/ui/card";
 
 /**
  * A form that allows the admin to create a technology item.
@@ -7,8 +8,8 @@ import { createTechnology } from "@/app/lib/actions";
 
 export default function TechnologyForm() {
   return (
-    <div className="flex flex-col mb-16 border-2 p-3 rounded-2xl shadow-xl">
-      <p className="text-2xl font-bold">Technology Form</p>
+    <Card className="p-6">
+      <CardHeader className="text-2xl font-bold">Technology Form</CardHeader>
       <form action={createTechnology} className="flex flex-col">
         <label htmlFor="technologyName" className="font-bold text-lg my-4">
           Technology Name:
@@ -26,6 +27,6 @@ export default function TechnologyForm() {
           Submit
         </button>
       </form>
-    </div>
+    </Card>
   );
 }

@@ -63,6 +63,9 @@ export async function UpdateFocus(formData: FormData) {
     const rawFocusTitle = formData.get("focusTitle");
     const rawFocusDescription = formData.get("focusDescription");
     const rawFocusId = formData.get("focusId");
+    const selectedTechIds = formData
+      .getAll("technologies")
+      .map((id) => Number(id));
 
     if (
       typeof rawFocusTitle !== "string" ||
@@ -86,7 +89,7 @@ export async function UpdateFocus(formData: FormData) {
     if (Number.isNaN(focusId)) {
       throw new Error("Invalid focus id");
     }
-
+    const technologyConnections = selectedTechIds.map((id) => ({ id }));
     await prisma.focus.update({
       where: {
         id: focusId,
@@ -94,6 +97,9 @@ export async function UpdateFocus(formData: FormData) {
       data: {
         title: focusTitle,
         description: focusDescription,
+        technologies: {
+          set: technologyConnections,
+        },
       },
     });
     refresh();
@@ -109,6 +115,7 @@ export async function createEntry(formData: FormData) {
     const rawFocusId = formData.get("selectedFocus");
     const rawCommitUrl = formData.get("commitUrl");
     const rawIsAha = formData.get("isAha");
+    const rawIsPublished = formData.get("publish");
 
     if (
       typeof rawEntryDescription !== "string" ||
@@ -122,6 +129,7 @@ export async function createEntry(formData: FormData) {
     let commitUrl = rawCommitUrl.trim();
     const focusId = Number(rawFocusId);
     const isAha = rawIsAha != null;
+    const isPublished = rawIsPublished != null;
 
     if (!entryDescription) {
       throw new Error("Entry description is required");
@@ -141,6 +149,7 @@ export async function createEntry(formData: FormData) {
         focusId,
         commitUrl,
         isAha,
+        isPublished,
       },
     });
   } catch (error) {
@@ -148,6 +157,30 @@ export async function createEntry(formData: FormData) {
   }
   revalidatePath("/");
   redirect("/");
+}
+
+export async function PublishEntry(formData: FormData) {
+  try {
+    await requireAdmin();
+    const rawId = formData.get("entryId");
+
+    if (typeof rawId !== "string") throw new Error("Missing entry id");
+
+    const entryId = Number(rawId);
+
+    if (Number.isNaN(entryId)) throw new Error("Invalid entry id");
+    await prisma.entry.update({
+      where: {
+        id: entryId,
+      },
+      data: {
+        isPublished: true,
+      },
+    });
+    refresh();
+  } catch (error) {
+    console.error(`Couldn't publish entry: ${error}`);
+  }
 }
 
 export async function UpdateEntry(formData: FormData) {

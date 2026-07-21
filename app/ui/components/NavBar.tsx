@@ -19,6 +19,13 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const NavBar = () => {
   const { data: session } = useSession();
@@ -29,11 +36,15 @@ const NavBar = () => {
       setSignInPopup(false);
     }
   }, [session]);
+
   const links = [
     { name: "Sites", link: "/#sites" },
     { name: "Dev Diary", link: "/focuses" },
     //{name:"Learning", link:"Learning"}
   ];
+
+  const [navOpen, setNavOpen] = useState(false);
+
   if (session?.user?.role == "ADMIN") {
     links.push({ name: "admin", link: "/admin" });
   }
@@ -56,7 +67,64 @@ const NavBar = () => {
           </div>
         </Link>
 
-        <ul className="uppercase flex gap-3 justify-end">
+        <Sheet open={navOpen} onOpenChange={setNavOpen}>
+          <SheetTrigger
+            render={<Button variant="outline">Navigation</Button>}
+            className="w-30 justify-self-end font-bold"
+          />
+          <SheetContent>
+            <SheetHeader>
+              <SheetTitle>Browse The Site</SheetTitle>
+            </SheetHeader>
+            <ul className="uppercase flex flex-col p-8 gap-3 justify-end">
+              {links.map((link) => {
+                return (
+                  <li key={link.name}>
+                    <Link
+                      href={link.link}
+                      onNavigate={(e) => {
+                        setNavOpen(false);
+                        if (window.location.hash.includes("#sites")) {
+                          document
+                            .getElementById("sites")
+                            ?.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }}
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                );
+              })}
+              <li>
+                {session ? (
+                  <button
+                    type="submit"
+                    className="font-bold"
+                    onClick={() => {
+                      setNavOpen(false);
+                      signOut();
+                    }}
+                  >
+                    LOG OUT
+                  </button>
+                ) : (
+                  <button
+                    className="font-bold"
+                    onClick={() => {
+                      setNavOpen(false);
+                      setSignInPopup(true);
+                    }}
+                  >
+                    LOG IN
+                  </button>
+                )}
+              </li>
+            </ul>
+          </SheetContent>
+        </Sheet>
+        {/* <ul className="uppercase flex gap-3 justify-end">
+        
           {links.map((link) => {
             return (
               <li key={link.name}>
@@ -96,6 +164,7 @@ const NavBar = () => {
             )}
           </li>
         </ul>
+        */}
       </nav>
       {signInPopup && (
         <div className="w-full h-full fixed flex justify-center items-center bg-transparent z-100 backdrop-blur-lg">

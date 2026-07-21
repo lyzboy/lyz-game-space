@@ -1,5 +1,6 @@
 import { createFocus } from "@/app/lib/actions";
 import { getTechnologies } from "@/app/lib/technologies";
+import { Card, CardHeader } from "@/components/ui/card";
 
 /**
  * A component used by the admin of the site to create new entries.
@@ -9,8 +10,8 @@ import { getTechnologies } from "@/app/lib/technologies";
 export default async function FocusForm() {
   const technologies = await getTechnologies();
   return (
-    <div className="flex flex-col mb-16 border-2 p-3 rounded-2xl shadow-xl">
-      <p className="text-2xl font-bold">Focus Form</p>
+    <Card className="p-6 w-full">
+      <CardHeader className="text-2xl font-bold">Focus Form</CardHeader>
       <form action={createFocus} className="flex flex-col">
         <label htmlFor="focusName">Focus Name:</label>
         <input
@@ -58,6 +59,6 @@ export default async function FocusForm() {
           Submit
         </button>
       </form>
-    </div>
+    </Card>
   );
 }
